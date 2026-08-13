@@ -73,14 +73,12 @@
     .hero p{max-width:650px;line-height:1.8;color:#d5dbe3}
     .hero-actions{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
     .btn{
-      display:inline-block;border:1px solid var(--gold);
+      display:inline-flex;align-items:center;justify-content:center;
+      border:1px solid var(--gold);
       padding:14px 24px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
       color:var(--cream);transition:.2s ease;
-      min-height:48px;
-      line-height:1.4;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
+      min-height:48px;line-height:1.4;cursor:pointer;
+      background:transparent;
     }
     .btn:hover{background:rgba(212,184,122,.10)}
     .btn-primary{background:rgba(212,184,122,.08)}
@@ -119,7 +117,7 @@
     .card small{color:var(--gold-bright);letter-spacing:.08em;text-transform:uppercase}
     .card ul{padding-left:1.1rem;margin-top:16px}
 
-    .packages .card{position:relative;min-height:390px}
+    .packages .card{position:relative;min-height:390px;display:flex;flex-direction:column}
     .packages .featured{border-color:rgba(236,212,154,.8);box-shadow:0 0 30px rgba(212,184,122,.10)}
     .badge{
       font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;
@@ -135,26 +133,8 @@
     }
     .price-note{font-size:.78rem;color:var(--muted);margin-bottom:18px}
     .rule{height:1px;background:var(--line);margin:14px 0}
-
-    .business-box{
-      border:1px solid rgba(236,212,154,.7);
-      padding:34px;margin-top:44px;background:rgba(255,255,255,.025)
-    }
-    .business-top{
-      display:flex;justify-content:space-between;gap:24px;align-items:end;
-      padding-bottom:20px;border-bottom:1px solid var(--line)
-    }
-    .business-top h3{
-      font-family:"Bodoni Moda",Georgia,serif;
-      font-size:clamp(2rem,4vw,3.5rem);color:var(--cream);font-weight:500
-    }
-    .business-price{
-      font-family:"Bodoni Moda",Georgia,serif;
-      color:var(--gold-bright);font-size:1.8rem;white-space:nowrap
-    }
-    .business-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px 48px;margin-top:24px}
-    .business-item{padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.06)}
-    .business-item strong{display:block;color:var(--gold-bright);margin-bottom:8px}
+    .card-cta{margin-top:auto;padding-top:20px}
+    .card-cta .btn{width:100%;font-size:.68rem}
 
     .vat{
       margin-top:20px;text-align:center;font-size:.76rem;color:var(--gold-bright)
@@ -175,6 +155,59 @@
     .cta h2{margin-top:12px}
     .cta p{max-width:700px;margin:0 auto 24px;line-height:1.7;color:#d6dce3}
 
+    /* Form styles */
+    .form-section{max-width:640px;margin:0 auto}
+    .form-hint{font-size:.85rem;color:var(--muted);margin-bottom:28px;line-height:1.7}
+    .form-group{margin-bottom:20px}
+    .form-group label{
+      display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--gold-bright);margin-bottom:8px
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea{
+      width:100%;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      color:var(--cream);
+      padding:14px 16px;
+      font-family:"Libre Baskerville",Georgia,serif;
+      font-size:.95rem;
+      line-height:1.5;
+      border-radius:0;
+      outline:none;
+      transition:border-color .2s;
+      min-height:48px;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus{
+      border-color:var(--gold-bright);
+    }
+    .form-group textarea{min-height:140px;resize:vertical}
+    .form-group select{
+      appearance:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23d4b87a' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;
+      background-position:right 16px center;
+      padding-right:40px;
+    }
+    .form-group select option{background:#0a1828;color:var(--cream)}
+    .checkbox-group{
+      display:flex;align-items:flex-start;gap:12px;margin:28px 0;
+      font-size:.82rem;line-height:1.6;color:var(--muted)
+    }
+    .checkbox-group input[type="checkbox"]{
+      width:20px;height:20px;min-width:20px;margin-top:2px;
+      accent-color:var(--gold);cursor:pointer
+    }
+    .form-submit{width:100%;margin-top:8px}
+    .unsure-note{
+      margin-top:36px;padding-top:28px;border-top:1px solid var(--line);
+      text-align:center;font-size:.85rem;color:var(--muted);line-height:1.7
+    }
+    .unsure-note strong{color:var(--gold-bright);font-weight:400}
+
     footer{padding:40px 0 50px;border-top:1px solid var(--line)}
     .footer-stack{text-align:center;color:var(--muted);line-height:1.75}
     .footer-stack .footer-brand{
@@ -187,12 +220,10 @@
 
     @media(max-width:860px){
       .nav-links{display:none}
-      .hero,.grid-3,.grid-2,.business-grid,.steps{grid-template-columns:1fr}
+      .hero,.grid-3,.grid-2,.steps{grid-template-columns:1fr}
       .crystal-stage{min-height:280px}
-      .business-top{flex-direction:column;align-items:flex-start}
       h1{font-size:clamp(3rem,12vw,5rem)}
 
-      /* Touch-Targets optimieren */
       .brand{
         padding:12px 8px 12px 0;
         min-height:48px;
@@ -215,6 +246,12 @@
         width:100%;
         max-width:100%;
       }
+      .card-cta .btn{max-width:100%}
+      .form-group input,
+      .form-group select,
+      .form-group textarea{
+        font-size:16px; /* prevents iOS zoom */
+      }
     }
   </style>
 </head>
@@ -228,6 +265,7 @@
         <a href="#nutzen">Ihr Nutzen</a>
         <a href="#leistungen">Leistungen</a>
         <a href="#pakete">Pakete</a>
+        <a href="#anfrage">Anfrage</a>
         <a href="#ablauf">Ablauf</a>
         <a href="#kontakt">Kontakt</a>
       </div>
@@ -246,7 +284,7 @@
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#pakete">Pakete ansehen</a>
-          <a class="btn" href="mailto:support@maddy.support">Kontakt aufnehmen</a>
+          <a class="btn" href="mailto:kontakt@maddy.support">Kontakt aufnehmen</a>
         </div>
       </div>
 
@@ -339,6 +377,9 @@
             <li>Grundstruktur der Community</li>
             <li>Kleine Aufgaben & Reminder</li>
           </ul>
+          <div class="card-cta">
+            <a class="btn" href="#anfrage" data-package="Starter">Paket anfragen</a>
+          </div>
         </div>
 
         <div class="card featured">
@@ -354,6 +395,9 @@
             <li>Struktur & kleine Dialoge</li>
             <li>Regelmäßige Mini-Aufgaben</li>
           </ul>
+          <div class="card-cta">
+            <a class="btn btn-primary" href="#anfrage" data-package="Support">Paket anfragen</a>
+          </div>
         </div>
 
         <div class="card">
@@ -369,14 +413,73 @@
             <li>Engere Begleitung der Tonalität</li>
             <li>Light-Backoffice</li>
           </ul>
+          <div class="card-cta">
+            <a class="btn" href="#anfrage" data-package="Premium">Paket anfragen</a>
+          </div>
         </div>
       </div>
 
-      
       <div class="vat">Preise in CHF, exkl. gesetzlicher MWST., sofern anwendbar.</div>
       <div class="fairuse">
         Fair-Use-Rahmen und genauer Leistungsumfang werden transparent vereinbart.
         Keine Rund-um-die-Uhr-Bereitschaft und keine Garantie für Reichweite oder Wachstum.
+      </div>
+    </div>
+  </section>
+
+  <section id="anfrage">
+    <div class="wrap">
+      <div class="section-label">Persönlich starten</div>
+      <h2>Welches Paket darf Sie entlasten?</h2>
+      <p class="lead form-hint">
+        Senden Sie mir Ihre Anfrage direkt. Ich schaue mir Ihren Bedarf persönlich an und melde mich bei Ihnen, um die nächsten Schritte abzustimmen.
+      </p>
+
+      <div class="form-section">
+        <form id="paket-form" novalidate>
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" required autocomplete="name">
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-Mail *</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="package">Gewünschtes Paket *</label>
+            <select id="package" name="package" required>
+              <option value="">Bitte wählen</option>
+              <option value="Starter">Starter</option>
+              <option value="Support">Support</option>
+              <option value="Premium">Premium</option>
+              <option value="Noch unsicher – bitte beraten">Noch unsicher – bitte beraten</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="start">Gewünschter Start</label>
+            <input type="date" id="start" name="start">
+          </div>
+
+          <div class="form-group">
+            <label for="bedarf">Wobei darf ich Sie unterstützen? *</label>
+            <textarea id="bedarf" name="bedarf" required placeholder="Beschreiben Sie kurz, welche Aufgaben Ihnen derzeit Zeit nehmen oder wobei Sie Unterstützung wünschen."></textarea>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="privacy" name="privacy" required>
+            <label for="privacy">Ich habe die Datenschutzhinweise zur Kenntnis genommen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu.</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary form-submit">Anfrage senden</button>
+        </form>
+
+        <div class="unsure-note">
+          <strong>Noch unsicher, welches Paket passt?</strong><br>
+          Beschreiben Sie einfach Ihren Bedarf. Ich empfehle Ihnen persönlich die passende Betreuung.
+        </div>
       </div>
     </div>
   </section>
@@ -412,7 +515,7 @@
           Lassen Sie uns kurz klären, welches Paket wirklich zu Ihrem Alltag
           und Ihrer Community passt.
         </p>
-        <a class="btn btn-primary" href="mailto:support@maddy.support">Nachricht senden</a>
+        <a class="btn btn-primary" href="#anfrage">Zur Anfrage</a>
       </div>
     </div>
   </section>
@@ -422,9 +525,62 @@
       <div class="footer-brand">Maddy.support</div>
       <div class="sub">Persönliches Community Management</div>
       <div>Thun · Schweiz</div>
-      <div><a href="mailto:support@maddy.support">support@maddy.support</a></div>
+      <div><a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a></div>
       <div class="copy">© 2026 Maddy.support</div>
     </div>
   </footer>
+
+  <script>
+    (function(){
+      // Preselect package from card buttons
+      document.querySelectorAll('[data-package]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var pkg = this.getAttribute('data-package');
+          var select = document.getElementById('package');
+          if(select){
+            select.value = pkg;
+          }
+        });
+      });
+
+      // Form submit via mailto
+      var form = document.getElementById('paket-form');
+      if(form){
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+
+          var name = document.getElementById('name').value.trim();
+          var email = document.getElementById('email').value.trim();
+          var pkg = document.getElementById('package').value;
+          var start = document.getElementById('start').value;
+          var bedarf = document.getElementById('bedarf').value.trim();
+          var privacy = document.getElementById('privacy').checked;
+
+          if(!name || !email || !pkg || !bedarf){
+            alert('Bitte füllen Sie alle Pflichtfelder aus.');
+            return;
+          }
+          if(!privacy){
+            alert('Bitte bestätigen Sie die Datenschutzhinweise.');
+            return;
+          }
+
+          var subject = 'Paketanfrage Maddy.support – ' + pkg;
+          var body = 'Name: ' + name + '\n'
+                   + 'E-Mail: ' + email + '\n'
+                   + 'Bereich: COMMUNITY\n'
+                   + 'Gewünschtes Paket: ' + pkg + '\n'
+                   + 'Gewünschter Start: ' + (start || 'nicht angegeben') + '\n\n'
+                   + 'Wobei darf ich Sie unterstützen?\n' + bedarf;
+
+          var mailto = 'mailto:kontakt@maddy.support'
+                     + '?subject=' + encodeURIComponent(subject)
+                     + '&body=' + encodeURIComponent(body);
+
+          window.location.href = mailto;
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
