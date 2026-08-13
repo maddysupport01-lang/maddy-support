@@ -561,6 +561,12 @@
             alert('Bitte füllen Sie alle Pflichtfelder aus.');
             return;
           }
+          // Leichte Validierung: mind. 8 Ziffern, erlaubte Zeichen +, Leerzeichen, -, (, )
+          var telefonDigits = telefon.replace(/[\s\-\(\)\+]/g, '');
+          if(telefonDigits.length < 8 || telefonDigits.length > 15 || !/^\d+$/.test(telefonDigits)){
+            alert('Bitte geben Sie eine gültige Telefonnummer inkl. Ländervorwahl an (mind. 8 Ziffern).');
+            return;
+          }
           if(!privacy){
             alert('Bitte bestätigen Sie die Datenschutzhinweise.');
             return;
