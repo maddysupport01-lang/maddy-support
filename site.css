@@ -1,0 +1,66 @@
+/* Shared: nav, hamburger, work strip, short form, footer helpers */
+.nav-toggle{
+  display:none;
+  width:48px;height:48px;
+  border:1px solid var(--line, rgba(212,184,122,.28));
+  background:transparent;
+  cursor:pointer;
+  padding:14px 12px;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.nav-toggle span{
+  display:block;height:1px;background:var(--gold-bright, #ecd49a);width:100%;
+}
+.work-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:28px;
+}
+.work-grid > div{
+  border:1px solid var(--line, rgba(212,184,122,.28));
+  background:var(--soft, rgba(255,255,255,.055));
+  padding:26px;
+}
+.work-grid b{
+  font-family:"Bodoni Moda",Georgia,serif;
+  color:var(--gold-bright, #ecd49a);
+  font-size:1.2rem;
+  font-weight:500;
+}
+.work-grid p{margin-top:10px;line-height:1.65;color:#d4d9df}
+.form-lite .form-group{margin-bottom:18px}
+.visually-hidden{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);border:0;
+}
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+  outline:2px solid var(--gold-bright, #ecd49a);
+  outline-offset:3px;
+}
+
+@media (max-width:860px){
+  .nav-toggle{display:flex}
+  .nav-links, .links{
+    display:none;
+    position:absolute;
+    left:0;right:0;
+    top:88px;
+    flex-direction:column;
+    gap:0;
+    background:#050d18;
+    border-bottom:1px solid var(--line, rgba(212,184,122,.28));
+    padding:8px 4%;
+    z-index:40;
+  }
+  .nav-links.is-open, .links.is-open{display:flex}
+  .nav-links a, .links a{
+    display:block;
+    padding:16px 8px;
+    min-height:48px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  nav, .nav, .nav-inner{position:relative}
+  .work-grid{grid-template-columns:1fr}
+}

@@ -7,6 +7,7 @@
   <title>Maddy.support · Persönliches Community Management</title>
 
   <link rel="stylesheet" href="/fonts.css">
+  <link rel="stylesheet" href="/site.css">
 
   <style>
     :root{
@@ -222,7 +223,6 @@
     .footer-stack .copy{margin-top:4px}
 
     @media(max-width:860px){
-      .nav-links{display:none}
       .hero,.grid-3,.grid-2,.steps{grid-template-columns:1fr}
       .crystal-stage{min-height:280px}
       h1{font-size:clamp(3rem,12vw,5rem)}
@@ -263,13 +263,13 @@
   <nav>
     <div class="wrap nav-inner">
       <a href="/" class="brand">Maddy.support</a>
-      <div class="nav-links">
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="nav-links" id="navLinks">
         <a href="/">Startseite</a>
-        <a href="#nutzen">Ihr Nutzen</a>
-        <a href="#leistungen">Leistungen</a>
+        <a href="/community.html">Community</a>
+        <a href="/business.html">Business</a>
         <a href="#pakete">Pakete</a>
         <a href="#anfrage">Anfrage</a>
-        <a href="#ablauf">Ablauf</a>
       </div>
     </div>
   </nav>
@@ -349,6 +349,20 @@
           <h3>Kleine Aufgaben</h3>
           <p>Reminder, Mini-Aufgaben, leichte Strukturarbeit und ausgewählte Hintergrund-Unterstützung.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="arbeit">
+    <div class="wrap">
+      <div class="section-label">So arbeiten wir</div>
+      <h2>Sie bleiben die Stimme.</h2>
+      <p class="lead">Drei Schritte. Kein Call als Standard. Nichts geht raus ohne Ihren Blick.</p>
+      <div class="work-grid">
+        <div><b>01 · Sortieren</b><p>Nachrichten und offene Punkte landen bei mir, nicht in Ihrem Kopf.</p></div>
+        <div><b>02 · Entwerfen</b><p>Antworten in Ihrer Tonalität. Sie sehen sie zuerst.</p></div>
+        <div><b>03 · Freigabe</b><p>Ein Blick von Ihnen. Erst dann geht etwas nach aussen.</p></div>
       </div>
     </div>
   </section>
@@ -463,7 +477,7 @@
       <div class="section-label">Persönlich starten</div>
       <h2>Welches Paket darf Sie entlasten?</h2>
       <p class="lead form-hint">
-        Senden Sie mir Ihre Anfrage direkt. Ich schaue mir Ihren Bedarf persönlich an und melde mich bei Ihnen, um die nächsten Schritte abzustimmen.
+        Name, Mail, eine Zeile. Kein Call. Ich antworte persönlich an kontakt@maddy.support.
       </p>
 
       <div class="form-section">
@@ -472,57 +486,22 @@
             <label for="name">Name *</label>
             <input type="text" id="name" name="name" required autocomplete="name">
           </div>
-
           <div class="form-group">
             <label for="email">E-Mail *</label>
             <input type="email" id="email" name="email" required autocomplete="email">
           </div>
-
           <div class="form-group">
-            <label for="telefon">Telefon *</label>
-            <input type="tel" id="telefon" name="telefon" required autocomplete="tel" placeholder="Telefonnummer inkl. Ländervorwahl">
-          </div>
-
-          <div class="form-group">
-            <label for="strasse">Straße / Hausnummer *</label>
-            <input type="text" id="strasse" name="strasse" required autocomplete="street-address" placeholder="Straße / Hausnummer">
-          </div>
-
-          <div class="form-group">
-            <label for="plzort">PLZ / Ort *</label>
-            <input type="text" id="plzort" name="plzort" required autocomplete="postal-code" placeholder="PLZ / Ort">
-          </div>
-
-          <div class="form-group">
-            <label for="land">Land *</label>
-            <select id="land" name="land" required>
-              <option value="">Bitte wählen</option>
-              <option value="Schweiz">Schweiz</option>
-              <option value="Deutschland">Deutschland</option>
-              <option value="Österreich">Österreich</option>
-              <option value="Anderes Land">Anderes Land</option>
+            <label for="package">Paket (optional)</label>
+            <select id="package" name="package">
+              <option value="">Noch unsicher — ich empfehle</option>
+              <option value="Starter">Starter · 6 Std. · CHF 1’190</option>
+              <option value="Support">Support · 10 Std. · CHF 1’890</option>
+              <option value="Premium">Premium · 16 Std. · CHF 2’990</option>
             </select>
           </div>
-
           <div class="form-group">
-            <label for="package">Gewünschtes Paket *</label>
-            <select id="package" name="package" required>
-              <option value="">Bitte wählen</option>
-              <option value="Starter">Starter · 6 Std. · 1’190</option>
-              <option value="Support">Support · 10 Std. · 1’890</option>
-              <option value="Premium">Premium · 16 Std. · 2’990</option>
-              <option value="Noch unsicher – bitte beraten">Noch unsicher – bitte beraten</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="start">Gewünschter Start</label>
-            <input type="date" id="start" name="start">
-          </div>
-
-          <div class="form-group">
-            <label for="bedarf">Wobei darf ich Sie unterstützen? *</label>
-            <textarea id="bedarf" name="bedarf" required placeholder="Beschreiben Sie kurz, welche Aufgaben Ihnen derzeit Zeit nehmen oder wobei Sie Unterstützung wünschen."></textarea>
+            <label for="bedarf">Wobei darf ich Sie entlasten? *</label>
+            <textarea id="bedarf" name="bedarf" required placeholder="Eine Sache reicht: z. B. DMs, Kommentare, der Posteingang."></textarea>
           </div>
 
           <div class="checkbox-group">
@@ -575,7 +554,18 @@
   </footer>
 
   <script>
-    (function(){
+
+  (function(){
+    var t=document.getElementById('navToggle');
+    var n=document.getElementById('navLinks');
+    if(!t||!n) return;
+    t.addEventListener('click', function(){
+      var open=n.classList.toggle('is-open');
+      t.setAttribute('aria-expanded', open?'true':'false');
+      t.setAttribute('aria-label', open?'Menü schliessen':'Menü öffnen');
+    });
+  })();
+
       document.querySelectorAll('[data-package]').forEach(function(btn){
         btn.addEventListener('click', function(){
           var pkg = this.getAttribute('data-package');
@@ -583,51 +573,32 @@
           if(select){ select.value = pkg; }
         });
       });
-
       var form = document.getElementById('paket-form');
       if(form){
         form.addEventListener('submit', function(e){
           e.preventDefault();
           var name = document.getElementById('name').value.trim();
           var email = document.getElementById('email').value.trim();
-          var telefon = document.getElementById('telefon').value.trim();
-          var strasse = document.getElementById('strasse').value.trim();
-          var plzort = document.getElementById('plzort').value.trim();
-          var land = document.getElementById('land').value;
           var pkg = document.getElementById('package').value;
-          var start = document.getElementById('start').value;
           var bedarf = document.getElementById('bedarf').value.trim();
-          var privacy = document.getElementById('privacy').checked;
-          if(!name || !email || !telefon || !strasse || !plzort || !land || !pkg || !bedarf){
-            alert('Bitte füllen Sie alle Pflichtfelder aus.');
+          var privacy=document.getElementById('privacy');
+          if(privacy && !privacy.checked){ alert('Bitte bestätigen Sie die Datenschutzhinweise.'); return; }
+          if(!name || !email || !bedarf){
+            alert('Name, E-Mail und eine kurze Beschreibung reichen.');
             return;
           }
-          // Leichte Validierung: mind. 8 Ziffern, erlaubte Zeichen +, Leerzeichen, -, (, )
-          var telefonDigits = telefon.replace(/[\s\-\(\)\+]/g, '');
-          if(telefonDigits.length < 8 || telefonDigits.length > 15 || !/^\d+$/.test(telefonDigits)){
-            alert('Bitte geben Sie eine gültige Telefonnummer inkl. Ländervorwahl an (mind. 8 Ziffern).');
-            return;
-          }
-          if(!privacy){
-            alert('Bitte bestätigen Sie die Datenschutzhinweise.');
-            return;
-          }
-          var subject = 'Paketanfrage Maddy.support – ' + pkg;
-          var body = 'Name: ' + name + '\n'
-                   + 'E-Mail: ' + email + '\n'
-                   + 'Telefon: ' + telefon + '\n'
-                   + 'Anschrift: ' + strasse + ', ' + plzort + '\n'
-                   + 'Land: ' + land + '\n'
-                   + 'Bereich: COMMUNITY\n'
-                   + 'Paket: ' + pkg + '\n'
-                   + 'Gewünschter Start: ' + (start || 'nicht angegeben') + '\n\n'
-                   + 'Unterstützungsbedarf:\n' + bedarf;
-          window.location.href = 'mailto:kontakt@maddy.support'
-                     + '?subject=' + encodeURIComponent(subject)
-                     + '&body=' + encodeURIComponent(body);
+          var subject = 'Anfrage Maddy.support' + (pkg ? ' – ' + pkg : '');
+          var body = 'Name: ' + name + '
+E-Mail: ' + email + '
+Bereich: COMMUNITY
+Paket: ' + (pkg || 'noch offen') + '
+
+Wobei ich entlasten darf:
+' + bedarf;
+          window.location.href = 'mailto:kontakt@maddy.support?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
         });
       }
-    })();
-  </script>
+
+</script>
 </body>
 </html>
