@@ -134,6 +134,18 @@
     .card-cta{margin-top:auto;padding-top:20px}
     .card-cta .btn{width:100%;font-size:.68rem}
 
+
+    .price-table{width:100%;border-collapse:collapse;margin:28px 0 10px;font-size:.9rem}
+    .price-table th{text-align:left;color:var(--gold-bright);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:12px 12px;border-bottom:1px solid var(--line);font-weight:400}
+    .price-table td{padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.08);color:#d4d9df;vertical-align:top}
+    .price-table td.amt{font-family:"Bodoni Moda",Georgia,serif;font-size:1.35rem;color:var(--gold-bright);white-space:nowrap}
+    .price-table tr.feat{background:rgba(212,184,122,.08)}
+    .price-extras{margin:14px 0 32px;font-size:.82rem;line-height:1.7;color:var(--muted)}
+    .price-extras strong{color:var(--gold-bright);font-weight:400}
+    .specs{margin:8px 0 4px;font-size:.82rem;color:var(--muted);line-height:1.65}
+    .specs b{color:var(--gold-bright);font-weight:400}
+    @media(max-width:860px){.price-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}}
+
     .vat{
       margin-top:20px;text-align:center;font-size:.76rem;color:var(--gold-bright)
     }
@@ -346,15 +358,50 @@
       <div class="section-label">Pakete</div>
       <h2>Betreuung, die zu Ihrem Alltag passt.</h2>
       <p class="lead">
-        Drei Monatspakete mit klaren Stunden. Onboarding einmalig 490 CHF. Zusatzstunden 220 CHF. Montag bis Freitag, asynchron – keine 24/7-Bereitschaft.
+        Eine Preisliste. Stunden gelten. Die Stückzahl ist nur Orientierung.
+      </p>
+
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Paket</th>
+            <th>Stunden / Monat</th>
+            <th>Preis</th>
+            <th>Richtwert Community</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Starter</td>
+            <td>6</td>
+            <td class="amt">CHF 1’190</td>
+            <td>etwa 80–150 sichten</td>
+          </tr>
+          <tr class="feat">
+            <td>Support · meistgewählt</td>
+            <td>10</td>
+            <td class="amt">CHF 1’890</td>
+            <td>etwa 150–250 inkl. Entwürfe</td>
+          </tr>
+          <tr>
+            <td>Premium</td>
+            <td>16</td>
+            <td class="amt">CHF 2’990</td>
+            <td>etwa 250–400 inkl. Recherche</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="price-extras">
+        <strong>Onboarding einmalig 490 CHF.</strong> Zusatz 220 CHF/h nach Freigabe.<br>
+        Alle Pakete: Montag–Freitag, asynchron. Kein 08–19, keine 24/7.
       </p>
 
       <div class="grid-3">
         <div class="card">
           <div class="badge">Starter</div>
           <h3>Starter</h3>
-          <div class="price">CHF 1’190<span class="per">6 Stunden / Monat</span></div>
-          <div class="price-note">Montag bis Freitag · asynchron<br>Richtwert: etwa 80–150 Nachrichten und Kommentare sichten.</div>
+          <div class="price">CHF 1’190</div>
+          <div class="specs"><b>6 Stunden / Monat</b><br>Richtwert: 80–150 sichten<br>Mo–Fr · asynchron</div>
           <div class="rule"></div>
           <ul>
             <li>Kommentare und DMs sichten</li>
@@ -370,8 +417,8 @@
         <div class="card featured">
           <div class="badge">Meistgewählt</div>
           <h3>Support</h3>
-          <div class="price">CHF 1’890<span class="per">10 Stunden / Monat</span></div>
-          <div class="price-note">Montag bis Freitag · asynchron<br>Richtwert: etwa 150–250 inkl. Antwortentwürfe.</div>
+          <div class="price">CHF 1’890</div>
+          <div class="specs"><b>10 Stunden / Monat</b><br>Richtwert: 150–250 inkl. Entwürfe<br>Mo–Fr · asynchron</div>
           <div class="rule"></div>
           <ul>
             <li>Alles aus Starter</li>
@@ -387,8 +434,8 @@
         <div class="card">
           <div class="badge">Premium</div>
           <h3>Premium</h3>
-          <div class="price">CHF 2’990<span class="per">16 Stunden / Monat</span></div>
-          <div class="price-note">Montag bis Freitag · asynchron<br>Richtwert: etwa 250–400 inkl. Entwürfe und Recherche.</div>
+          <div class="price">CHF 2’990</div>
+          <div class="specs"><b>16 Stunden / Monat</b><br>Richtwert: 250–400 inkl. Recherche<br>Mo–Fr · asynchron</div>
           <div class="rule"></div>
           <ul>
             <li>Alles aus Support</li>
