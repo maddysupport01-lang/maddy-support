@@ -612,11 +612,8 @@
             if(un) un.style.display = 'none';
           })
           .catch(function(){
-            window.location.href = 'mailto:kontakt@maddy.support?subject=' + encodeURIComponent('Anfrage Maddy.support') + '&body=' + encodeURIComponent('Name: '+name+'
-E-Mail: '+email+'
-Paket: '+(pkg||'noch offen')+'
-
-'+bedarf);
+            var body = ['Name: '+name, 'E-Mail: '+email, 'Paket: '+(pkg||'noch offen'), '', bedarf].join('\n');
+            window.location.href = 'mailto:kontakt@maddy.support?subject=' + encodeURIComponent('Anfrage Maddy.support') + '&body=' + encodeURIComponent(body);
           });
         });
       }
