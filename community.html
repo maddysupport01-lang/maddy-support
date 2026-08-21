@@ -286,7 +286,7 @@
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#pakete">Pakete ansehen</a>
-          <a class="btn" href="mailto:kontakt@maddy.support">Kontakt aufnehmen</a>
+          <a class="btn" href="#anfrage">Unverbindlich anfragen</a>
         </div>
       </div>
 
@@ -424,7 +424,7 @@
             <li>Keine Antworten ohne Ihren Blick</li>
           </ul>
           <div class="card-cta">
-            <a class="btn" href="#anfrage" data-package="Starter">Paket anfragen</a>
+            <a class="btn" href="#anfrage" data-package="Starter">Dieses Paket anfragen</a>
           </div>
         </div>
 
@@ -441,7 +441,7 @@
             <li>Kurzer Wochenüberblick</li>
           </ul>
           <div class="card-cta">
-            <a class="btn btn-primary" href="#anfrage" data-package="Support">Paket anfragen</a>
+            <a class="btn btn-primary" href="#anfrage" data-package="Support">Support anfragen</a>
           </div>
         </div>
 
@@ -458,7 +458,7 @@
             <li>Engere asynchrone Abstimmung</li>
           </ul>
           <div class="card-cta">
-            <a class="btn" href="#anfrage" data-package="Premium">Paket anfragen</a>
+            <a class="btn" href="#anfrage" data-package="Premium">Dieses Paket anfragen</a>
           </div>
         </div>
       </div>
@@ -472,16 +472,37 @@
     </div>
   </section>
 
+  <section id="faq-block"><div class="wrap"><div class="section-label">Klarheit vor dem ersten Mail</div><h2>Kurze Antworten.</h2>
+      <div class="faq">
+        <details open>
+          <summary>Geht etwas ohne mich raus?</summary>
+          <p>Nein. Ich entwerfe, Sie geben frei. Erst dann geht eine Antwort an Ihre Community.</p>
+        </details>
+        <details>
+          <summary>Muss ich in Calls oder 24/7 erreichbar sein?</summary>
+          <p>Nein. Montag bis Freitag, asynchron. Kein 08–19-Versprechen, kein Wochenende.</p>
+        </details>
+        <details>
+          <summary>Was, wenn plötzlich sehr viele Nachrichten kommen?</summary>
+          <p>Es gilt das Stundenkontingent, nicht die Stückzahl. Bei 80&nbsp;% sage ich Bescheid — Upgrade, Zusatzstunden oder Prioritäten streichen.</p>
+        </details>
+        <details>
+          <summary>Welches Paket soll ich wählen?</summary>
+          <p>Die meisten starten mit Support (10 Stunden, CHF 1’890). Starter nur zum Testen. Premium, wenn das Volumen das braucht.</p>
+        </details>
+      </div>
+</div></section>
   <section id="anfrage">
     <div class="wrap">
       <div class="section-label">Persönlich starten</div>
       <h2>Welches Paket darf Sie entlasten?</h2>
       <p class="lead form-hint">
-        Name, Mail, eine Zeile. Kein Call. Ich antworte persönlich an kontakt@maddy.support.
+        Name, Mail, eine Zeile. Antwort in einem Werktag. Kein Gespräch nötig.
       </p>
 
       <div class="form-section">
         <form id="paket-form" novalidate>
+            <input type="text" id="website" name="website" class="visually-hidden" tabindex="-1" autocomplete="off">
           <div class="form-group">
             <label for="name">Name *</label>
             <input type="text" id="name" name="name" required autocomplete="name">
@@ -509,34 +530,19 @@
             <label for="privacy">Ich habe die <a href="/datenschutz.html" target="_blank" rel="noopener">Datenschutzhinweise</a> zur Kenntnis genommen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu.</label>
           </div>
 
-          <button type="submit" class="btn btn-primary form-submit">Anfrage senden</button>
+          <p class="form-micro">Unverbindlich. Kein Call. Support ist 10 Stunden für CHF 1’890.</p>
+          <button type="submit" class="btn btn-primary form-submit">Unverbindlich anfragen</button>
         </form>
+
+          <div class="form-ok" id="formOk">
+            <strong>Danke. Ich habe Ihre Anfrage.</strong>
+            <p>Ich antworte in einem Werktag an die angegebene Adresse. Kein Call.</p>
+          </div>
+
 
         <div class="unsure-note">
           <strong>Noch unsicher, welches Paket passt?</strong><br>
           Beschreiben Sie einfach Ihren Bedarf. Ich empfehle Ihnen persönlich die passende Betreuung.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="ablauf">
-    <div class="wrap">
-      <div class="section-label">Einfacher Start</div>
-      <h2>So beginnt die Zusammenarbeit.</h2>
-
-      <div class="steps">
-        <div class="step">
-          <b>01 · Kennenlernen</b>
-          <p>Wir klären, wo aktuell die größte Entlastung gebraucht wird.</p>
-        </div>
-        <div class="step">
-          <b>02 · Passendes Paket</b>
-          <p>Aufgaben, Umfang und Prioritäten werden verständlich festgehalten.</p>
-        </div>
-        <div class="step">
-          <b>03 · Entlastung</b>
-          <p>Die vereinbarten Aufgaben laufen strukturiert im Hintergrund an.</p>
         </div>
       </div>
     </div>
@@ -553,24 +559,20 @@
     </div>
   </footer>
 
-  <script>
+<div class="sticky-cta" role="navigation" aria-label="Anfrage">
+  <span>Support · 10 Std. / Monat · CHF 1’890</span>
+  <a href="#anfrage">Unverbindlich anfragen</a>
+</div>
 
+
+  <script>
   (function(){
-    var t=document.getElementById('navToggle');
-    var n=document.getElementById('navLinks');
-    if(!t||!n) return;
-    t.addEventListener('click', function(){
-      var open=n.classList.toggle('is-open');
-      t.setAttribute('aria-expanded', open?'true':'false');
-      t.setAttribute('aria-label', open?'Menü schliessen':'Menü öffnen');
-    });
-  })();
+    var t=document.getElementById('navToggle');var n=document.getElementById('navLinks');if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('is-open');t.setAttribute('aria-expanded',o?'true':'false');});}
 
       document.querySelectorAll('[data-package]').forEach(function(btn){
         btn.addEventListener('click', function(){
-          var pkg = this.getAttribute('data-package');
           var select = document.getElementById('package');
-          if(select){ select.value = pkg; }
+          if(select) select.value = this.getAttribute('data-package');
         });
       });
       var form = document.getElementById('paket-form');
@@ -581,24 +583,45 @@
           var email = document.getElementById('email').value.trim();
           var pkg = document.getElementById('package').value;
           var bedarf = document.getElementById('bedarf').value.trim();
-          var privacy=document.getElementById('privacy');
+          var honey = document.getElementById('website');
+          var privacy = document.getElementById('privacy');
+          if(honey && honey.value) return;
           if(privacy && !privacy.checked){ alert('Bitte bestätigen Sie die Datenschutzhinweise.'); return; }
-          if(!name || !email || !bedarf){
-            alert('Name, E-Mail und eine kurze Beschreibung reichen.');
-            return;
-          }
-          var subject = 'Anfrage Maddy.support' + (pkg ? ' – ' + pkg : '');
-          var body = 'Name: ' + name + '
-E-Mail: ' + email + '
-Bereich: COMMUNITY
-Paket: ' + (pkg || 'noch offen') + '
+          if(!name || !email || !bedarf){ alert('Name, E-Mail und eine kurze Beschreibung reichen.'); return; }
+          var btn = form.querySelector('[type="submit"]');
+          if(btn){ btn.disabled = true; btn.textContent = 'Wird gesendet…'; }
+          fetch('https://formsubmit.co/ajax/kontakt@maddy.support', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              name: name,
+              email: email,
+              paket: pkg || 'noch offen',
+              bereich: 'COMMUNITY',
+              bedarf: bedarf,
+              _subject: 'Anfrage Maddy.support – COMMUNITY' + (pkg ? ' – ' + pkg : ''),
+              _template: 'table',
+              _captcha: 'false'
+            })
+          }).then(function(r){ return r.json().catch(function(){ return {}; }); })
+          .then(function(){
+            form.style.display = 'none';
+            var ok = document.getElementById('formOk');
+            if(ok) ok.classList.add('is-on');
+            var un = document.querySelector('.unsure-note');
+            if(un) un.style.display = 'none';
+          })
+          .catch(function(){
+            window.location.href = 'mailto:kontakt@maddy.support?subject=' + encodeURIComponent('Anfrage Maddy.support') + '&body=' + encodeURIComponent('Name: '+name+'
+E-Mail: '+email+'
+Paket: '+(pkg||'noch offen')+'
 
-Wobei ich entlasten darf:
-' + bedarf;
-          window.location.href = 'mailto:kontakt@maddy.support?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+'+bedarf);
+          });
         });
       }
 
+  })();
 </script>
 </body>
 </html>
