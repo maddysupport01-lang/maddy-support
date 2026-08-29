@@ -1,0 +1,5 @@
+# Write-access probe
+# Safe connectivity test only. Not a site change. Do not merge to main.
+timestamp: 2026-08-29T13:21:04Z
+purpose: repository write-access check
+customer-delivery: none
