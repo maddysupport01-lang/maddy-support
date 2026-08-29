@@ -160,6 +160,7 @@
     .form-group input:focus,
     .form-group textarea:focus{border-color:var(--gold-bright)}
     .form-group textarea{min-height:140px;resize:vertical}
+    .form-group input[type="date"]{color-scheme:dark}
     .checkbox-group{
       display:flex;align-items:flex-start;gap:12px;margin:28px 0;
       font-size:.82rem;line-height:1.6;color:var(--muted)
@@ -336,7 +337,8 @@
       <div class="section-label">Diskret starten</div>
       <h2>Welches Zielunternehmen sollen wir prüfen?</h2>
       <p class="lead form-hint">
-        Name, Mail, eine Zeile zum Unternehmen. Antwort in einem Werktag. Diskret, kein Call nötig.
+        Die wichtigsten Eckdaten genügen. Wir antworten persönlich und bestätigen
+        Umfang und Liefertermin vor Beginn.
       </p>
 
       <div class="form-section">
@@ -347,26 +349,51 @@
             <input type="text" id="name" name="name" required autocomplete="name">
           </div>
           <div class="form-group">
-            <label for="email">E-Mail *</label>
+            <label for="firma">Unternehmen *</label>
+            <input type="text" id="firma" name="firma" required autocomplete="organization">
+          </div>
+          <div class="form-group">
+            <label for="email">Geschäftliche E-Mail-Adresse *</label>
             <input type="email" id="email" name="email" required autocomplete="email">
           </div>
           <div class="form-group">
-            <label for="fall">Worum geht es? *</label>
-            <textarea id="fall" name="fall" required placeholder="Eine Zeile reicht: Firmenname oder Website des Zielunternehmens — und bis wann Sie die Akte brauchen."></textarea>
+            <label for="ziel-name">Name des Zielunternehmens *</label>
+            <input type="text" id="ziel-name" name="ziel-name" required>
+          </div>
+          <div class="form-group">
+            <label for="ziel-website">Website des Zielunternehmens *</label>
+            <input type="text" id="ziel-website" name="ziel-website" required inputmode="url" placeholder="z. B. beispiel-ag.ch">
+          </div>
+          <div class="form-group">
+            <label for="ziel-land">Land bzw. zuständiges Handelsregister *</label>
+            <input type="text" id="ziel-land" name="ziel-land" required placeholder="z. B. Schweiz, Handelsregister Bern">
+          </div>
+          <div class="form-group">
+            <label for="gespraech-datum">Datum des geplanten Erstgesprächs (optional)</label>
+            <input type="date" id="gespraech-datum" name="gespraech-datum">
+          </div>
+          <div class="form-group">
+            <label for="frage">Konkrete Frage oder bekannte Unstimmigkeit (optional)</label>
+            <textarea id="frage" name="frage" placeholder="Falls Ihnen bereits etwas aufgefallen ist — eine Zeile genügt."></textarea>
           </div>
 
+          <div class="checkbox-group">
+            <input type="checkbox" id="quellen" name="quellen" required>
+            <label for="quellen">Ich bestätige, dass ausschliesslich öffentlich zugängliche Quellen geprüft werden sollen.</label>
+          </div>
           <div class="checkbox-group">
             <input type="checkbox" id="privacy" name="privacy" required>
             <label for="privacy">Ich habe die <a href="/datenschutz.html" target="_blank" rel="noopener">Datenschutzhinweise</a> zur Kenntnis genommen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu.</label>
           </div>
 
-          <p class="form-micro">Unverbindlich. Diskret. Festpreis CHF 790 · Lieferung innerhalb von 48 Stunden.</p>
-          <button type="submit" class="btn btn-primary form-submit">Zielunternehmen prüfen lassen</button>
+          <p class="form-micro">Festpreis CHF 790 · Lieferung innerhalb von 48 Stunden nach Auftragsbestätigung</p>
+          <button type="submit" class="btn btn-primary form-submit">Clash-Akte unverbindlich anfragen</button>
+          <p class="form-micro">Die Anfrage ist noch keine kostenpflichtige Bestellung. Kein Upload und keine vertraulichen Unterlagen.</p>
         </form>
 
         <div class="form-ok" id="formOk">
-          <strong>Danke. Ich habe Ihre Anfrage.</strong>
-          <p>Ich antworte in einem Werktag an die angegebene Adresse. Diskret, kein Call.</p>
+          <strong>Danke. Wir haben Ihre Anfrage.</strong>
+          <p>Wir antworten persönlich und bestätigen Umfang und Liefertermin, bevor Kosten entstehen.</p>
         </div>
       </div>
     </div>
@@ -396,14 +423,25 @@
     if(form){
       form.addEventListener('submit', function(e){
         e.preventDefault();
-        var name = document.getElementById('name').value.trim();
-        var email = document.getElementById('email').value.trim();
-        var fall = document.getElementById('fall').value.trim();
+        function val(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+        var name = val('name');
+        var firma = val('firma');
+        var email = val('email');
+        var zielName = val('ziel-name');
+        var zielWebsite = val('ziel-website');
+        var zielLand = val('ziel-land');
+        var datum = val('gespraech-datum');
+        var frage = val('frage');
         var honey = document.getElementById('website');
+        var quellen = document.getElementById('quellen');
         var privacy = document.getElementById('privacy');
         if(honey && honey.value) return;
+        if(quellen && !quellen.checked){ alert('Bitte bestätigen Sie, dass ausschliesslich öffentlich zugängliche Quellen geprüft werden sollen.'); return; }
         if(privacy && !privacy.checked){ alert('Bitte bestätigen Sie die Datenschutzhinweise.'); return; }
-        if(!name || !email || !fall){ alert('Name, E-Mail und eine kurze Beschreibung reichen.'); return; }
+        if(!name || !firma || !email || !zielName || !zielWebsite || !zielLand){
+          alert('Bitte füllen Sie alle Pflichtfelder aus: Name, Unternehmen, E-Mail sowie Name, Website und Land des Zielunternehmens.');
+          return;
+        }
         var btn = form.querySelector('[type="submit"]');
         if(btn){ btn.disabled = true; btn.textContent = 'Wird gesendet…'; }
         fetch('https://formsubmit.co/ajax/kontakt@maddy.support', {
@@ -411,10 +449,16 @@
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             name: name,
+            unternehmen: firma,
             email: email,
+            zielunternehmen: zielName,
+            ziel_website: zielWebsite,
+            land_handelsregister: zielLand,
+            erstgespraech_datum: datum || 'nicht angegeben',
+            frage_unstimmigkeit: frage || 'keine',
+            quellen_bestaetigung: 'nur öffentliche Quellen',
             bereich: 'CLASH-AKTE',
-            fall: fall,
-            _subject: 'Anfrage Maddy.support – CLASH-AKTE',
+            _subject: 'Anfrage Maddy.support – CLASH-AKTE – ' + zielName,
             _template: 'table',
             _captcha: 'false'
           })
@@ -425,8 +469,18 @@
           if(ok) ok.classList.add('is-on');
         })
         .catch(function(){
-          var body = ['Name: '+name, 'E-Mail: '+email, 'Bereich: CLASH-AKTE', '', fall].join('\n');
-          window.location.href = 'mailto:kontakt@maddy.support?subject=' + encodeURIComponent('Anfrage Maddy.support – CLASH-AKTE') + '&body=' + encodeURIComponent(body);
+          var body = [
+            'Name: '+name,
+            'Unternehmen: '+firma,
+            'E-Mail: '+email,
+            'Zielunternehmen: '+zielName,
+            'Website Zielunternehmen: '+zielWebsite,
+            'Land/Handelsregister: '+zielLand,
+            'Erstgespräch: '+(datum||'nicht angegeben'),
+            '',
+            frage || ''
+          ].join('\n');
+          window.location.href = 'mailto:kontakt@maddy.support?subject=' + encodeURIComponent('Anfrage Maddy.support – CLASH-AKTE – ' + zielName) + '&body=' + encodeURIComponent(body);
         });
       });
     }
