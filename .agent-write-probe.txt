@@ -1,0 +1,4 @@
+probe=2026-08-29T13:21:04Z
+purpose=schreibzugriff-test
+no-publish=1
+no-customer-send=1
