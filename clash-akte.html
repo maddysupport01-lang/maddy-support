@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Maddy.support – Die Clash-Akte. Festpreis CHF 790, Lieferung in 48 Stunden: priorisierte Widerspruchstabelle, Claim-Log mit Quellen und Datum, Nicht-sagen-Seite. Nur öffentliche Quellen." />
-  <title>Maddy.support · Clash-Akte</title>
+  <meta name="description" content="Maddy.support – Die Clash-Akte. Öffentliche Widersprüche eines Zielunternehmens erkennen, bevor sie im Erstgespräch peinlich werden. Festpreis CHF 790, Lieferung in 48 Stunden. Nur öffentliche Quellen." />
+  <title>Maddy.support · Clash-Akte — öffentliche Aussagen prüfen</title>
 
   <link rel="stylesheet" href="/fonts.css">
   <link rel="stylesheet" href="/site.css">
@@ -49,19 +49,19 @@
       font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
       color:var(--gold-bright);padding:10px 4px;
     }
-    header{padding:78px 0 72px;text-align:center}
+    header{padding:72px 0 68px;text-align:center}
     .eyebrow,.section-label{
       font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
       color:var(--gold-bright);font-weight:700;
     }
     h1,h2{
       font-family:"Bodoni Moda",Georgia,serif;
-      color:var(--cream);font-weight:500;line-height:1.08;
+      color:var(--cream);font-weight:500;line-height:1.14;
     }
-    h1{font-size:clamp(2.6rem,5.5vw,4.6rem);margin:18px auto 20px;max-width:760px}
+    h1{font-size:clamp(1.9rem,4.2vw,3.4rem);margin:18px auto 20px;max-width:840px}
     h1 em{color:var(--gold-bright);font-style:normal}
-    .sub{max-width:580px;margin:0 auto 22px;line-height:1.8;color:#cdd4dc}
-    .price-line{color:var(--gold-bright);font-size:.92rem;margin-bottom:28px}
+    .sub{max-width:640px;margin:0 auto 18px;line-height:1.8;color:#cdd4dc}
+    .audience{color:var(--gold-bright);font-size:.92rem;margin-bottom:28px}
     .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;
@@ -73,17 +73,39 @@
     .btn:hover{background:rgba(212,184,122,.10)}
     .btn-primary{background:rgba(212,184,122,.08)}
     section{padding:76px 0;border-top:1px solid rgba(255,255,255,.035)}
-    h2{font-size:clamp(2rem,4vw,3.2rem);text-align:center;margin-bottom:14px}
-    .lead{text-align:center;max-width:600px;margin:0 auto 40px;color:#cbd3dc;line-height:1.7}
+    h2{font-size:clamp(1.9rem,3.6vw,3rem);text-align:center;margin-bottom:14px}
+    .lead{text-align:center;max-width:620px;margin:0 auto 40px;color:#cbd3dc;line-height:1.7}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
     .card{border:1px solid var(--line);background:var(--soft);padding:30px}
     .card h3{
       font-family:"Bodoni Moda",Georgia,serif;
-      color:var(--cream);font-size:1.5rem;margin:8px 0 12px
+      color:var(--cream);font-size:1.4rem;margin:8px 0 12px
     }
     .card p,.card li{line-height:1.65;color:#d4d9df}
+    .card small{color:var(--gold-bright);letter-spacing:.08em;text-transform:uppercase;font-size:.67rem}
     .card ul{padding-left:1.1rem;margin-top:16px}
-    .offer-wrap{max-width:520px;margin:0 auto}
+
+    .ex-card{
+      max-width:560px;margin:0 auto;
+      border:1px solid var(--line);background:var(--soft);
+    }
+    .ex-row{
+      display:flex;justify-content:space-between;align-items:baseline;gap:18px;
+      padding:16px 26px;border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .ex-src{
+      font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--gold-bright);white-space:nowrap;
+    }
+    .ex-val{color:var(--cream);font-size:.98rem;text-align:right}
+    .ex-result{
+      padding:20px 26px;background:rgba(212,184,122,.08);
+      border-top:1px solid var(--line);
+      color:var(--gold-bright);font-size:.9rem;line-height:1.6;text-align:center;
+    }
+    .ex-note{max-width:560px;margin:16px auto 0;text-align:center;font-size:.78rem;color:var(--muted);line-height:1.65}
+
+    .offer-wrap{max-width:520px;margin:30px auto 0}
     .offer-wrap .card{
       border-color:rgba(236,212,154,.8);
       box-shadow:0 0 30px rgba(212,184,122,.10);
@@ -102,8 +124,20 @@
     .rule{height:1px;background:var(--line);margin:14px 0}
     .card-cta{margin-top:auto;padding-top:20px}
     .card-cta .btn{width:100%;font-size:.68rem}
+    .offer-wrap li{margin-bottom:10px}
+    .offer-wrap li b{color:var(--cream);font-weight:400}
+    .offer-wrap li span{display:block;font-size:.8rem;color:var(--muted);margin-top:2px}
     .vat{margin-top:20px;text-align:center;font-size:.76rem;color:var(--gold-bright)}
-    .fairuse{margin-top:10px;text-align:center;font-size:.72rem;line-height:1.65;color:var(--muted)}
+
+    .trust{max-width:720px;margin:0 auto}
+    .trust-items{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+    .trust-items .card{padding:24px;text-align:center}
+    .trust-items b{
+      display:block;color:var(--gold-bright);font-weight:400;
+      font-family:"Bodoni Moda",Georgia,serif;font-size:1.15rem;margin-bottom:8px;
+    }
+    .trust-items p{font-size:.85rem;color:#cbd3dc;line-height:1.6}
+
     .form-section{max-width:640px;margin:0 auto}
     .form-hint{font-size:.85rem;color:var(--muted);margin-bottom:28px;line-height:1.7}
     .form-group{margin-bottom:20px}
@@ -145,11 +179,13 @@
     .footer-stack a{color:var(--cream)}
     .footer-stack .copy{margin-top:4px}
     @media(max-width:860px){
-      .grid-3{grid-template-columns:1fr}
+      .grid-3,.trust-items{grid-template-columns:1fr}
       .brand{padding:12px 8px 12px 0;min-height:48px;display:inline-flex;align-items:center}
       .btn{padding:16px 28px;min-height:52px;font-size:.78rem}
       .hero-actions{flex-direction:column;align-items:stretch}
       .hero-actions .btn{width:100%}
+      .ex-row{flex-direction:column;gap:4px;align-items:flex-start}
+      .ex-val{text-align:left}
       .form-group input,
       .form-group textarea{font-size:16px}
     }
@@ -174,77 +210,98 @@
 
   <header>
     <div class="wrap">
-      <div class="eyebrow">Die Clash-Akte</div>
-      <h1>Ein Konflikt.<br><em>Sauber dokumentiert.</em></h1>
+      <div class="eyebrow">Die Clash-Akte · Prüfung öffentlicher Aussagen</div>
+      <h1>Öffentliche Widersprüche erkennen,<br><em>bevor sie im Erstgespräch peinlich werden.</em></h1>
       <p class="sub">
-        Wenn es online laut wird, zählt am Ende, was belegbar ist.
-        Die Clash-Akte hält den Konflikt strukturiert fest — aus öffentlichen Quellen,
-        leise im Hintergrund erstellt, damit Sie den Kopf frei behalten.
+        Wir prüfen die öffentlich sichtbaren Aussagen eines Zielunternehmens —
+        etwa Gründungsjahr, Standort, Teamgrösse und Leistungsversprechen —
+        und zeigen klar, was übereinstimmt, was sich widerspricht und was nicht belastbar ist.
       </p>
-      <p class="price-line">Festpreis CHF 790 · Lieferung innerhalb von 48 Stunden · nur öffentliche Quellen</p>
+      <p class="audience">Für M&amp;A-Boutiquen, Nachfolgeberater und Transaktionspartner.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#angebot">Angebot ansehen</a>
-        <a class="btn" href="#anfrage">Unverbindlich anfragen</a>
+        <a class="btn btn-primary" href="#anfrage">Zielunternehmen prüfen lassen</a>
       </div>
     </div>
   </header>
 
-  <section id="inhalt">
+  <section id="beispiel">
     <div class="wrap">
-      <div class="section-label">Was Sie erhalten</div>
-      <h2>Drei Bausteine. Ein Dokument.</h2>
+      <div class="section-label">Ein Beispiel</div>
+      <h2>So sieht ein Widerspruch aus.</h2>
       <p class="lead">
-        Keine Meinung, keine Eskalation. Eine ruhige Akte aus öffentlichen Quellen,
-        auf die Sie sich stützen können.
+        Vier öffentliche Angaben zum selben Unternehmen — zweimal passt es nicht zusammen.
       </p>
-      <div class="grid-3">
-        <div class="card">
-          <small>01 · Widersprüche</small>
-          <h3>Priorisierte Widerspruchstabelle</h3>
-          <p>Die wichtigsten Widersprüche zuerst: Aussage gegen Aussage, sauber gegenübergestellt — mit Quelle.</p>
-        </div>
-        <div class="card">
-          <small>02 · Behauptungen</small>
-          <h3>Claim-Log</h3>
-          <p>Jede Behauptung einzeln erfasst — mit Quelle und Datum, nachvollziehbar geordnet.</p>
-        </div>
-        <div class="card">
-          <small>03 · Schutz</small>
-          <h3>Nicht-sagen-Seite</h3>
-          <p>Eine Seite mit dem, was Sie öffentlich besser nicht sagen — damit nichts nachträglich Öl ins Feuer giesst.</p>
-        </div>
+      <div class="ex-card">
+        <div class="ex-row"><span class="ex-src">Website</span><span class="ex-val">„gegründet 1998"</span></div>
+        <div class="ex-row"><span class="ex-src">Handelsregister</span><span class="ex-val">Eintrag 2004</span></div>
+        <div class="ex-row"><span class="ex-src">LinkedIn</span><span class="ex-val">42 Mitarbeitende</span></div>
+        <div class="ex-row"><span class="ex-src">Unternehmensseite</span><span class="ex-val">19 Personen</span></div>
+        <div class="ex-result">Ergebnis: vor dem Gespräch klären — nicht ungeprüft wiederholen.</div>
       </div>
+      <p class="ex-note">
+        Oft gibt es dafür harmlose Erklärungen. Aber wer sie ungeprüft übernimmt,
+        wirkt im Erstgespräch schlecht vorbereitet.
+      </p>
     </div>
   </section>
 
   <section id="angebot">
     <div class="wrap">
       <div class="section-label">Das Angebot</div>
-      <h2>Ein Festpreis. 48 Stunden.</h2>
+      <h2>Sie erhalten innerhalb von 48 Stunden:</h2>
       <p class="lead">
-        Klarer Umfang, klare Grenzen. Kein Abo, keine versteckten Stunden.
+        Ein Dokument, mit dem Sie vorbereitet ins Erstgespräch gehen.
       </p>
       <div class="offer-wrap">
         <div class="card">
           <div class="badge">Festpreis</div>
           <h3>Die Clash-Akte</h3>
           <div class="price">CHF 790</div>
-          <div class="specs"><b>Lieferung innerhalb von 48 Stunden</b><br>Nur öffentliche Quellen · diskret erstellt</div>
+          <div class="specs"><b>Lieferung innerhalb von 48 Stunden</b><br>Ausschliesslich öffentliche Quellen · diskret erstellt</div>
           <div class="rule"></div>
           <ul>
-            <li>Priorisierte Widerspruchstabelle</li>
-            <li>Claim-Log mit Quellen und Datum</li>
-            <li>Nicht-sagen-Seite</li>
+            <li>
+              <b>Priorisierte Widerspruchstabelle</b>
+              <span>Die wichtigsten Widersprüche zuerst — jede Angabe der Gegenangabe gegenübergestellt.</span>
+            </li>
+            <li>
+              <b>Claim-Log mit Quelle und Abrufdatum</b>
+              <span>Jede geprüfte Aussage einzeln erfasst: wo sie steht und wann wir sie abgerufen haben.</span>
+            </li>
+            <li>
+              <b>Nicht-sagen-Seite für das Erstgespräch</b>
+              <span>Eine Seite mit den Angaben, die Sie im Gespräch nicht ungeprüft übernehmen sollten.</span>
+            </li>
           </ul>
           <div class="card-cta">
-            <a class="btn btn-primary" href="#anfrage">Clash-Akte anfragen</a>
+            <a class="btn btn-primary" href="#anfrage">Zielunternehmen prüfen lassen</a>
           </div>
         </div>
       </div>
       <div class="vat">Festpreis CHF 790, MWST nur sofern eine Pflicht besteht.</div>
-      <div class="fairuse">
-        Ausschliesslich öffentliche Quellen. Keine vertraulichen Dokumente, kein Gutachten.
-        Nichts geht raus ohne Ihren Blick.
+    </div>
+  </section>
+
+  <section id="vertrauensgrenze">
+    <div class="wrap trust">
+      <div class="section-label">Die Vertrauensgrenze</div>
+      <h2>Was wir bewusst nicht tun.</h2>
+      <p class="lead">
+        Damit klar ist, worauf Sie sich stützen — und worauf nicht.
+      </p>
+      <div class="trust-items">
+        <div class="card">
+          <b>Nur öffentliche Quellen</b>
+          <p>Wir arbeiten ausschliesslich mit Informationen, die jeder einsehen kann.</p>
+        </div>
+        <div class="card">
+          <b>Keine vertraulichen Dokumente</b>
+          <p>Wir nehmen keine internen Unterlagen an und verarbeiten keine.</p>
+        </div>
+        <div class="card">
+          <b>Kein Gutachten</b>
+          <p>Die Clash-Akte ist eine strukturierte Dokumentation — keine Bewertung, kein Urteil.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -255,20 +312,20 @@
       <h2>Kurze Antworten.</h2>
       <div class="faq">
         <details open>
-          <summary>Was kostet die Clash-Akte?</summary>
-          <p>Festpreis CHF 790. Lieferung innerhalb von 48 Stunden. Kein Abo, keine Zusatzstunden nötig.</p>
+          <summary>Was genau prüfen Sie?</summary>
+          <p>Die öffentlich sichtbaren Aussagen eines Zielunternehmens — etwa Gründungsjahr, Standort, Teamgrösse und Leistungsversprechen. Wir zeigen, was übereinstimmt, was sich widerspricht und was nicht belastbar ist.</p>
         </details>
         <details>
-          <summary>Brauchen Sie vertrauliche Unterlagen von mir?</summary>
-          <p>Nein. Die Clash-Akte arbeitet ausschliesslich mit öffentlichen Quellen. Vertrauliche Dokumente werden nicht angenommen und nicht verarbeitet.</p>
+          <summary>Was kostet es und wie schnell geht es?</summary>
+          <p>Festpreis CHF 790. Lieferung innerhalb von 48 Stunden. Kein Abo, keine Zusatzstunden.</p>
+        </details>
+        <details>
+          <summary>Brauchen Sie vertrauliche Unterlagen?</summary>
+          <p>Nein. Wir arbeiten ausschliesslich mit öffentlichen Quellen. Vertrauliche Dokumente werden nicht angenommen und nicht verarbeitet.</p>
         </details>
         <details>
           <summary>Ist die Clash-Akte ein Gutachten?</summary>
-          <p>Nein. Sie ist eine strukturierte Dokumentation mit Quellen und Datum — kein Gutachten.</p>
-        </details>
-        <details>
-          <summary>Was steht am Ende drin?</summary>
-          <p>Eine priorisierte Widerspruchstabelle, ein Claim-Log mit Quellen und Datum sowie eine Nicht-sagen-Seite.</p>
+          <p>Nein. Sie ist eine strukturierte Dokumentation mit Quelle und Abrufdatum zu jeder Aussage — keine Bewertung, kein Urteil.</p>
         </details>
       </div>
     </div>
@@ -277,9 +334,9 @@
   <section id="anfrage">
     <div class="wrap">
       <div class="section-label">Diskret starten</div>
-      <h2>Was soll festgehalten werden?</h2>
+      <h2>Welches Zielunternehmen sollen wir prüfen?</h2>
       <p class="lead form-hint">
-        Name, Mail, eine Zeile zum Fall. Antwort in einem Werktag. Diskret, kein Call nötig.
+        Name, Mail, eine Zeile zum Unternehmen. Antwort in einem Werktag. Diskret, kein Call nötig.
       </p>
 
       <div class="form-section">
@@ -295,7 +352,7 @@
           </div>
           <div class="form-group">
             <label for="fall">Worum geht es? *</label>
-            <textarea id="fall" name="fall" required placeholder="Eine Zeile reicht: z. B. Konflikt in den Kommentaren, seit wann, welche Plattform."></textarea>
+            <textarea id="fall" name="fall" required placeholder="Eine Zeile reicht: Firmenname oder Website des Zielunternehmens — und bis wann Sie die Akte brauchen."></textarea>
           </div>
 
           <div class="checkbox-group">
@@ -304,7 +361,7 @@
           </div>
 
           <p class="form-micro">Unverbindlich. Diskret. Festpreis CHF 790 · Lieferung innerhalb von 48 Stunden.</p>
-          <button type="submit" class="btn btn-primary form-submit">Unverbindlich anfragen</button>
+          <button type="submit" class="btn btn-primary form-submit">Zielunternehmen prüfen lassen</button>
         </form>
 
         <div class="form-ok" id="formOk">
@@ -318,7 +375,7 @@
   <footer>
     <div class="wrap footer-stack">
       <div class="footer-brand">Maddy.support</div>
-      <div class="sub">Die Clash-Akte</div>
+      <div class="sub">Die Clash-Akte · Prüfung öffentlicher Aussagen</div>
       <div>Thun · Schweiz</div>
       <div><a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a></div>
       <div style="margin-top:8px"><a href="/datenschutz.html">Datenschutz</a></div>
@@ -328,7 +385,7 @@
 
   <div class="sticky-cta" role="navigation" aria-label="Anfrage">
     <span>Clash-Akte · Festpreis CHF 790 · in 48 Std.</span>
-    <a href="#anfrage">Unverbindlich anfragen</a>
+    <a href="#anfrage">Prüfen lassen</a>
   </div>
 
   <script>
