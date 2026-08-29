@@ -107,19 +107,23 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     background:#050d18;
     border-top:1px solid var(--line, rgba(212,184,122,.28));
   }
-  .sticky-cta span{font-size:.78rem;color:#d4d9df}
+  .sticky-cta span{font-size:.72rem;color:#d4d9df;line-height:1.35;max-width:42%}
   .sticky-cta a{
     flex-shrink:0;
     border:1px solid var(--gold,#d4b87a);
     background:rgba(212,184,122,.12);
     color:#f5f0e6;
-    padding:12px 14px;
-    font-size:.68rem;
-    letter-spacing:.08em;
+    padding:10px 12px;
+    font-size:.62rem;
+    letter-spacing:.06em;
     text-transform:uppercase;
     min-height:44px;
+    max-width:55%;
+    text-align:center;
+    line-height:1.25;
     display:inline-flex;
     align-items:center;
+    justify-content:center;
   }
-  body{padding-bottom:76px}
+  body{padding-bottom:96px}
 }
