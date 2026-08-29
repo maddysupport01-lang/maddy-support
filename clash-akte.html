@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Maddy.support – Die Clash-Akte. Ein Konflikt, sauber dokumentiert: Verlauf, Belege, Fakten. Leise im Hintergrund erstellt." />
+  <meta name="robots" content="noindex">
+  <title>Maddy.support · Clash-Akte</title>
+
+  <link rel="stylesheet" href="/fonts.css">
+  <link rel="stylesheet" href="/site.css">
+
+  <style>
+    :root{
+      --navy:#050d18;
+      --navy-mid:#0a1828;
+      --gold:#d4b87a;
+      --gold-bright:#ecd49a;
+      --cream:#f5f0e6;
+      --text:#dce2e9;
+      --muted:#9aa5b2;
+      --line:rgba(212,184,122,.28);
+      --soft:rgba(255,255,255,.055);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Libre Baskerville",Georgia,serif;
+      color:var(--text);
+      background:
+        radial-gradient(ellipse 80% 50% at 85% 15%, rgba(48,95,150,.18), transparent 50%),
+        radial-gradient(ellipse 60% 40% at 10% 85%, rgba(20,50,90,.12), transparent 48%),
+        linear-gradient(165deg,#07111e 0%,#050d18 50%,#030810 100%);
+      min-height:100vh;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1120px,92%);margin:0 auto}
+    nav{padding:30px 0 0}
+    .nav-inner{
+      display:flex;justify-content:space-between;align-items:center;
+      padding-bottom:24px;border-bottom:1px solid var(--line);
+    }
+    .brand{
+      font-family:"Bodoni Moda",Georgia,serif;
+      font-size:1.85rem;font-weight:600;color:var(--cream);
+      display:inline-block;padding:8px 0;
+    }
+    .nav-links{display:flex;gap:28px}
+    .nav-links a{
+      font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--gold-bright);padding:10px 4px;
+    }
+    header{padding:78px 0 72px;text-align:center}
+    .eyebrow,.section-label{
+      font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+      color:var(--gold-bright);font-weight:700;
+    }
+    h1,h2{
+      font-family:"Bodoni Moda",Georgia,serif;
+      color:var(--cream);font-weight:500;line-height:1.08;
+    }
+    h1{font-size:clamp(2.6rem,5.5vw,4.6rem);margin:18px auto 20px;max-width:760px}
+    h1 em{color:var(--gold-bright);font-style:normal}
+    .sub{max-width:580px;margin:0 auto 28px;line-height:1.8;color:#cdd4dc}
+    .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      border:1px solid var(--gold);padding:14px 24px;
+      font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--cream);min-height:48px;line-height:1.4;cursor:pointer;
+      background:transparent;transition:.2s ease;
+    }
+    .btn:hover{background:rgba(212,184,122,.10)}
+    .btn-primary{background:rgba(212,184,122,.08)}
+    section{padding:76px 0;border-top:1px solid rgba(255,255,255,.035)}
+    h2{font-size:clamp(2rem,4vw,3.2rem);text-align:center;margin-bottom:14px}
+    .lead{text-align:center;max-width:600px;margin:0 auto 40px;color:#cbd3dc;line-height:1.7}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+    .card{border:1px solid var(--line);background:var(--soft);padding:30px}
+    .card h3{
+      font-family:"Bodoni Moda",Georgia,serif;
+      color:var(--cream);font-size:1.5rem;margin:8px 0 12px
+    }
+    .card p{line-height:1.65;color:#d4d9df}
+    .form-section{max-width:640px;margin:0 auto}
+    .form-hint{font-size:.85rem;color:var(--muted);margin-bottom:28px;line-height:1.7}
+    .form-group{margin-bottom:20px}
+    .form-group label{
+      display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--gold-bright);margin-bottom:8px
+    }
+    .form-group input,
+    .form-group textarea{
+      width:100%;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      color:var(--cream);
+      padding:14px 16px;
+      font-family:"Libre Baskerville",Georgia,serif;
+      font-size:.95rem;line-height:1.5;
+      border-radius:0;outline:none;transition:border-color .2s;
+      min-height:48px;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus{border-color:var(--gold-bright)}
+    .form-group textarea{min-height:140px;resize:vertical}
+    .checkbox-group{
+      display:flex;align-items:flex-start;gap:12px;margin:28px 0;
+      font-size:.82rem;line-height:1.6;color:var(--muted)
+    }
+    .checkbox-group input[type="checkbox"]{
+      width:20px;height:20px;min-width:20px;margin-top:2px;
+      accent-color:var(--gold);cursor:pointer
+    }
+    .checkbox-group a{color:var(--gold-bright);text-decoration:underline}
+    .form-submit{width:100%;margin-top:8px}
+    footer{padding:40px 0 50px;border-top:1px solid var(--line)}
+    .footer-stack{text-align:center;color:var(--muted);line-height:1.75}
+    .footer-stack .footer-brand{
+      font-family:"Bodoni Moda",Georgia,serif;
+      color:var(--cream);font-size:1.85rem;font-weight:600
+    }
+    .footer-stack a{color:var(--cream)}
+    .footer-stack .copy{margin-top:4px}
+    @media(max-width:860px){
+      .grid-3{grid-template-columns:1fr}
+      .brand{padding:12px 8px 12px 0;min-height:48px;display:inline-flex;align-items:center}
+      .btn{padding:16px 28px;min-height:52px;font-size:.78rem}
+      .hero-actions{flex-direction:column;align-items:stretch}
+      .hero-actions .btn{width:100%}
+      .form-group input,
+      .form-group textarea{font-size:16px}
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="wrap nav-inner">
+      <a href="/" class="brand">Maddy.support</a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="nav-links" id="navLinks">
+        <a href="/">Startseite</a>
+        <a href="/community.html">Community</a>
+        <a href="/business.html">Business</a>
+        <a href="#anfrage">Anfrage</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">Die Clash-Akte</div>
+      <h1>Ein Konflikt.<br><em>Sauber dokumentiert.</em></h1>
+      <p class="sub">
+        Wenn es online laut wird, zählt am Ende, was belegbar ist.
+        Die Clash-Akte hält Verlauf, Belege und Fakten strukturiert fest —
+        leise im Hintergrund erstellt, damit Sie den Kopf frei behalten.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#anfrage">Unverbindlich anfragen</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="inhalt">
+    <div class="wrap">
+      <div class="section-label">Was drin ist</div>
+      <h2>Verlauf. Belege. Fakten.</h2>
+      <p class="lead">
+        Keine Meinung, keine Eskalation. Eine ruhige, chronologische Akte,
+        auf die Sie sich stützen können.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Verlauf</h3>
+          <p>Chronologie der Ereignisse: wer, wann, wo — nachvollziehbar geordnet.</p>
+        </div>
+        <div class="card">
+          <h3>Belege</h3>
+          <p>Screenshots, Links und Quellen gesichert und sauber zugeordnet.</p>
+        </div>
+        <div class="card">
+          <h3>Fakten</h3>
+          <p>Was belegt ist, was offen ist — klar getrennt, ohne Bewertung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="anfrage">
+    <div class="wrap">
+      <div class="section-label">Diskret starten</div>
+      <h2>Was soll festgehalten werden?</h2>
+      <p class="lead form-hint">
+        Name, Mail, eine Zeile zum Fall. Antwort in einem Werktag. Diskret, kein Call nötig.
+      </p>
+
+      <div class="form-section">
+        <form id="clash-form" novalidate>
+          <input type="text" id="website" name="website" class="visually-hidden" tabindex="-1" autocomplete="off">
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="email">E-Mail *</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="fall">Worum geht es? *</label>
+            <textarea id="fall" name="fall" required placeholder="Eine Zeile reicht: z. B. Konflikt in den Kommentaren, seit wann, welche Plattform."></textarea>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="privacy" name="privacy" required>
+            <label for="privacy">Ich habe die <a href="/datenschutz.html" target="_blank" rel="noopener">Datenschutzhinweise</a> zur Kenntnis genommen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu.</label>
+          </div>
+
+          <p class="form-micro">Unverbindlich. Diskret. Nichts geht raus ohne Ihren Blick.</p>
+          <button type="submit" class="btn btn-primary form-submit">Unverbindlich anfragen</button>
+        </form>
+
+        <div class="form-ok" id="formOk">
+          <strong>Danke. Ich habe Ihre Anfrage.</strong>
+          <p>Ich antworte in einem Werktag an die angegebene Adresse. Diskret, kein Call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-stack">
+      <div class="footer-brand">Maddy.support</div>
+      <div class="sub">Die Clash-Akte</div>
+      <div>Thun · Schweiz</div>
+      <div><a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a></div>
+      <div style="margin-top:8px"><a href="/datenschutz.html">Datenschutz</a></div>
+      <div class="copy">© 2026 Maddy.support</div>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    var t=document.getElementById('navToggle');var n=document.getElementById('navLinks');if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('is-open');t.setAttribute('aria-expanded',o?'true':'false');});}
+
+    var form = document.getElementById('clash-form');
+    if(form){
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        var name = document.getElementById('name').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var fall = document.getElementById('fall').value.trim();
+        var honey = document.getElementById('website');
+        var privacy = document.getElementById('privacy');
+        if(honey && honey.value) return;
+        if(privacy && !privacy.checked){ alert('Bitte bestätigen Sie die Datenschutzhinweise.'); return; }
+        if(!name || !email || !fall){ alert('Name, E-Mail und eine kurze Beschreibung reichen.'); return; }
+        var btn = form.querySelector('[type="submit"]');
+        if(btn){ btn.disabled = true; btn.textContent = 'Wird gesendet…'; }
+        fetch('https://formsubmit.co/ajax/kontakt@maddy.support', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            bereich: 'CLASH-AKTE',
+            fall: fall,
+            _subject: 'Anfrage Maddy.support – CLASH-AKTE',
+            _template: 'table',
+            _captcha: 'false'
+          })
+        }).then(function(r){ return r.json().catch(function(){ return {}; }); })
+        .then(function(){
+          form.style.display = 'none';
+          var ok = document.getElementById('formOk');
+          if(ok) ok.classList.add('is-on');
+        })
+        .catch(function(){
+          var body = ['Name: '+name, 'E-Mail: '+email, 'Bereich: CLASH-AKTE', '', fall].join('\n');
+          window.location.href = 'mailto:kontakt@maddy.support?subject=' + encodeURIComponent('Anfrage Maddy.support – CLASH-AKTE') + '&body=' + encodeURIComponent(body);
+        });
+      });
+    }
+  })();
+</script>
+</body>
+</html>
