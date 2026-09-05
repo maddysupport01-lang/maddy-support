@@ -7,6 +7,7 @@
   <title>Maddy.support · Entlastung, die im Hintergrund läuft</title>
   <link rel="preload" href="/BodoniModa-500-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/LibreBaskerville-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/crystal.svg" as="image">
   <link rel="stylesheet" href="/fonts.css">
   <link rel="stylesheet" href="/site.css">
   <style>
@@ -26,8 +27,8 @@
       font-family:"Libre Baskerville",Georgia,serif;
       color:var(--text);
       background:
-        radial-gradient(ellipse 80% 50% at 85% 15%, rgba(48,95,150,.18), transparent 50%),
-        radial-gradient(ellipse 60% 40% at 10% 85%, rgba(20,50,90,.12), transparent 48%),
+        radial-gradient(ellipse 80% 50% at 85% 15%, rgba(48,95,150,.16), transparent 50%),
+        radial-gradient(ellipse 60% 40% at 10% 85%, rgba(20,50,90,.10), transparent 48%),
         linear-gradient(165deg,#07111e 0%,#050d18 50%,#030810 100%);
       min-height:100vh;
     }
@@ -48,27 +49,20 @@
       font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
       color:var(--gold-bright);padding:10px 4px;
     }
-    header{padding:64px 0 72px;text-align:center}
+    header{padding:52px 0 64px;text-align:center}
     .crystal-wrap{
-      width:220px;height:280px;margin:0 auto 36px;
+      width:min(196px,48vw);height:252px;margin:0 auto 22px;
       position:relative;
       display:flex;align-items:center;justify-content:center;
     }
-    .crystal-glow{
-      position:absolute;width:220px;height:220px;border-radius:50%;
-      background:radial-gradient(circle,rgba(70,130,200,.22),transparent 68%);
-      filter:blur(10px);
-    }
-    .crystal{
-      width:150px;height:210px;position:relative;z-index:2;
-      clip-path:polygon(50% 0,78% 19%,84% 70%,50% 100%,16% 70%,22% 19%);
-      background:linear-gradient(135deg,rgba(255,255,255,.45),rgba(212,184,122,.22) 35%,rgba(37,80,125,.30) 70%,rgba(255,255,255,.16));
-      border:1px solid rgba(232,214,179,.65);
-      box-shadow:0 0 55px rgba(70,130,200,.22);
-      animation:crystal-float 5.5s ease-in-out infinite;
+    .crystal-img{
+      width:100%;height:100%;
+      object-fit:contain;
+      position:relative;z-index:1;
+      animation:crystal-float 9s ease-in-out infinite;
     }
     @keyframes crystal-float{
-      50%{transform:translateY(-10px)}
+      50%{transform:translateY(-6px)}
     }
     .eyebrow{
       font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
@@ -76,13 +70,13 @@
     }
     h1{
       font-family:"Bodoni Moda",Georgia,serif;
-      font-size:clamp(2.4rem,5.5vw,4.2rem);
+      font-size:clamp(2.35rem,5.2vw,4rem);
       font-weight:500;color:var(--cream);line-height:1.08;
-      margin:16px auto 18px;max-width:720px;
+      margin:14px auto 16px;max-width:720px;
     }
     h1 em{color:var(--gold-bright);font-style:normal}
-    .sub{max-width:540px;margin:0 auto 22px;line-height:1.75;color:#cdd4dc}
-    .price-line{color:var(--gold-bright);font-size:.92rem;margin-bottom:28px}
+    .sub{max-width:540px;margin:0 auto 20px;line-height:1.75;color:#cdd4dc}
+    .price-line{color:var(--gold-bright);font-size:.92rem;margin-bottom:26px}
     .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;
@@ -121,13 +115,12 @@
     footer a{color:var(--cream)}
     @media(max-width:700px){
       .doors{grid-template-columns:1fr}
-      .crystal-wrap{width:170px;height:220px}
-      .crystal{width:118px;height:168px}
+      .crystal-wrap{width:148px;height:196px}
       .hero-actions{flex-direction:column;align-items:stretch}
       .btn{width:100%}
     }
     @media(prefers-reduced-motion:reduce){
-      .crystal{animation:none}
+      .crystal-img{animation:none}
     }
   </style>
 </head>
@@ -149,8 +142,7 @@
   <header>
     <div class="wrap">
       <div class="crystal-wrap" aria-hidden="true">
-        <div class="crystal-glow"></div>
-        <div class="crystal"></div>
+        <img class="crystal-img" src="/crystal.svg" width="240" height="320" alt="" decoding="async" fetchpriority="high">
       </div>
       <div class="eyebrow">Leise im Hintergrund. Klar in der Wirkung.</div>
       <h1>Entlastung, die dort ansetzt,<br><em>wo Ihnen Zeit verloren geht.</em></h1>
@@ -209,7 +201,6 @@
   <span>Ab CHF 1’190 / Monat · klar begrenzte Stunden</span>
   <a href="#wege">Paket wählen</a>
 </div>
-
 
   <script>
     (function(){
