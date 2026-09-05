@@ -127,3 +127,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
   body{padding-bottom:96px}
 }
+
+/* Language switch — always visible, even on small screens */
+.nav-end{display:flex;align-items:center;gap:18px}
+.lang{
+  display:flex;align-items:baseline;gap:7px;
+  font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted,#9aa5b2);
+  padding:8px 0;
+  white-space:nowrap;
+}
+.lang .is-on{color:var(--gold-bright,#ecd49a)}
+.lang a{color:var(--muted,#9aa5b2);padding:0}
+.lang a:hover{color:var(--cream,#f5f0e6)}
+.lang-dot{opacity:.55}
+@media(max-width:860px){
+  .nav-end{gap:10px}
+  .lang{position:relative;z-index:41}
+}
