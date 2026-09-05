@@ -14,117 +14,40 @@
   <link rel="stylesheet" href="/fonts.css">
   <link rel="stylesheet" href="/site.css">
   <style>
-    :root{
-      --navy:#050d18;
-      --gold:#d4b87a;
-      --gold-bright:#ecd49a;
-      --cream:#f5f0e6;
-      --text:#dce2e9;
-      --muted:#9aa5b2;
-      --line:rgba(212,184,122,.28);
-      --soft:rgba(255,255,255,.055);
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:"Libre Baskerville",Georgia,serif;
-      color:var(--text);
-      background:
-        radial-gradient(ellipse 80% 50% at 85% 15%, rgba(48,95,150,.16), transparent 50%),
-        radial-gradient(ellipse 60% 40% at 10% 85%, rgba(20,50,90,.10), transparent 48%),
-        linear-gradient(165deg,#07111e 0%,#050d18 50%,#030810 100%);
-      min-height:100vh;
-    }
-    a{color:inherit;text-decoration:none}
-    .wrap{width:min(1120px,92%);margin:0 auto}
-    nav{padding:30px 0 0}
-    .nav-inner{
-      display:flex;justify-content:space-between;align-items:center;
-      padding-bottom:24px;border-bottom:1px solid var(--line);
-    }
-    .brand{
-      font-family:"Bodoni Moda",Georgia,serif;
-      font-size:1.85rem;font-weight:600;color:var(--cream);
-      padding:8px 0;
-    }
-    .nav-links{display:flex;gap:28px}
-    .nav-links a{
-      font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
-      color:var(--gold-bright);padding:10px 4px;
-    }
+    :root{--navy:#050d18;--gold:#d4b87a;--gold-bright:#ecd49a;--cream:#f5f0e6;--text:#dce2e9;--muted:#9aa5b2;--line:rgba(212,184,122,.28);--soft:rgba(255,255,255,.055)}
+    *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{font-family:"Libre Baskerville",Georgia,serif;color:var(--text);background:radial-gradient(ellipse 80% 50% at 85% 15%, rgba(48,95,150,.16), transparent 50%),radial-gradient(ellipse 60% 40% at 10% 85%, rgba(20,50,90,.10), transparent 48%),linear-gradient(165deg,#07111e 0%,#050d18 50%,#030810 100%);min-height:100vh}
+    a{color:inherit;text-decoration:none}.wrap{width:min(1120px,92%);margin:0 auto}
+    nav{padding:30px 0 0}.nav-inner{display:flex;justify-content:space-between;align-items:center;padding-bottom:24px;border-bottom:1px solid var(--line)}
+    .brand{font-family:"Bodoni Moda",Georgia,serif;font-size:1.85rem;font-weight:600;color:var(--cream);padding:8px 0}
+    .nav-links{display:flex;gap:28px}.nav-links a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-bright);padding:10px 4px}
     header{padding:52px 0 64px;text-align:center}
-    .crystal-wrap{
-      width:min(196px,48vw);height:252px;margin:0 auto 22px;
-      position:relative;
-      display:flex;align-items:center;justify-content:center;
-    }
-    .crystal-img{
-      width:100%;height:100%;
-      object-fit:contain;
-      position:relative;z-index:1;
-      animation:crystal-float 9s ease-in-out infinite;
-    }
-    @keyframes crystal-float{
-      50%{transform:translateY(-6px)}
-    }
-    .eyebrow{
-      font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
-      color:var(--gold-bright);font-weight:700;
-    }
-    h1{
-      font-family:"Bodoni Moda",Georgia,serif;
-      font-size:clamp(2.35rem,5.2vw,4rem);
-      font-weight:500;color:var(--cream);line-height:1.08;
-      margin:14px auto 16px;max-width:720px;
-    }
+    .crystal-wrap{width:min(196px,48vw);height:252px;margin:0 auto 22px;position:relative;display:flex;align-items:center;justify-content:center}
+    .crystal-img{width:100%;height:100%;object-fit:contain;position:relative;z-index:1;animation:crystal-float 9s ease-in-out infinite}
+    @keyframes crystal-float{50%{transform:translateY(-6px)}}
+    .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-bright);font-weight:700}
+    h1{font-family:"Bodoni Moda",Georgia,serif;font-size:clamp(2.35rem,5.2vw,4rem);font-weight:500;color:var(--cream);line-height:1.08;margin:14px auto 16px;max-width:720px}
     h1 em{color:var(--gold-bright);font-style:normal}
     .sub{max-width:540px;margin:0 auto 20px;line-height:1.75;color:#cdd4dc}
     .price-line{color:var(--gold-bright);font-size:.92rem;margin-bottom:26px}
     .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      border:1px solid var(--gold);padding:14px 24px;
-      font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
-      color:var(--cream);min-height:48px;background:transparent;
-    }
+    .btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--gold);padding:14px 24px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);min-height:48px;background:transparent}
     .btn-primary{background:rgba(212,184,122,.08)}
     section{padding:76px 0;border-top:1px solid rgba(255,255,255,.035)}
-    h2{
-      font-family:"Bodoni Moda",Georgia,serif;
-      font-size:clamp(2rem,4vw,3.2rem);color:var(--cream);font-weight:500;
-      text-align:center;margin-bottom:14px;line-height:1.15;
-    }
+    h2{font-family:"Bodoni Moda",Georgia,serif;font-size:clamp(2rem,4vw,3.2rem);color:var(--cream);font-weight:500;text-align:center;margin-bottom:14px;line-height:1.15}
     .lead{text-align:center;max-width:560px;margin:0 auto 40px;color:#cbd3dc;line-height:1.7}
     .doors{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:860px;margin:0 auto}
-    .door{
-      border:1px solid var(--line);background:var(--soft);padding:36px 30px;text-align:left;
-    }
-    .door-label{
-      font-family:"Bodoni Moda",Georgia,serif;font-size:1.5rem;color:var(--cream);margin-bottom:8px;
-    }
+    .door{border:1px solid var(--line);background:var(--soft);padding:36px 30px;text-align:left}
+    .door-label{font-family:"Bodoni Moda",Georgia,serif;font-size:1.5rem;color:var(--cream);margin-bottom:8px}
     .door-text{color:#d4d9df;line-height:1.65;margin:12px 0 22px}
     .door-link{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-bright)}
-    .clash-hint{
-      text-align:center;margin:28px auto 0;max-width:560px;
-      font-size:.88rem;line-height:1.7;color:var(--muted);
-    }
+    .clash-hint{text-align:center;margin:28px auto 0;max-width:560px;font-size:.88rem;line-height:1.7;color:var(--muted)}
     .clash-hint a{color:var(--gold-bright);text-decoration:underline;text-underline-offset:3px}
-    .section-label{
-      text-align:center;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
-      color:var(--gold-bright);font-weight:700;
-    }
+    .section-label{text-align:center;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-bright);font-weight:700}
     footer{padding:42px 0 55px;border-top:1px solid var(--line);text-align:center;color:var(--muted);line-height:1.75}
-    footer .brand{display:block;margin-bottom:6px}
-    footer a{color:var(--cream)}
-    @media(max-width:700px){
-      .doors{grid-template-columns:1fr}
-      .crystal-wrap{width:148px;height:196px}
-      .hero-actions{flex-direction:column;align-items:stretch}
-      .btn{width:100%}
-    }
-    @media(prefers-reduced-motion:reduce){
-      .crystal-img{animation:none}
-    }
+    footer .brand{display:block;margin-bottom:6px}footer a{color:var(--cream)}
+    @media(max-width:700px){.doors{grid-template-columns:1fr}.crystal-wrap{width:148px;height:196px}.hero-actions{flex-direction:column;align-items:stretch}.btn{width:100%}}
+    @media(prefers-reduced-motion:reduce){.crystal-img{animation:none}}
   </style>
 </head>
 <body>
@@ -140,15 +63,14 @@
       <button type="button" class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
       <div class="nav-links" id="navLinks">
         <a href="/en/">Home</a>
-        <a href="/community.html">Community</a>
-        <a href="/business.html">Business</a>
-        <a href="/clash-akte.html">Clash-Akte</a>
+        <a href="/en/community.html">Community</a>
+        <a href="/en/business.html">Business</a>
+        <a href="/en/clash-akte.html">Clash File</a>
         <a href="mailto:kontakt@maddy.support">Contact</a>
       </div>
       </div>
     </div>
   </nav>
-
   <header>
     <div class="wrap">
       <div class="crystal-wrap" aria-hidden="true">
@@ -159,33 +81,23 @@
       <p class="sub">Community, inbox, open loops — in your tone. You stay the voice. I keep the small work in the background.</p>
       <p class="price-line">6, 10 or 16 hours / month · from CHF 1,190 · not 24/7</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="/community.html">Community</a>
-        <a class="btn" href="/business.html">Business</a>
+        <a class="btn btn-primary" href="/en/community.html">Community</a>
+        <a class="btn" href="/en/business.html">Business</a>
       </div>
     </div>
   </header>
-
   <section id="wege">
     <div class="wrap">
       <div class="section-label">Two doors</div>
       <h2>Where should I keep your back clear?</h2>
       <p class="lead">One house. Fixed hours. Nothing goes out without your eye on it.</p>
       <div class="doors">
-        <a href="/community.html" class="door">
-          <div class="door-label">Community</div>
-          <p class="door-text">Comments, DMs, tone. Guide figures per package — the hour allowance is what counts.</p>
-          <span class="door-link">See packages</span>
-        </a>
-        <a href="/business.html" class="door">
-          <div class="door-label">Business</div>
-          <p class="door-text">Inbox, offers from your numbers, follow-up, light back office.</p>
-          <span class="door-link">See packages</span>
-        </a>
+        <a href="/en/community.html" class="door"><div class="door-label">Community</div><p class="door-text">Comments, DMs, tone. Guide figures per package — the hour allowance is what counts.</p><span class="door-link">See packages</span></a>
+        <a href="/en/business.html" class="door"><div class="door-label">Business</div><p class="door-text">Inbox, offers from your numbers, follow-up, light back office.</p><span class="door-link">See packages</span></a>
       </div>
-      <p class="clash-hint">A single review rather than ongoing support: <a href="/clash-akte.html">The Clash File</a>.</p>
+      <p class="clash-hint">A single review rather than ongoing support: <a href="/en/clash-akte.html">The Clash File</a>.</p>
     </div>
   </section>
-
   <section id="arbeit">
     <div class="wrap">
       <div class="section-label">How we work</div>
@@ -197,13 +109,12 @@
       </div>
     </div>
   </section>
-
   <footer>
     <div class="wrap">
       <span class="brand">Maddy.support</span>
       Thun · Switzerland<br>
       <a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a><br>
-      <a href="/datenschutz.html">Privacy</a>
+      <a href="/en/privacy.html">Privacy</a>
       <div style="margin-top:10px">© 2026 Maddy.support</div>
     </div>
   </footer>
@@ -211,18 +122,6 @@
   <span>From CHF 1,190 / month · hours clearly capped</span>
   <a href="#wege">Choose a package</a>
 </div>
-
-  <script>
-    (function(){
-      var t=document.getElementById('navToggle');
-      var n=document.getElementById('navLinks');
-      if(t&&n){
-        t.addEventListener('click', function(){
-          var open=n.classList.toggle('is-open');
-          t.setAttribute('aria-expanded', open?'true':'false');
-        });
-      }
-    })();
-  </script>
+  <script>(function(){var t=document.getElementById('navToggle');var n=document.getElementById('navLinks');if(t&&n){t.addEventListener('click', function(){var open=n.classList.toggle('is-open');t.setAttribute('aria-expanded', open?'true':'false');});}})();</script>
 </body>
 </html>
