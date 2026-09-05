@@ -1,39 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://maddy.support/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://maddy.support/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://maddy.support/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://maddy.support/"/>
-  </url>
-  <url>
-    <loc>https://maddy.support/en/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://maddy.support/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://maddy.support/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://maddy.support/"/>
-  </url>
-  <url>
-    <loc>https://maddy.support/helion.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://maddy.support/helion.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://maddy.support/en/helion.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://maddy.support/helion.html"/>
-  </url>
-  <url>
-    <loc>https://maddy.support/en/helion.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://maddy.support/helion.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://maddy.support/en/helion.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://maddy.support/helion.html"/>
-  </url>
-  <url>
-    <loc>https://maddy.support/community.html</loc>
-  </url>
-  <url>
-    <loc>https://maddy.support/business.html</loc>
-  </url>
-  <url>
-    <loc>https://maddy.support/clash-akte.html</loc>
-  </url>
-  <url>
-    <loc>https://maddy.support/datenschutz.html</loc>
-  </url>
+  <url><loc>https://maddy.support/</loc><xhtml:link rel="alternate" hreflang="de" href="https://maddy.support/"/><xhtml:link rel="alternate" hreflang="en" href="https://maddy.support/en/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://maddy.support/"/></url>
+  <url><loc>https://maddy.support/en/</loc></url>
+  <url><loc>https://maddy.support/helion.html</loc><xhtml:link rel="alternate" hreflang="de" href="https://maddy.support/helion.html"/><xhtml:link rel="alternate" hreflang="en" href="https://maddy.support/en/helion.html"/><xhtml:link rel="alternate" hreflang="x-default" href="https://maddy.support/helion.html"/></url>
+  <url><loc>https://maddy.support/en/helion.html</loc></url>
+  <url><loc>https://maddy.support/community.html</loc><xhtml:link rel="alternate" hreflang="de" href="https://maddy.support/community.html"/><xhtml:link rel="alternate" hreflang="en" href="https://maddy.support/en/community.html"/></url>
+  <url><loc>https://maddy.support/en/community.html</loc></url>
+  <url><loc>https://maddy.support/business.html</loc><xhtml:link rel="alternate" hreflang="de" href="https://maddy.support/business.html"/><xhtml:link rel="alternate" hreflang="en" href="https://maddy.support/en/business.html"/></url>
+  <url><loc>https://maddy.support/en/business.html</loc></url>
+  <url><loc>https://maddy.support/clash-akte.html</loc><xhtml:link rel="alternate" hreflang="de" href="https://maddy.support/clash-akte.html"/><xhtml:link rel="alternate" hreflang="en" href="https://maddy.support/en/clash-akte.html"/></url>
+  <url><loc>https://maddy.support/en/clash-akte.html</loc></url>
+  <url><loc>https://maddy.support/datenschutz.html</loc><xhtml:link rel="alternate" hreflang="de" href="https://maddy.support/datenschutz.html"/><xhtml:link rel="alternate" hreflang="en" href="https://maddy.support/en/privacy.html"/></url>
+  <url><loc>https://maddy.support/en/privacy.html</loc></url>
 </urlset>
