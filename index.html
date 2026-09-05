@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Maddy.support – Entlastung im Hintergrund für Communitys, Selbstständige und kleine Unternehmen. Klare Stunden, nichts geht raus ohne Ihren Blick.">
   <title>Maddy.support · Entlastung, die im Hintergrund läuft</title>
+  <link rel="preload" href="/BodoniModa-500-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/LibreBaskerville-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/fonts.css">
   <link rel="stylesheet" href="/site.css">
   <style>
@@ -49,12 +51,24 @@
     header{padding:64px 0 72px;text-align:center}
     .crystal-wrap{
       width:220px;height:280px;margin:0 auto 36px;
-      perspective:900px;
+      position:relative;
+      display:flex;align-items:center;justify-content:center;
     }
-    .crystal-img{
-      width:100%;height:100%;object-fit:contain;
-      filter:drop-shadow(0 0 40px rgba(70,130,200,.25));
-      transition:transform .12s ease-out;
+    .crystal-glow{
+      position:absolute;width:220px;height:220px;border-radius:50%;
+      background:radial-gradient(circle,rgba(70,130,200,.22),transparent 68%);
+      filter:blur(10px);
+    }
+    .crystal{
+      width:150px;height:210px;position:relative;z-index:2;
+      clip-path:polygon(50% 0,78% 19%,84% 70%,50% 100%,16% 70%,22% 19%);
+      background:linear-gradient(135deg,rgba(255,255,255,.45),rgba(212,184,122,.22) 35%,rgba(37,80,125,.30) 70%,rgba(255,255,255,.16));
+      border:1px solid rgba(232,214,179,.65);
+      box-shadow:0 0 55px rgba(70,130,200,.22);
+      animation:crystal-float 5.5s ease-in-out infinite;
+    }
+    @keyframes crystal-float{
+      50%{transform:translateY(-10px)}
     }
     .eyebrow{
       font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
@@ -108,11 +122,12 @@
     @media(max-width:700px){
       .doors{grid-template-columns:1fr}
       .crystal-wrap{width:170px;height:220px}
+      .crystal{width:118px;height:168px}
       .hero-actions{flex-direction:column;align-items:stretch}
       .btn{width:100%}
     }
     @media(prefers-reduced-motion:reduce){
-      .crystal-img{transform:none !important}
+      .crystal{animation:none}
     }
   </style>
 </head>
@@ -133,8 +148,9 @@
 
   <header>
     <div class="wrap">
-      <div class="crystal-wrap" id="crystalWrap">
-        <img src="crystal-flow.png" alt="" class="crystal-img" id="crystal">
+      <div class="crystal-wrap" aria-hidden="true">
+        <div class="crystal-glow"></div>
+        <div class="crystal"></div>
       </div>
       <div class="eyebrow">Leise im Hintergrund. Klar in der Wirkung.</div>
       <h1>Entlastung, die dort ansetzt,<br><em>wo Ihnen Zeit verloren geht.</em></h1>
@@ -204,22 +220,6 @@
           var open=n.classList.toggle('is-open');
           t.setAttribute('aria-expanded', open?'true':'false');
         });
-      }
-      var wrap=document.getElementById('crystalWrap');
-      var crystal=document.getElementById('crystal');
-      var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if(!reduce && wrap && crystal && window.matchMedia('(pointer: fine)').matches){
-        var mx=0,my=0,cx=0,cy=0;
-        document.addEventListener('mousemove', function(e){
-          var r=wrap.getBoundingClientRect();
-          mx=Math.max(-5, Math.min(5, (e.clientX-(r.left+r.width/2))/55));
-          my=Math.max(-5, Math.min(5, (e.clientY-(r.top+r.height/2))/55));
-        });
-        (function anim(){
-          cx+=(mx-cx)*0.06; cy+=(my-cy)*0.06;
-          crystal.style.transform='translateY('+(Math.sin(Date.now()/2100)*8)+'px) rotateX('+(-cy)+'deg) rotateY('+cx+'deg)';
-          requestAnimationFrame(anim);
-        })();
       }
     })();
   </script>
