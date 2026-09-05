@@ -12,6 +12,9 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_CH">
   <title>Maddy.Support · Helion — Festpreis-Angebot in 72 Stunden</title>
+  <link rel="preload" href="/BodoniModa-500-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/LibreBaskerville-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/crystal.svg" as="image">
   <link rel="stylesheet" href="/fonts.css">
   <style>
     :root{
@@ -69,14 +72,20 @@
       justify-content:space-between;
     }
     .nav-toggle span{display:block;height:1px;background:var(--gold-bright);width:100%}
-    header{padding:64px 0 72px;text-align:center}
+    header{padding:52px 0 64px;text-align:center}
     .crystal-wrap{
-      width:220px;height:280px;margin:0 auto 36px;
-      perspective:900px;
+      width:min(196px,48vw);height:252px;margin:0 auto 22px;
+      position:relative;
+      display:flex;align-items:center;justify-content:center;
     }
     .crystal-img{
-      width:100%;height:100%;object-fit:contain;
-      filter:drop-shadow(0 0 40px rgba(70,130,200,.25));
+      width:100%;height:100%;
+      object-fit:contain;
+      position:relative;z-index:1;
+      animation:crystal-float 9s ease-in-out infinite;
+    }
+    @keyframes crystal-float{
+      50%{transform:translateY(-6px)}
     }
     .eyebrow{
       font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
@@ -266,7 +275,10 @@
     @media(max-width:700px){
       .hero-actions{flex-direction:column;align-items:stretch}
       .btn{width:100%}
-      .crystal-wrap{width:170px;height:220px}
+      .crystal-wrap{width:148px;height:196px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .crystal-img{animation:none}
     }
   </style>
 </head>
@@ -286,8 +298,8 @@
 
   <header>
     <div class="wrap">
-      <div class="crystal-wrap" id="crystalWrap">
-        <img src="/crystal-flow.png" alt="" class="crystal-img" id="crystal">
+      <div class="crystal-wrap" aria-hidden="true">
+        <img class="crystal-img" src="/crystal.svg" width="240" height="320" alt="" decoding="async" fetchpriority="high">
       </div>
       <div class="eyebrow">Gebaut. Nicht besprochen.</div>
       <h1>Aus Ihren Decks in 72 Stunden ein Festpreis-Angebot,<br><em>das Einkauf mit Ja oder Nein beantwortet.</em></h1>
@@ -478,22 +490,6 @@
           var open=n.classList.toggle('is-open');
           t.setAttribute('aria-expanded', open?'true':'false');
         });
-      }
-      var wrap=document.getElementById('crystalWrap');
-      var crystal=document.getElementById('crystal');
-      var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if(!reduce && wrap && crystal && window.matchMedia('(pointer: fine)').matches){
-        var mx=0,my=0,cx=0,cy=0;
-        document.addEventListener('mousemove', function(e){
-          var r=wrap.getBoundingClientRect();
-          mx=Math.max(-5, Math.min(5, (e.clientX-(r.left+r.width/2))/55));
-          my=Math.max(-5, Math.min(5, (e.clientY-(r.top+r.height/2))/55));
-        });
-        (function anim(){
-          cx+=(mx-cx)*0.06; cy+=(my-cy)*0.06;
-          crystal.style.transform='translateY('+(Math.sin(Date.now()/2100)*8)+'px) rotateX('+(-cy)+'deg) rotateY('+cx+'deg)';
-          requestAnimationFrame(anim);
-        })();
       }
       var form=document.getElementById('intakeForm');
       var ok=document.getElementById('formOk');
