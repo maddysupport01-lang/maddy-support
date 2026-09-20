@@ -172,9 +172,27 @@
           _template:'table',
           _captcha:'false'
         })
-      }).then(function(r){ return r.json().catch(function(){ return {}; }); })
-      .then(function(){ form.style.display='none'; var ok=document.getElementById('formOk'); if(ok) ok.classList.add('is-on'); })
+      }).then(function(r){
+        return r.json().catch(function(){ return {}; }).then(function(data){
+          return { ok:r.ok, status:r.status, data:data };
+        });
+      })
+      .then(function(res){
+        if(res.ok){
+          form.style.display='none';
+          var ok=document.getElementById('formOk');
+          if(ok) ok.classList.add('is-on');
+          return;
+        }
+        if(btn){ btn.disabled=false; btn.textContent='Dossier anfragen'; }
+        if(res.status===429){
+          alert('Übermittlung vorübergehend blockiert (HTTP 429). Bitte später erneut versuchen.');
+          return;
+        }
+        alert('Übermittlung fehlgeschlagen (HTTP '+res.status+'). Keine Anfrage gesendet.');
+      })
       .catch(function(){
+        if(btn){ btn.disabled=false; btn.textContent='Dossier anfragen'; }
         var body=['Name: '+name,'E-Mail: '+email,'Fragestellung: '+frage,'Deadline: '+frist,'',mehr||''].join('\n');
         window.location.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('DOSSIER')+'&body='+encodeURIComponent(body);
       });
