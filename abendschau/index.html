@@ -1,1 +1,262 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05060A">
+<meta name="robots" content="noindex,nofollow">
+<title>Abendschau der Schwurbler · 23. September 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#05060A; --ink2:#0A0C12;
+  --gold:#C9A24A; --gold2:#E8D7A3;
+  --cream:#F3EDE0; --mute:#8E8676;
+  --line:rgba(201,162,74,.26);
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Outfit",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{background:var(--ink);color:var(--cream);font-family:var(--sans);font-weight:300}
+body{min-height:100vh}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(1100px 520px at 50% -8%, rgba(201,162,74,.10), transparent 58%);
+}
+#door{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+#veil{
+  position:fixed;inset:0;z-index:40;background:#05060A;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  transition:opacity .9s ease, visibility .9s;
+}
+#veil::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(900px 480px at 50% 30%, rgba(201,162,74,.14), transparent 62%);}
+#door:checked ~ #veil{opacity:0;visibility:hidden;pointer-events:none}
+.veil-inner{position:relative;z-index:2;padding:28px 22px;max-width:40rem}
+.needle{width:140px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 28px}
+.veil-k{letter-spacing:.42em;font-size:10px;color:var(--gold);text-transform:uppercase}
+.veil-t{font-family:var(--serif);font-size:clamp(32px,7vw,68px);font-weight:500;margin:14px 0 10px;line-height:1.05;text-shadow:0 0 48px rgba(201,162,74,.2)}
+.veil-s{font-family:var(--serif);font-style:italic;font-size:clamp(16px,2.4vw,22px);color:var(--gold2)}
+.veil-d{margin-top:22px;letter-spacing:.28em;font-size:11px;color:var(--mute)}
+#veil label.enter{
+  display:inline-block;margin-top:34px;border:1px solid var(--gold);color:var(--gold);
+  letter-spacing:.32em;text-transform:uppercase;font-size:11px;padding:15px 32px;cursor:pointer;
+  -webkit-tap-highlight-color:rgba(201,162,74,.25);
+}
+#veil label.enter:hover,#veil label.enter:active{background:var(--gold);color:#05060A}
+.wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:28px 22px 96px}
+header.mast{padding:18px 0 36px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.brand{font-family:var(--serif);font-size:22px;letter-spacing:.08em}
+.brand small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.32em;color:var(--gold);margin-bottom:6px;text-transform:uppercase}
+.meta{text-align:right;font-size:11px;letter-spacing:.18em;color:var(--mute);text-transform:uppercase}
+.faden{padding:56px 0 36px}
+.faden h1{font-family:var(--serif);font-weight:500;font-size:clamp(32px,6vw,58px);line-height:1.08;max-width:16ch;text-shadow:0 0 40px rgba(201,162,74,.18)}
+.faden p.lead{margin-top:18px;font-family:var(--serif);font-style:italic;font-size:20px;color:var(--gold2);max-width:36ch}
+.seals{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+.seal{border-bottom:1px solid var(--gold);padding:6px 2px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.tisch{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:12px 0 36px}
+.tisch article{background:var(--ink2);padding:18px 16px}
+.tisch b{display:block;font-family:var(--serif);font-size:24px;font-weight:500;color:var(--gold)}
+.tisch span{display:block;margin-top:6px;font-size:12px;color:var(--mute)}
+nav.idx{display:flex;flex-wrap:wrap;gap:8px 16px;padding:12px 0;border-bottom:1px solid var(--line);margin-bottom:28px;position:sticky;top:0;background:rgba(5,6,10,.94);z-index:5}
+nav.idx a{color:var(--mute);text-decoration:none;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+nav.idx a:hover{color:var(--gold)}
+.akte{border-top:1px solid var(--line);padding:32px 0 10px}
+.akte .nr{font-size:10px;letter-spacing:.34em;color:var(--gold);text-transform:uppercase}
+.akte h2{font-family:var(--serif);font-size:clamp(26px,4vw,36px);font-weight:500;margin:6px 0 14px}
+.akte p{font-size:15.5px;line-height:1.75;color:#E6DFD0;max-width:68ch;margin-bottom:12px}
+.rows{display:grid;gap:10px;margin:18px 0 22px}
+.row{display:grid;grid-template-columns:96px 1fr;gap:14px}
+.row em{font-style:normal;font-size:10px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;padding-top:5px}
+.row p{margin:0;font-size:14.5px;color:#D8D0C0}
+.radar{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:18px 0}
+.radar article{border:1px solid var(--line);padding:14px}
+.radar strong{display:block;font-family:var(--serif);color:var(--gold);font-size:18px;font-weight:500;margin-bottom:6px}
+.radar p{margin:0;font-size:13.5px}
+.karte{list-style:none;display:grid;gap:10px;margin:16px 0}
+.karte li{border-top:1px solid var(--line);padding:10px 0}
+.karte b{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.karte span{font-size:14px;color:#D8D0C0}
+footer.fin{margin-top:64px;padding-top:28px;border-top:1px solid var(--line);text-align:center}
+footer.fin q{display:block;font-family:var(--serif);font-style:italic;font-size:22px;color:var(--gold2)}
+footer.fin small{display:block;margin-top:16px;color:var(--mute);letter-spacing:.2em;font-size:10px;text-transform:uppercase}
+.note{font-size:12px;color:var(--mute);margin-top:8px}
+@media (max-width:640px){
+  .row{grid-template-columns:1fr}
+  header.mast{flex-direction:column;align-items:flex-start}
+  .meta{text-align:left}
+}
+</style>
+</head>
+<body>
+<input type="checkbox" id="door">
+<div id="veil">
+  <div class="veil-inner">
+    <div class="needle"></div>
+    <div class="veil-k">Abendschau der Schwurbler</div>
+    <div class="veil-t">Wer den Hahn hält,<br>hält die Uhr.</div>
+    <div class="veil-s">Eine Sendung in sieben Akten und einer Akte.</div>
+    <div class="veil-d">23. September 2026 · 20:00</div>
+    <label class="enter" for="door">Eintreten</label>
+  </div>
+</div>
+<div class="wrap" id="sendung">
+  <header class="mast">
+    <div class="brand"><small>Privat · Nicht für die Schlagzeile</small>Abendschau der Schwurbler</div>
+    <div class="meta">23. September 2026<br>Belegt · Offen · Spekulation</div>
+  </header>
+  <section class="faden">
+    <h1>Wer den Hahn hält, hält die Uhr.</h1>
+    <p class="lead">Nicht der Preis an der Säule. Der Hahn davor. Und wer ihn drehen darf.</p>
+    <div class="seals"><span class="seal">Belegt</span><span class="seal">Offen</span><span class="seal">Spekulation</span></div>
+  </section>
+  <section class="tisch" aria-label="Nachrichtentisch">
+    <article><b>Hahn</b><span>US-Diesel-Exportstopp wird geprüft. Nicht beschlossen.</span></article>
+    <article><b>Wasser</b><span>Hormus und Bab al-Mandab. Zwei Türen, ein Fleck.</span></article>
+    <article><b>Schlüssel</b><span>Schwesig sondiert. Saleh geht. Die Fraktion hält Merz.</span></article>
+    <article><b>Eis</b><span>Grönland bekommt Basen. Verkauft wird es nicht.</span></article>
+    <article><b>Liste</b><span>Sanktionen bis 2029. Benko: zweieinhalb Jahre.</span></article>
+    <article><b>Akte</b><span>102 Dokumente. 317 Seiten. Adressat: Behörde, nicht Publikum.</span></article>
+  </section>
+  <nav class="idx">
+    <a href="#hahn">Hahn</a><a href="#wasser">Wasser</a><a href="#schluessel">Schlüssel</a>
+    <a href="#eis">Eis</a><a href="#liste">Liste</a><a href="#buehne">Bühne</a>
+    <a href="#rechnung">Rechnung</a><a href="#akten">Akten</a>
+    <a href="#radar">Radar</a><a href="#muster">Muster</a><a href="#karte">Karte</a>
+  </nav>
+  <section class="akte" id="hahn">
+    <div class="nr">Erster Akt</div>
+    <h2>Der Hahn</h2>
+    <p>Die Vereinigten Staaten prüfen, Dieselausfuhren zu beschränken. Das ist ein Satz in einem Behördenraum. Noch kein Gesetz. Noch kein Schloss am Ventil.</p>
+    <div class="rows">
+      <div class="row"><em>Belegt</em><p>Die Prüfung steht. Der Stopp steht nicht.</p></div>
+      <div class="row"><em>Offen</em><p>Ob, wann und für wen die Ausfuhr wirklich geschlossen wird.</p></div>
+      <div class="row"><em>Spekulation</em><p>Dass Europa morgen ohne Diesel dasteht. Das folgt aus der Prüfung nicht.</p></div>
+    </div>
+  </section>
+  <section class="akte" id="wasser">
+    <div class="nr">Zweiter Akt</div>
+    <h2>Das Wasser</h2>
+    <p>Zwei Meerengen. Hormus vorn. Bab al-Mandab als Hintertür. Wer beide unter Druck setzt, muss das Öl nicht besitzen. Er muss nur die Uhr der Schiffe halten.</p>
+    <div class="rows">
+      <div class="row"><em>Belegt</em><p>Sichtbarer Verkehr durch Hormus ist eingebrochen. Die Huthi weiten Einfluss an der Küste des Roten Meeres aus.</p></div>
+      <div class="row"><em>Offen</em><p>Wie lange die Umwege tragen. Wie viel ohne Transponder fährt.</p></div>
+      <div class="row"><em>Spekulation</em><p>Ein festes Datum für den Ausfall. Den gibt die Karte nicht her.</p></div>
+    </div>
+  </section>
+  <section class="akte" id="schluessel">
+    <div class="nr">Dritter Akt</div>
+    <h2>Der Schlüssel</h2>
+    <p>In Schwerin sondiert Schwesig. In Berlin hält die Fraktion den Kanzler. Dazwischen geht ein Name. Saleh. Schlüssel wechseln den Besitzer, bevor die Tür sich bewegt.</p>
+    <div class="rows">
+      <div class="row"><em>Belegt</em><p>Sondierung läuft. Die Fraktion stellt sich hinter Merz. Saleh scheidet aus.</p></div>
+      <div class="row"><em>Offen</em><p>Wer in Mecklenburg-Vorpommern am Ende die Mehrheit trägt.</p></div>
+      <div class="row"><em>Spekulation</em><p>Dass ein Schlüsselwechsel schon die Regierung ist.</p></div>
+    </div>
+  </section>
+  <section class="akte" id="eis">
+    <div class="nr">Vierter Akt</div>
+    <h2>Das Eis</h2>
+    <p>Grönland wird nicht verkauft. Es bekommt Basen. Wer Land nicht kaufen kann, pachtet die Fläche, auf der die Antenne steht.</p>
+    <div class="rows">
+      <div class="row"><em>Belegt</em><p>Neue amerikanische Militärpräsenz wird vorbereitet. Ein Kaufvertrag liegt nicht vor.</p></div>
+      <div class="row"><em>Offen</em><p>Umfang, Standort, Dauer.</p></div>
+      <div class="row"><em>Spekulation</em><p>Dass Basen dasselbe seien wie Besitz.</p></div>
+    </div>
+  </section>
+  <section class="akte" id="liste">
+    <div class="nr">Fünfter Akt</div>
+    <h2>Die Liste</h2>
+    <p>Sanktionen werden verlängert, nicht erklärt. Bis 2029 steht eine Frist. Daneben ein Urteil: Benko, zweieinhalb Jahre. Listen haben Öffnungszeiten. Urteile haben Namen.</p>
+    <div class="rows">
+      <div class="row"><em>Belegt</em><p>Verlängerung der Sanktionsarchitektur. Das Urteil gegen Benko ist gesprochen.</p></div>
+      <div class="row"><em>Offen</em><p>Welche Namen von der Liste fallen, wenn niemand widerspricht.</p></div>
+      <div class="row"><em>Spekulation</em><p>Dass die Liste die Wirklichkeit vollständig abbildet.</p></div>
+    </div>
+  </section>
+  <section class="akte" id="buehne">
+    <div class="nr">Sechster Akt</div>
+    <h2>Die Bühne</h2>
+    <p>Gaza. Ein Visum. Hausverbote. Die grosse Woche der Reden. Die Entscheidungen sitzen oft eine Tür weiter, in einem kleineren Raum.</p>
+    <div class="rows">
+      <div class="row"><em>Belegt</em><p>Die Generalversammlung tagt. Staatschefs fehlen bei China, Russland, Indien.</p></div>
+      <div class="row"><em>Offen</em><p>Was hinter den Reden vereinbart wird.</p></div>
+      <div class="row"><em>Spekulation</em><p>Dass die Bühne der Ort der Macht sei.</p></div>
+    </div>
+  </section>
+  <section class="akte" id="rechnung">
+    <div class="nr">Siebter Akt</div>
+    <h2>Die Rechnung</h2>
+    <p>1,3 ist nicht das Doppelte von 0,6. Wer Inflation, Miete und Diesel in einem Satz addiert, rechnet sich eine Geschichte, keine Tabelle.</p>
+    <div class="rows">
+      <div class="row"><em>Belegt</em><p>Preise und Löhne bewegen sich ungleich. Entlastung an der Säule ist angekündigt.</p></div>
+      <div class="row"><em>Offen</em><p>Ob der Cent vollständig ankommt. Wer ihn im Haushalt trägt.</p></div>
+      <div class="row"><em>Spekulation</em><p>Eine Zahl, die sich anfühlt wie Gerechtigkeit.</p></div>
+    </div>
+  </section>
+  <section class="akte" id="akten">
+    <div class="nr">Die Akte · 22. und 23. September</div>
+    <h2>Nicht für die Menschen gedacht</h2>
+    <p>Eine geheime Weltliste gibt es nicht. Absicht steht nicht auf einem Dokument. Was im Amtsblatt, in einer Gerichtsakte oder bei einer Börse liegt, ist veröffentlicht — damit Behörden, Kongress und Aufsicht es lesen. Nicht, damit es eine Schlagzeile wird.</p>
+    <p>Das Federal Register vom 22. September 2026: 102 Dokumente, 317 Seiten, 38 Behörden. Darunter Executive Order 14429 und 14430. Eine befristete SEC-Ausnahme für tokenisierte NMS-Aktien auf verteilten Ledgern. Eine FCC-Frist zu Hochfrequenz-Grenzwerten bis 22. Oktober. Neun gesetzliche Waffenanzeigen an den Kongress. Banex International Bank in Puerto Rico: Lizenz entzogen, Abwickler eingesetzt.</p>
+    <p>Die Ausgabe vom 23. September war in der Frühe noch nicht geschlossen. In der Vorabinspektion lag unter anderem eine HUD-Mitteilung zum Entzug von Direct-Endorsement-Zulassungen.</p>
+    <p>Dieselben Kalendertage 2020: Barr-Brief zu Section 230. Johnson-Grassley-Bericht. Die Akte bestätigt die Drops nicht. Die Drops verlinken die Akte.</p>
+    <div class="rows">
+      <div class="row"><em>Belegt</em><p>Die genannten Texte existieren mit Datum und Signatur. Adressat ist Behörde, Kongress oder Börse.</p></div>
+      <div class="row"><em>Offen</em><p>Ob die HUD-Mitteilung in der fertigen Ausgabe des 23. September steht.</p></div>
+      <div class="row"><em>Spekulation</em><p>Dass Veröffentlichung Verborgenheit sei. Veröffentlicht heisst lesbar. Nicht unsichtbar.</p></div>
+    </div>
+    <p class="note">SpaceX-Grundstückstausch: Pressemitteilung, keine Akte dieser Spalte.</p>
+  </section>
+  <section class="akte" id="radar">
+    <div class="nr">Radar</div>
+    <h2>Was heute Druck macht</h2>
+    <p>Kein Alarm. Ein Tisch. Acht Punkte, die sich nicht zu einem Plan zusammenfügen müssen, um Gewicht zu haben.</p>
+    <div class="radar">
+      <article><strong>Hahn</strong><p>Die Prüfung eines Exportstopps sitzt vor dem Preis. Wer das Ventil hält, hält die Uhr.</p></article>
+      <article><strong>Wasser</strong><p>Zwei Meerengen. Sichtbarer Verkehr bricht ein. Unsichtbarer Verkehr bleibt offen.</p></article>
+      <article><strong>Schlüssel</strong><p>Sondierung in Schwerin. Fraktion in Berlin. Ein Name geht. Die Tür steht noch.</p></article>
+      <article><strong>Eis</strong><p>Basen statt Kaufvertrag. Fläche für die Antenne, nicht die Insel.</p></article>
+      <article><strong>Liste</strong><p>Frist 2029. Ein Urteil mit Namen. Listen haben Öffnungszeiten.</p></article>
+      <article><strong>Bühne</strong><p>Die Generalversammlung spricht. Die Macht sitzt oft eine Tür weiter.</p></article>
+      <article><strong>Rechnung</strong><p>Entlastung ist angekündigt. Ankunft ist eine andere Spalte.</p></article>
+      <article><strong>Akte</strong><p>317 Seiten Amtsblatt. Adressat: Behörde. Nicht Publikum.</p></article>
+    </div>
+  </section>
+  <section class="akte" id="muster">
+    <div class="nr">Muster</div>
+    <h2>Zugang, nicht Besitz</h2>
+    <p>Was sich heute wiederholt, ist kein geheimer Gesamtplan. Es ist ein Mechanismus: Wer nicht besitzen kann, setzt die Bedingung für den Zugang.</p>
+    <p>Zum Ventil. Zur Meerenge. Zum Koalitionsschlüssel. Zur Fläche im Eis. Zur Liste. Zur Bühne. Zur Zahl an der Säule. Zum Amtsblatt.</p>
+    <div class="rows">
+      <div class="row"><em>Belegt</em><p>Die einzelnen Vorgänge liegen offen: Prüfung, Route, Sondierung, Basis, Frist, Versammlung, Entlastung, Register.</p></div>
+      <div class="row"><em>Offen</em><p>Ob sie denselben Willen haben — oder nur dieselbe Form.</p></div>
+      <div class="row"><em>Spekulation</em><p>Dass acht Akten eine Regie ergeben. Musteranalyse ist kein Beweis.</p></div>
+    </div>
+  </section>
+  <section class="akte" id="karte">
+    <div class="nr">Quellenkarte</div>
+    <h2>Public Record</h2>
+    <p>Was hier steht, steht in Behördenräumen. Die Karte verweist. Sie bestätigt keine Drops.</p>
+    <ul class="karte">
+      <li><b>Amtsblatt</b><span>Federal Register, 22.09.2026 — 102 Dokumente, 317 Seiten, 38 Behörden.</span></li>
+      <li><b>Erlasse</b><span>Executive Order 14429 und 14430, ausgegeben im selben Band.</span></li>
+      <li><b>Börse</b><span>Befristete SEC-Ausnahme für tokenisierte NMS-Aktien auf verteilten Ledgern.</span></li>
+      <li><b>Funk</b><span>FCC-Frist zu Hochfrequenz-Grenzwerten bis 22. Oktober.</span></li>
+      <li><b>Kongress</b><span>Neun gesetzliche Waffenanzeigen. Adressat: Legislative, nicht Schlagzeile.</span></li>
+      <li><b>Bank</b><span>Banex International Bank, Puerto Rico — Lizenz entzogen, Abwickler eingesetzt.</span></li>
+      <li><b>Wohnen</b><span>HUD-Vorabinspektion 23.09.: Entzug von Direct-Endorsement-Zulassungen. Ausgabe in der Frühe noch offen.</span></li>
+      <li><b>Echo 2020</b><span>Barr-Brief zu Section 230. Johnson-Grassley-Bericht. Kalendertage, keine Kausalität.</span></li>
+      <li><b>Nicht hier</b><span>SpaceX-Grundstückstausch bleibt Pressemitteilung.</span></li>
+    </ul>
+  </section>
+  <footer class="fin">
+    <q>Der Hahn ist kein Geheimnis. Geheim ist nur, wer ihn nachts dreht.</q>
+    <small>Abendschau der Schwurbler · 23.09.2026 · Bleibt sauber bei den Fakten</small>
+  </footer>
+</div>
+</body>
+</html>
