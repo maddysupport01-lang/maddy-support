@@ -23,6 +23,7 @@
     .term{display:grid;grid-template-columns:38mm 1fr;gap:4mm;padding:2.3mm 0;border-bottom:1px solid #ddd8cf;font-size:.8rem}
     .term:last-child{border-bottom:0}.term b{color:var(--navy);font-weight:700}
     .binding{padding:4mm 5mm;border-left:3px solid var(--gold);background:#f7f4ed;font-size:.82rem;margin-bottom:7mm}
+    .binding p{margin:0}.binding p+p{margin-top:2mm}
     .signatures{display:grid;grid-template-columns:1fr 1fr;gap:10mm}
     .signature-title{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:9mm}
     .signature-line{border-top:1px solid var(--ink);padding-top:2mm;font-size:.7rem;color:var(--muted)}
@@ -54,14 +55,18 @@
 
     <section class="terms" aria-label="Auftragsangaben">
       <div class="term"><b>Leistung</b><span>Clash-Akte</span></div>
-      <div class="term"><b>Festpreis</b><span>CHF 790</span></div>
-      <div class="term"><b>Lieferfrist</b><span>innerhalb von 48 Stunden nach Eingang der unterschriebenen Auftragsbestätigung und vollständiger Angabe des Zielunternehmens</span></div>
-      <div class="term"><b>Wochenendregel</b><span>Bei Auftragsbestätigung am Wochenende beginnt die Frist am folgenden Montag um 08:00 Uhr</span></div>
+      <div class="term"><b>Festpreis</b><span>CHF 790 · Vorauszahlung</span></div>
+      <div class="term"><b>Zahlungsweg</b><span>bestehender Maddy.support-Zahlungsweg wie auf Rechnung / bestehende Praxis Banküberweisung oder TWINT</span></div>
+      <div class="term"><b>Bearbeitungsbeginn und 48-Stunden-Lieferfrist</b><span>starten erst, wenn:<br>• die unterzeichnete Auftragsbestätigung vorliegt,<br>• der vollständige Zahlungseingang erfolgt ist,<br>• das Zielunternehmen vollständig angegeben wurde.</span></div>
+      <div class="term"><b>Wochenendregel</b><span>Werden diese Voraussetzungen am Wochenende erfüllt, beginnt die Lieferfrist am folgenden Montag um 08:00 Uhr.</span></div>
       <div class="term"><b>Hinweis</b><span>ausschließlich öffentliche Quellen</span></div>
       <div class="term"><b>Unterlagen</b><span>keine vertraulichen Unterlagen / keine Uploads erforderlich</span></div>
     </section>
 
-    <p class="binding">Der kostenpflichtige Auftrag kommt erst mit Rücksendung dieser vom Kunden unterzeichneten Auftragsbestätigung zustande.</p>
+    <div class="binding">
+      <p><strong>Festpreis CHF 790 · Vorauszahlung.</strong></p>
+      <p>Der kostenpflichtige Auftrag kommt mit Rücksendung der vom Kunden unterzeichneten Auftragsbestätigung zustande.</p>
+    </div>
 
     <div class="fields">
       <label>Ort<input type="text" name="ort"></label>
