@@ -461,8 +461,8 @@
 
         <!-- 2. Neue/aktuelle Leistung -->
         <div class="form-group">
-          <label for="leistung">2 · Welche neue/aktuelle Leistung?</label>
-          <textarea id="leistung" name="leistung" required placeholder="Name der Leistung · seit wann / Go-live"></textarea>
+          <label for="leistung_text">2 · Welche neue/aktuelle Leistung?</label>
+          <textarea id="leistung_text" name="leistung" required placeholder="Name der Leistung · seit wann / Go-live"></textarea>
         </div>
 
         <!-- 3. Festpreis-/Paket -->
@@ -480,11 +480,11 @@
         <div class="form-group">
           <label>4 · Was fehlt für ein klares Festpreisangebot?</label>
           <div class="checks">
-            <label><input type="checkbox" name="fehlt_abgrenzung" value="Abgrenzung"><span>Klare Abgrenzung</span></label>
-            <label><input type="checkbox" name="fehlt_preis" value="Preis"><span>Festpreis</span></label>
-            <label><input type="checkbox" name="fehlt_ergebnisse" value="Ergebnisse"><span>Klare Ergebnisse</span></label>
-            <label><input type="checkbox" name="fehlt_unterlage" value="Entscheidungsunterlage"><span>Verständliche Entscheidungsunterlage</span></label>
-            <label><input type="checkbox" id="fehlt_nichts" name="fehlt_nichts" value="Nichts fehlt"><span>Nichts fehlt</span></label>
+            <label for="fehlt_abgrenzung"><input type="checkbox" id="fehlt_abgrenzung" name="fehlt_abgrenzung" value="Abgrenzung"><span>Klare Abgrenzung</span></label>
+            <label for="fehlt_preis"><input type="checkbox" id="fehlt_preis" name="fehlt_preis" value="Preis"><span>Festpreis</span></label>
+            <label for="fehlt_ergebnisse"><input type="checkbox" id="fehlt_ergebnisse" name="fehlt_ergebnisse" value="Ergebnisse"><span>Klare Ergebnisse</span></label>
+            <label for="fehlt_unterlage"><input type="checkbox" id="fehlt_unterlage" name="fehlt_unterlage" value="Entscheidungsunterlage"><span>Verständliche Entscheidungsunterlage</span></label>
+            <label for="fehlt_nichts"><input type="checkbox" id="fehlt_nichts" name="fehlt_nichts" value="Nichts fehlt"><span>Nichts fehlt</span></label>
           </div>
           <input id="fehlt_text" name="fehlt_text" placeholder="Optional: Kurztext" style="margin-top:10px">
         </div>
@@ -504,8 +504,8 @@
         <!-- 7. Bedingungen -->
         <div class="form-group">
           <label>7 · Bedingungen</label>
-          <label class="checkbox-group" style="margin:8px 0 0">
-            <input type="checkbox" name="bedingungen" value="ja" required>
+          <label class="checkbox-group" for="bedingungen" style="margin:8px 0 0">
+            <input type="checkbox" id="bedingungen" name="bedingungen" value="ja" required>
             <span>Ich bin mit vollständiger Vorauszahlung, dem schriftlichen Ablauf und einem Start innerhalb von zehn Tagen einverstanden.</span>
           </label>
         </div>
