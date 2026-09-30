@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Helion 72 — Ist Ihre neue Leistung bereits als klares Festpreis-Kaufobjekt verkaufbar? Self-Qual. CHF 4’900, schriftlich, kein Call. Maddy.Support · Helion.">
+  <meta name="description" content="Helion macht aus Ihrer bestehenden Leistung ein klares Festpreisangebot – inklusive Verkaufstexten, in 72 Stunden ab vereinbartem Start. CHF 4’900.">
   <meta name="theme-color" content="#050d18">
   <link rel="canonical" href="https://maddy.support/helion.html">
   <link rel="alternate" hreflang="de" href="https://maddy.support/helion.html">
   <link rel="alternate" hreflang="en" href="https://maddy.support/en/helion.html">
   <link rel="alternate" hreflang="x-default" href="https://maddy.support/helion.html">
-  <meta property="og:title" content="Maddy.Support · Helion — Festpreis-Kaufobjekt in 72 Stunden">
-  <meta property="og:description" content="Ist Ihre neue Leistung bereits als klares Festpreis-Kaufobjekt verkaufbar? Helion 72 baut das Papier in 72 Stunden. CHF 4’900, schriftlich, kein Call.">
+  <meta property="og:title" content="Maddy.Support · Helion — Ihr klares Festpreisangebot">
+  <meta property="og:description" content="Ihre Leistung steht. Helion bringt Umfang, Preis und Grenzen auf den Punkt – inklusive Verkaufstexten. CHF 4’900 Festpreis.">
   <meta property="og:url" content="https://maddy.support/helion.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_CH">
-  <title>Maddy.Support · Helion — Festpreis-Kaufobjekt in 72 Stunden</title>
+  <title>Maddy.Support · Helion — Ihr klares Festpreisangebot</title>
   <link rel="stylesheet" href="/fonts.css">
   <style>
     :root{
@@ -182,7 +182,7 @@
       color:var(--muted);margin:6px 0 0;font-weight:400;line-height:1.5;
     }
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .form-group input,
+    .form-group input:not([type="checkbox"]),
     .form-group select,
     .form-group textarea{
       width:100%;
@@ -211,18 +211,19 @@
       font-size:.88rem;letter-spacing:0;text-transform:none;
       color:#d4d9df;margin:0;cursor:pointer;
     }
-    .checks input{margin-top:3px;flex-shrink:0}
-    .checkbox-group{display:flex;align-items:flex-start;gap:12px;margin:20px 0;color:#d4d9df;font-size:.88rem;line-height:1.6}
-    .checkbox-group input{margin-top:4px;flex-shrink:0}
-    .form-ok{
-      display:none;
-      border:1px solid var(--line);
-      padding:28px;
-      text-align:center;
-      color:var(--gold-bright);
+    .checks input[type="checkbox"],
+    .checkbox-group input[type="checkbox"]{
+      width:18px;height:18px;min-height:0;margin:2px 0 0;
+      flex:0 0 18px;accent-color:var(--gold);
     }
-    .form-ok.is-on{display:block}
-    .form-ok p{color:#cdd4dc;margin-top:10px}
+    .checks input[type="checkbox"]:disabled + span{color:var(--muted)}
+    .checkbox-group{
+      display:flex!important;align-items:flex-start;gap:10px;margin:20px 0;
+      color:#d4d9df!important;font-size:.88rem!important;line-height:1.6;
+      letter-spacing:0!important;text-transform:none!important;cursor:pointer;
+    }
+    .email-alternative{color:var(--muted);font-size:.82rem;line-height:1.6;text-align:center;margin-top:10px}
+    .email-alternative a{color:var(--gold-bright);text-decoration:underline;text-underline-offset:3px}
     footer{padding:42px 0 55px;border-top:1px solid var(--line);text-align:center;color:var(--muted);line-height:1.75}
     footer .brand{display:block;margin-bottom:6px}
     footer a{color:var(--cream)}
@@ -260,7 +261,7 @@
       .checkbox-group{
         min-width:0;
       }
-      .form-group input,
+      .form-group input:not([type="checkbox"]),
       .form-group select,
       .form-group textarea{
         max-width:100%;
@@ -332,43 +333,43 @@
       <div class="crystal-wrap" id="crystalWrap">
         <img src="/crystal.svg" alt="" class="crystal-img" id="crystal">
       </div>
-      <div class="eyebrow">Gebaut. Nicht besprochen.</div>
-      <h1>Ist Ihre neue Leistung bereits als klares<br><em>Festpreis-Kaufobjekt verkaufbar?</em></h1>
-      <p class="sub">Leistung steht. Papier fehlt. Helion 72 macht daraus in 72 Stunden ein Festpreis-Angebot, das Einkauf allein lesen, intern weiterleiten und mit Ja oder Nein beantworten kann. Kein Workshop. Kein Calendly. Kein Gespräch mit einer Gründerin.</p>
-      <p class="price-line">Helion 72 · Festpreis CHF 4’900 · schriftlich · kein Call als Standard</p>
-      <p class="price-sub">DE/AT: EUR 4.900 · Vorauszahlung</p>
+      <div class="eyebrow">Helion · Für spezialisierte B2B-Dienstleister</div>
+      <h1>Ihre Leistung steht.<br><em>Wir machen daraus ein klares Festpreisangebot.</em></h1>
+      <p class="sub">Sie wissen, was Sie leisten. Wir bringen Umfang, Preis und Grenzen auf den Punkt – damit Ihre Kunden verstehen, was sie kaufen.</p>
+      <p class="price-line">Ihr fertiges Angebot plus Verkaufstexte in 72 Stunden ab vereinbartem Start.</p>
+      <p class="price-sub">CHF 4’900 Festpreis · vollständig schriftlich</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#intake">Fit prüfen</a>
-        <a class="btn" href="#leistung">Was Sie erhalten</a>
+        <a class="btn btn-primary" href="#intake">Unverbindlich anfragen</a>
+        <a class="btn" href="#leistung">Das erhalten Sie</a>
       </div>
-      <p class="cta-aside">Sieben Fragen. Intern FIT / MAYBE / NO FIT. Nur Fälle mit echtem Packaging-Gap und Zeitdruck.</p>
+      <p class="cta-aside">Sie beantworten sieben kurze Fragen. Wir prüfen Ihre Anfrage und melden uns schriftlich.</p>
     </div>
   </header>
 
   <section id="fuer-wen">
     <div class="wrap">
       <div class="section-label">Für wen</div>
-      <h2>Neue Leistung. Gap am Kaufobjekt.<br>Konkreter Zeitdruck.</h2>
-      <p class="lead">IT, Cyber, SAP/ERP, Industrie-Engineering, spezialisierte Prozessberatung. 5–40 Personen, DACH, Lieferhistorie. Helion 72 passt, wenn eine neue oder aktuelle Leistung als Festpreis-/Paket an Endkunden verkauft werden soll — und Abgrenzung, Preis, Deliverables oder die Ja/Nein-Unterlage noch fehlen.</p>
+      <h2>Für Teams mit einer erprobten Leistung,<br>die als klares Paket verkauft werden soll.</h2>
+      <p class="lead">Helion richtet sich an B2B-Dienstleister in IT, Cyber, SAP/ERP, Industrie-Engineering und spezialisierter Prozessberatung: 5–40 Personen im DACH-Raum, mit Liefererfahrung. Ihre Leistung ist neu oder aktuell, soll als Festpreispaket an Endkunden gehen – aber Umfang, Preis, Ergebnisse oder Verkaufsunterlagen sind noch nicht klar genug.</p>
     </div>
   </section>
 
   <section id="problem">
     <div class="wrap">
-      <div class="section-label">Das Papier</div>
-      <h2>Leistung steht. Papier fehlt.</h2>
-      <p class="lead">Einkauf hat zwei PDFs. Das eine hat einen Paketnamen, einen Festpreis, einen Umfang, einen Nicht-Umfang. Das andere hat Leistungsfelder, Zertifikate und die Bitte um ein Gespräch. Das zweite — oft Ihres — lässt sich nicht intern weiterleiten. Helion 72 ersetzt das Erklären durch das Papier.</p>
+      <div class="section-label">Das Ziel</div>
+      <h2>Ein Angebot, das ohne Erklärung verständlich ist.</h2>
+      <p class="lead">Ihre Kunden sehen auf einen Blick, was enthalten ist, was nicht enthalten ist und was es kostet. So können sie das Angebot intern weiterleiten und eine klare Entscheidung treffen.</p>
     </div>
   </section>
 
   <section id="arbeit">
     <div class="wrap">
       <div class="section-label">So arbeiten wir</div>
-      <h2>Schriftlich. Kein Call als Standard.</h2>
+      <h2>Ein klarer, vollständig schriftlicher Ablauf.</h2>
       <div class="work-grid">
-        <div><b>01 · Self-Qual</b><p>Sieben Fragen. Neue Leistung, Festpreisbedarf, Gap, Zeitdruck. Intern FIT / MAYBE / NO FIT. Annahme oder Ablehnung in Textform.</p></div>
-        <div><b>02 · Bauen</b><p>72 Stunden ab Eingang der unterschriebenen Auftragsbestätigung, vollständigem Zahlungseingang und vollständigen Startangaben. Recherche aus Ihren Unterlagen. Festpreis-Objekt, Texte, QA.</p></div>
-        <div><b>03 · Handoff</b><p>Ordner. Eine schriftliche Nachbesserungsrunde gegen die Checkliste. Kein Übergabe-Termin.</p></div>
+        <div><b>01 · Anfrage</b><p>Sie beantworten sieben kurze Fragen zu Ihrer Leistung, Ihren Kunden und Ihrem Zeitplan. Wir prüfen schriftlich, ob Helion zu Ihrem Vorhaben passt.</p></div>
+        <div><b>02 · Ausarbeitung</b><p>Nach Auftragsbestätigung, vollständiger Zahlung und vollständigen Startunterlagen arbeiten wir Ihr Festpreisangebot und die Verkaufstexte aus.</p></div>
+        <div><b>03 · Übergabe</b><p>Sie erhalten alle Unterlagen geordnet in einem Ordner. Eine schriftliche Nachbesserungsrunde anhand der vereinbarten Checkliste ist enthalten.</p></div>
       </div>
     </div>
   </section>
@@ -376,39 +377,39 @@
   <section id="leistung">
     <div class="wrap">
       <div class="section-label">Helion 72</div>
-      <h2>Was nach 72 Stunden vorliegt.</h2>
+      <h2>Das erhalten Sie.</h2>
       <ul class="list">
-        <li>Festpreis-Angebot, 1–3 Seiten, Ja/Nein-fähig für Einkauf</li>
-        <li>Abgrenzung gegen die genannten Wettbewerber-URLs (nur Öffentliches)</li>
-        <li>Offer-Stack: ein Kern, höchstens zwei Erweiterungen, jeweils mit Nicht-Liste</li>
+        <li>Ein Festpreisangebot auf 1–3 Seiten, klar genug für eine Ja-oder-Nein-Entscheidung</li>
+        <li>Eine Abgrenzung zu den von Ihnen genannten Wettbewerbern, auf Basis öffentlich zugänglicher Informationen</li>
+        <li>Ein Kernangebot mit höchstens zwei Erweiterungen – jeweils mit klarer Liste, was nicht enthalten ist</li>
         <li>Preislogik mit markierten Annahmen</li>
-        <li>Landing-Copy zum Setzen</li>
-        <li>Zehn Anschreiben für Ihre Käuferseite</li>
-        <li>Ein-Seiten-Playbook für den nächsten Verkaufsschritt</li>
-        <li>Quellen- und Annahmenblatt plus Handoff-Ordner</li>
+        <li>Fertige Texte für Ihre Landingpage</li>
+        <li>Zehn Anschreiben für Ihre potenziellen Käufer</li>
+        <li>Eine einseitige Anleitung für den nächsten Verkaufsschritt</li>
+        <li>Ein Quellen- und Annahmenblatt sowie alle Unterlagen in einem geordneten Ordner</li>
       </ul>
-      <p class="lead" style="margin-top:36px">Nicht enthalten: den Deal gewinnen, Calls mit Einkauf, Website-Technik, erfundene Cases. Kein Pitch-Datum als Pflichtvoraussetzung.</p>
+      <p class="lead" style="margin-top:36px">Nicht enthalten sind Verkaufsgespräche mit dem Einkauf, die technische Umsetzung Ihrer Website, erfundene Referenzen oder eine Garantie auf den Abschluss. Ein konkreter Pitch-Termin ist keine Voraussetzung.</p>
     </div>
   </section>
 
   <section id="nicht">
     <div class="wrap">
-      <div class="section-label">Was wir bewusst nicht tun</div>
-      <h2>Ablehnung ist ein Satz.</h2>
-      <p class="not-for">Nicht für Coaches, Kurse, Personal Brand. Nicht für Firmen ohne Lieferhistorie. Nicht für reife Pakete ohne Gap. Nicht für PT/CV/Tagessatz ohne Festpreisbedarf. Wer einen Call mit der Gründerin als Bedingung setzt, bekommt die Self-Qual noch einmal, nicht den Kalender.</p>
+      <div class="section-label">Wann Helion nicht passt</div>
+      <h2>Damit beide Seiten schnell Klarheit haben.</h2>
+      <p class="not-for">Helion ist nicht für Coaches, Kurse oder Personenmarken gedacht. Es passt auch nicht zu Firmen ohne Liefererfahrung, zu bereits ausgereiften Paketen oder zu Leistungen, die weiterhin ausschließlich nach Tagessatz verkauft werden sollen. Der Ablauf ist bewusst schriftlich; wenn ein persönliches Vorgespräch für Sie Voraussetzung ist, ist Helion nicht das passende Angebot.</p>
     </div>
   </section>
 
   <section id="preis">
     <div class="wrap">
       <div class="section-label">Festpreis</div>
-      <h2>Eine Zahl. Kein «ab».</h2>
+      <h2>CHF 4’900. Kein «ab».</h2>
       <div class="price-box">
         <div class="badge" style="font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-bright);font-weight:700;margin-bottom:8px">Helion 72</div>
         <div class="price">CHF 4’900</div>
         <span class="per">DE/AT: EUR 4.900 · Vorauszahlung</span>
-        <p class="price-note">Kein Nachlass. Kein 50/50. Steuer zuzüglich, sofern anwendbar. Die Anfrage ist unverbindlich. Nach Prüfung folgt die schriftliche Auftragsbestätigung. Der kostenpflichtige Auftrag kommt erst mit Rücksendung dieser vom Kunden unterzeichneten Auftragsbestätigung zustande. Vorauszahlung nach Auftragsbestätigung über den bestehenden Stripe-Link.</p>
-        <div style="margin-top:28px"><a class="btn btn-primary" href="#intake">Fit prüfen</a></div>
+        <p class="price-note">Zuzüglich Steuern, sofern anwendbar. Ihre Anfrage ist unverbindlich. Wenn Helion zu Ihrem Vorhaben passt, erhalten Sie eine schriftliche Auftragsbestätigung. Der kostenpflichtige Auftrag entsteht erst, wenn Sie diese unterschrieben zurücksenden. Danach zahlen Sie den Festpreis vollständig im Voraus über den bestehenden Stripe-Link.</p>
+        <div style="margin-top:28px"><a class="btn btn-primary" href="#intake">Unverbindlich anfragen</a></div>
       </div>
     </div>
   </section>
@@ -417,7 +418,7 @@
     <div class="wrap" style="text-align:center">
       <div class="section-label">Zahlung</div>
       <h2>Auftragsbestätigung. Vorauszahlung. Vollständige Startangaben.</h2>
-      <p class="lead">Anfrage unverbindlich → Prüfung durch Maddy.support → schriftliche Auftragsbestätigung → unterschriebene Rücksendung → kostenpflichtiger Auftrag → Vorauszahlung. Bearbeitung und 72-Stunden-Lieferfrist starten erst, wenn die unterzeichnete Auftragsbestätigung, der vollständige Zahlungseingang sowie die vollständigen Angaben aus der Self-Qual und die benötigten Unterlagen zur konkreten Leistung vorliegen. Werden die unterzeichnete Auftragsbestätigung, der vollständige Zahlungseingang und alle erforderlichen Startangaben am Samstag oder Sonntag vollständig erfüllt, beginnt die 72-Stunden-Frist am folgenden Montag um 08:00 Uhr. Fit prüfen bleibt der erste Schritt.</p>
+      <p class="lead">Zuerst senden Sie eine unverbindliche Anfrage. Wenn Helion passt, erhalten Sie die schriftliche Auftragsbestätigung. Nach Ihrer unterschriebenen Rücksendung wird der Auftrag kostenpflichtig und der Festpreis ist im Voraus fällig. Die Bearbeitung und die 72-Stunden-Frist beginnen, sobald die unterschriebene Auftragsbestätigung, die vollständige Zahlung und alle benötigten Startangaben und Unterlagen vorliegen. Ist alles an einem Samstag oder Sonntag vollständig, beginnt die Frist am folgenden Montag um 08:00 Uhr (Europe/Zurich).</p>
       <a class="btn" href="https://buy.stripe.com/bJe5kveHzdMw8Mpaz957W00" target="_blank" rel="noopener">CHF 4’900 zahlen</a>
     </div>
   </section>
@@ -425,28 +426,26 @@
   <section>
     <div class="wrap">
       <div class="section-label">Kurze Antworten</div>
-      <h2>Ohne Call.</h2>
+      <h2>Die wichtigsten Fragen.</h2>
       <div class="faq">
-        <details><summary>Für wen genau?</summary><p>IT, Cyber, SAP/ERP, Industrie, spezialisierte Prozessberatung. 5–40 Personen, DACH, Lieferhistorie. Neue oder aktuelle Leistung, die als Festpreis-/Paket verkauft werden soll — mit sichtbarem Gap am Kaufobjekt und konkretem Zeitdruck (Go-live, Sales-Start, Launch).</p></details>
-        <details><summary>Brauche ich einen Pitch in 14 Tagen?</summary><p>Nein. Ein Pitch-Datum ist kein Gate. Entscheidend sind Packaging-Gap und Zeitdruck um die neue Leistung — nicht ein Lost-Pitch-Fenster.</p></details>
-        <details><summary>Was ist Self-Qual?</summary><p>Sieben Fragen. Wir prüfen intern fünf harte Kriterien (neue Leistung, klarer Buyer, Festpreisbedarf, Packaging-Gap, Zeitdruck) und melden FIT, MAYBE oder NO FIT schriftlich. Kein Call. Kein Kennenlernen.</p></details>
-        <details><summary>Ist das nicht teuer?</summary><p>CHF 4’900 ist ein Festpreis für ein kaufbares Objekt, keine Stunden. Eine neue Leistung ohne Ja/Nein-fähiges Papier kostet mehr als das.</p></details>
-        <details><summary>Wie zahle ich?</summary><p>CHF 4’900 · Vorauszahlung über den bestehenden Stripe-Link. Der kostenpflichtige Auftrag kommt erst mit Rücksendung der vom Kunden unterzeichneten Auftragsbestätigung zustande. Bearbeitung und 72-Stunden-Lieferfrist starten erst, wenn die unterzeichnete Auftragsbestätigung, der vollständige Zahlungseingang sowie die vollständigen Angaben aus der Self-Qual und die benötigten Unterlagen zur konkreten Leistung vorliegen.</p></details>
-        <details><summary>Kann ich das nicht selbst?</summary><p>Dann brauchen Sie Helion nicht. Wer Zeit hat, die Unterlage selbst ja/nein-fähig zu machen, soll das tun.</p></details>
-        <details><summary>Ich habe keine Zeit für Workshops.</summary><p>Es gibt keine. Self-Qual, schriftlich. Lieferung in 72 Stunden. Eine Nachbesserungsrunde gegen die Checkliste.</p></details>
-        <details><summary>Macht das nicht schon KI?</summary><p>KI schreibt Leistungsfelder. Einkauf braucht ein Kaufobjekt: Name, Umfang, Nicht-Umfang, Zahl. Das ist die Lieferung.</p></details>
-        <details><summary>Können wir kurz telefonieren?</summary><p>Nein. Wer einen Call verlangt, bekommt die Self-Qual noch einmal. Helion kauft und liefert schriftlich, weil Ihr Einkäufer das auch muss.</p></details>
+        <details><summary>Für wen ist Helion gedacht?</summary><p>Für B2B-Dienstleister in IT, Cyber, SAP/ERP, Industrie und spezialisierter Prozessberatung: 5–40 Personen im DACH-Raum, mit Liefererfahrung und einer Leistung, die als Festpreispaket verkauft werden soll.</p></details>
+        <details><summary>Brauche ich einen festen Pitch-Termin?</summary><p>Nein. Entscheidend ist, dass Sie Ihre Leistung zeitnah klar anbieten wollen. Ein konkreter Pitch-Termin ist keine Voraussetzung.</p></details>
+        <details><summary>Wie läuft die Anfrage ab?</summary><p>Sie beantworten sieben kurze Fragen. Wir prüfen, ob Helion zu Ihrem Vorhaben passt, und antworten schriftlich. Ein Kennenlerntermin ist nicht nötig.</p></details>
+        <details><summary>Was umfasst der Festpreis?</summary><p>CHF 4’900 decken das beschriebene Festpreisangebot, die Verkaufstexte und die weiteren aufgeführten Unterlagen ab. Sie kaufen ein klar definiertes Ergebnis, keine Stunden.</p></details>
+        <details><summary>Wie zahle ich?</summary><p>Nach der Prüfung erhalten Sie eine schriftliche Auftragsbestätigung. Erst mit Ihrer unterschriebenen Rücksendung entsteht der kostenpflichtige Auftrag. Danach zahlen Sie CHF 4’900 vollständig im Voraus über den bestehenden Stripe-Link.</p></details>
+        <details><summary>Gibt es Workshops oder Termine?</summary><p>Nein. Anfrage, Ausarbeitung, Übergabe und eine Nachbesserungsrunde laufen schriftlich. So bleibt der Ablauf schnell und nachvollziehbar.</p></details>
+        <details><summary>Können wir vorher telefonieren?</summary><p>Helion ist bewusst als schriftlicher Prozess aufgebaut. Wenn ein persönliches Vorgespräch für Sie unverzichtbar ist, passt dieses Angebot wahrscheinlich nicht zu Ihrem bevorzugten Ablauf.</p></details>
       </div>
     </div>
   </section>
 
   <section id="intake">
     <div class="wrap form-section">
-      <div class="section-label">Self-Qual</div>
-      <h2>Ist das Kaufobjekt verkaufbar?</h2>
-      <p class="form-hint">Sieben Fragen. Die Anfrage ist unverbindlich. Nach Prüfung folgt schriftlich FIT / MAYBE / NO FIT und bei Annahme die Auftragsbestätigung. Erst die unterschriebene Rücksendung begründet den kostenpflichtigen Auftrag; danach folgen Vorauszahlung und Start bei vollständigen Angaben.</p>
-      <form id="intakeForm" class="form-lite" action="mailto:maddysupport01@gmail.com?subject=Helion%2072%20Self-Qual%20C" method="post" enctype="text/plain">
-        <p class="form-legend">Unvollständig = keine Arbeit. Kurze Ablehnung, kein Gegenangebot.</p>
+      <div class="section-label">Unverbindliche Anfrage</div>
+      <h2>Passt Helion zu Ihrem Vorhaben?</h2>
+      <p class="form-hint">Beantworten Sie sieben kurze Fragen. Wir prüfen Ihre Angaben und melden uns schriftlich. Wenn Helion passt, erhalten Sie anschließend die Auftragsbestätigung.</p>
+      <form id="intakeForm" class="form-lite" action="mailto:kontakt@maddy.support?subject=Unverbindliche%20Helion-Anfrage" method="post" enctype="text/plain">
+        <p class="form-legend">Bitte füllen Sie die Pflichtfelder vollständig aus, damit wir Ihre Anfrage zuverlässig prüfen können.</p>
 
         <!-- 1. Firma · Website · FTE -->
         <div class="form-group">
@@ -479,13 +478,13 @@
 
         <!-- 4. Was fehlt -->
         <div class="form-group">
-          <label>4 · Was fehlt am Kaufobjekt?</label>
+          <label>4 · Was fehlt für ein klares Festpreisangebot?</label>
           <div class="checks">
-            <label><input type="checkbox" name="fehlt_abgrenzung" value="Abgrenzung"> Abgrenzung</label>
-            <label><input type="checkbox" name="fehlt_preis" value="Preis"> Preis</label>
-            <label><input type="checkbox" name="fehlt_deliverables" value="Deliverables"> Deliverables</label>
-            <label><input type="checkbox" name="fehlt_unterlage" value="Ja/Nein-Unterlage"> Ja/Nein-Unterlage</label>
-            <label><input type="checkbox" name="fehlt_nichts" value="nichts fehlt"> nichts fehlt</label>
+            <label><input type="checkbox" name="fehlt_abgrenzung" value="Abgrenzung"><span>Klare Abgrenzung</span></label>
+            <label><input type="checkbox" name="fehlt_preis" value="Preis"><span>Festpreis</span></label>
+            <label><input type="checkbox" name="fehlt_ergebnisse" value="Ergebnisse"><span>Klare Ergebnisse</span></label>
+            <label><input type="checkbox" name="fehlt_unterlage" value="Entscheidungsunterlage"><span>Verständliche Entscheidungsunterlage</span></label>
+            <label><input type="checkbox" id="fehlt_nichts" name="fehlt_nichts" value="Nichts fehlt"><span>Nichts fehlt</span></label>
           </div>
           <input id="fehlt_text" name="fehlt_text" placeholder="Optional: Kurztext" style="margin-top:10px">
         </div>
@@ -507,17 +506,14 @@
           <label>7 · Bedingungen</label>
           <label class="checkbox-group" style="margin:8px 0 0">
             <input type="checkbox" name="bedingungen" value="ja" required>
-            <span>100 % vor Lieferung · schriftlich ohne Call · Start ≤ 10 Tage — ja</span>
+            <span>Ich bin mit vollständiger Vorauszahlung, dem schriftlichen Ablauf und einem Start innerhalb von zehn Tagen einverstanden.</span>
           </label>
         </div>
 
-        <button class="btn btn-primary" type="submit" style="width:100%">Fit prüfen</button>
-        <p class="form-micro">Schriftliche Rückmeldung folgt. Kein Kalender. Betreff: Helion 72 Self-Qual C.</p>
+        <button class="btn btn-primary" type="submit" style="width:100%">E-Mail mit Anfrage öffnen</button>
+        <p class="form-micro">Nach dem Klick öffnet sich Ihr E-Mail-Programm mit Ihren Angaben. Bitte senden Sie die E-Mail dort selbst ab; der Klick allein übermittelt noch keine Anfrage.</p>
+        <p class="email-alternative">Kein E-Mail-Programm eingerichtet? Schreiben Sie direkt an <a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a>.</p>
       </form>
-      <div class="form-ok" id="formOk">
-        Self-Qual eingegangen.
-        <p>Schriftliche Rückmeldung folgt (FIT / MAYBE / NO FIT).</p>
-      </div>
     </div>
   </section>
 
@@ -533,9 +529,9 @@
     </div>
   </footer>
 
-  <div class="sticky-cta" role="navigation" aria-label="Self-Qual">
-    <span>CHF 4’900 · Vorauszahlung · 72 Stunden</span>
-    <a href="#intake">Fit prüfen</a>
+  <div class="sticky-cta" role="navigation" aria-label="Helion anfragen">
+    <span>CHF 4’900 · schriftlich · 72 Stunden</span>
+    <a href="#intake">Unverbindlich anfragen</a>
   </div>
 
   <script>
@@ -565,10 +561,38 @@
         })();
       }
       var form=document.getElementById('intakeForm');
-      var ok=document.getElementById('formOk');
-      if(form&&ok){
-        form.addEventListener('submit', function(){
-          setTimeout(function(){ form.style.display='none'; ok.classList.add('is-on'); }, 200);
+      var nothingMissing=document.getElementById('fehlt_nichts');
+      var missingOptions=form ? Array.prototype.slice.call(form.querySelectorAll('.checks input[type="checkbox"]:not(#fehlt_nichts)')) : [];
+      function syncMissingOptions(){
+        if(!nothingMissing){ return; }
+        missingOptions.forEach(function(option){
+          if(nothingMissing.checked){ option.checked=false; }
+          option.disabled=nothingMissing.checked;
+        });
+      }
+      if(nothingMissing){
+        nothingMissing.addEventListener('change', syncMissingOptions);
+        missingOptions.forEach(function(option){
+          option.addEventListener('change', function(){
+            if(option.checked){ nothingMissing.checked=false; }
+            syncMissingOptions();
+          });
+        });
+        syncMissingOptions();
+      }
+      if(form){
+        form.addEventListener('submit', function(event){
+          event.preventDefault();
+          var lines=[];
+          Array.prototype.slice.call(form.elements).forEach(function(field){
+            if(!field.name || field.disabled || field.type==='submit'){ return; }
+            if((field.type==='checkbox' || field.type==='radio') && !field.checked){ return; }
+            var label=form.querySelector('label[for="'+field.id+'"]');
+            var name=label ? label.textContent.trim() : field.name;
+            lines.push(name+': '+field.value);
+          });
+          var mailto='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Unverbindliche Helion-Anfrage')+'&body='+encodeURIComponent(lines.join('\n\n'));
+          window.location.href=mailto;
         });
       }
     })();
