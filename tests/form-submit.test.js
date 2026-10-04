@@ -21,6 +21,17 @@ const clashPages = [
   },
 ];
 
+const helionPages = [
+  {
+    page: 'helion.html',
+    subject: 'Unverbindliche Helion-Anfrage',
+  },
+  {
+    page: 'en/helion.html',
+    subject: 'Non-binding Helion enquiry',
+  },
+];
+
 function classList() {
   const classes = new Set();
   return {
@@ -108,10 +119,11 @@ function submitClash(page) {
     .map((match) => match[1])
     .find((source) => source.includes("getElementById('clash-form')"));
 
-  let submitHandler;
+  const formHandlers = {};
+  const linkHandlers = {};
   const form = {
     addEventListener(type, handler) {
-      if (type === 'submit') submitHandler = handler;
+      formHandlers[type] = handler;
     },
   };
   const values = {
@@ -131,15 +143,76 @@ function submitClash(page) {
   elements.quellen = { checked: true };
   elements.privacy = { checked: true };
   elements['clash-form'] = form;
-  const window = { location: { href: '' } };
+  elements.clashMailLink = {
+    href: '',
+    addEventListener(type, handler) { linkHandlers[type] = handler; },
+  };
   const document = {
     getElementById(id) { return elements[id] || null; },
+    querySelectorAll() { return []; },
   };
 
-  vm.runInNewContext(script, { document, window, encodeURIComponent });
-  submitHandler({ preventDefault() {} });
+  vm.runInNewContext(script, {
+    document,
+    window: { matchMedia: () => ({ matches: true }) },
+    navigator: { clipboard: { writeText: () => Promise.resolve() } },
+    encodeURIComponent,
+  });
+  let prevented = false;
+  linkHandlers.click({ preventDefault() { prevented = true; } });
 
-  return { html, href: window.location.href };
+  return { html, href: elements.clashMailLink.href, prevented };
+}
+
+function loadHelionMailLink(page) {
+  const html = fs.readFileSync(page, 'utf8');
+  const script = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)]
+    .map((match) => match[1])
+    .find((source) => source.includes("getElementById('intakeForm')"));
+  const formHandlers = {};
+  const linkHandlers = {};
+  const fields = [
+    { id: 'firma', name: 'firma', value: 'Analytical Engines', type: 'text' },
+    { id: 'leistung_text', name: 'leistung', value: 'A clear offer', type: 'textarea' },
+    { id: 'festpreis', name: 'festpreis', value: 'yes', type: 'select-one' },
+    { id: 'entscheider', name: 'entscheider', value: 'Ada Lovelace', type: 'text' },
+    { id: 'zeitdruck', name: 'zeitdruck', value: 'No time pressure', type: 'textarea' },
+    { id: 'bedingungen', name: 'bedingungen', value: 'yes', type: 'checkbox', checked: true },
+  ];
+  const form = {
+    elements: fields,
+    addEventListener(type, handler) { formHandlers[type] = handler; },
+    querySelectorAll() { return []; },
+    querySelector(selector) {
+      const id = selector.match(/label\[for="([^"]+)"\]/)?.[1];
+      return id ? { textContent: id } : null;
+    },
+    checkValidity() { return true; },
+    reportValidity() {},
+  };
+  const mailLink = {
+    href: '',
+    addEventListener(type, handler) { linkHandlers[type] = handler; },
+  };
+  const document = {
+    getElementById(id) {
+      if (id === 'intakeForm') return form;
+      if (id === 'helionMailLink') return mailLink;
+      return null;
+    },
+    querySelectorAll() { return []; },
+  };
+
+  vm.runInNewContext(script, {
+    document,
+    window: { matchMedia: () => ({ matches: true }) },
+    navigator: { clipboard: { writeText: () => Promise.resolve() } },
+    encodeURIComponent,
+  });
+  let prevented = false;
+  linkHandlers.click({ preventDefault() { prevented = true; } });
+
+  return { html, href: mailLink.href, prevented };
 }
 
 for (const page of pages) {
@@ -182,5 +255,26 @@ for (const { page, subject } of clashPages) {
     assert.equal(mailto.searchParams.get('subject'), subject);
     assert.match(mailto.searchParams.get('body'), /Target Company/);
     assert.match(mailto.searchParams.get('body'), /ada@example\.com/);
+    assert.equal(result.prevented, false);
+    assert.match(result.html, /<a id="clashMailLink"[^>]+href="mailto:/);
+    assert.match(result.html, /data-copy-email="kontakt@maddy\.support"/);
+    assert.doesNotMatch(result.html, /window\.location\.href\s*=/);
+  });
+}
+
+for (const { page, subject } of helionPages) {
+  test(`${page} uses a populated mailto link and visible copy fallback`, () => {
+    const result = loadHelionMailLink(page);
+    const mailto = new URL(result.href);
+
+    assert.equal(mailto.protocol, 'mailto:');
+    assert.equal(mailto.pathname, 'kontakt@maddy.support');
+    assert.equal(mailto.searchParams.get('subject'), subject);
+    assert.match(mailto.searchParams.get('body'), /Analytical Engines/);
+    assert.equal(result.prevented, false);
+    assert.match(result.html, /<a id="helionMailLink"[^>]+href="mailto:/);
+    assert.match(result.html, /data-copy-email="kontakt@maddy\.support"/);
+    assert.doesNotMatch(result.html, /window\.location\.href\s*=/);
+    assert.doesNotMatch(result.html, /formsubmit\.co/);
   });
 }

@@ -153,8 +153,9 @@
         <div class="checkbox-group"><input type="checkbox" id="privacy" name="privacy" required><label for="privacy">I have read the <a href="/en/privacy.html" target="_blank" rel="noopener">privacy notice</a> and agree to the processing of my details for this enquiry. *</label></div>
         <p class="form-micro">Fixed price CHF 790 · advance payment.<br>The paid order is formed when the client returns the signed order confirmation.</p>
         <p class="form-micro">Work and the 48-hour delivery period start only when:<br>• the signed order confirmation has been received,<br>• payment has been received in full,<br>• the target company has been provided in full.<br>If these conditions are met at the weekend, the delivery period begins the following Monday at 08:00.<br>Payment method: bank transfer or TWINT.</p>
-        <button type="submit" class="btn btn-primary form-submit">Open enquiry email</button>
+        <a id="clashMailLink" class="btn btn-primary form-submit" href="mailto:kontakt@maddy.support">Open enquiry email</a>
         <p class="form-micro">This opens your email app with your answers filled in. You must send the email yourself; clicking the button alone does not submit your enquiry.</p>
+        <p class="email-alternative">Email: <a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a> <button type="button" class="copy-email" data-copy-email="kontakt@maddy.support">Copy address</button><span class="copy-status" aria-live="polite"></span></p>
         <p class="form-micro">No uploads and no confidential documents.</p>
       </form>
     </div>
@@ -178,25 +179,42 @@
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('is-open');t.setAttribute('aria-expanded',o?'true':'false');});}
   var form=document.getElementById('clash-form');
   if(form){
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
+    var mailLink=document.getElementById('clashMailLink');
+    function updateMailLink(){
       function val(id){ var el=document.getElementById(id); return el ? el.value.trim() : ''; }
       var name=val('name'), firma=val('firma'), email=val('email');
       var zielName=val('ziel-name'), zielWebsite=val('ziel-website'), zielLand=val('ziel-land');
       var datum=val('gespraech-datum'), frage=val('frage');
+      var body=['Name: '+name,'Firm: '+firma,'Email: '+email,'Target: '+zielName,'Website: '+zielWebsite,'Register: '+zielLand,'Meeting: '+(datum||'not given'),'',frage||''].join('\n');
+      mailLink.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Enquire Maddy.support – CLASH-AKTE – '+zielName)+'&body='+encodeURIComponent(body);
+    }
+    form.addEventListener('input', updateMailLink);
+    form.addEventListener('change', updateMailLink);
+    mailLink.addEventListener('click', function(e){
+      updateMailLink();
+      function val(id){ var el=document.getElementById(id); return el ? el.value.trim() : ''; }
+      var name=val('name'), firma=val('firma'), email=val('email');
+      var zielName=val('ziel-name'), zielWebsite=val('ziel-website'), zielLand=val('ziel-land');
       var honey=document.getElementById('website');
       var quellen=document.getElementById('quellen');
       var privacy=document.getElementById('privacy');
-      if(honey && honey.value) return;
-      if(quellen && !quellen.checked){ alert('Please confirm that only public sources are to be reviewed.'); return; }
-      if(privacy && !privacy.checked){ alert('Please confirm the privacy notice.'); return; }
+      if(honey && honey.value){ e.preventDefault(); return; }
+      if(quellen && !quellen.checked){ e.preventDefault(); alert('Please confirm that only public sources are to be reviewed.'); return; }
+      if(privacy && !privacy.checked){ e.preventDefault(); alert('Please confirm the privacy notice.'); return; }
       if(!name || !firma || !email || !zielName || !zielWebsite || !zielLand){
-        alert('Please fill in all required fields.'); return;
+        e.preventDefault(); alert('Please fill in all required fields.');
       }
-      var body=['Name: '+name,'Firm: '+firma,'Email: '+email,'Target: '+zielName,'Website: '+zielWebsite,'Register: '+zielLand,'Meeting: '+(datum||'not given'),'',frage||''].join('\n');
-      window.location.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Enquire Maddy.support – CLASH-AKTE – '+zielName)+'&body='+encodeURIComponent(body);
     });
+    updateMailLink();
   }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-copy-email]'),function(button){
+    button.addEventListener('click',function(){
+      var status=button.parentNode.querySelector('.copy-status');
+      navigator.clipboard.writeText(button.getAttribute('data-copy-email')).then(function(){
+        if(status) status.textContent=' Copied.';
+      }).catch(function(){ if(status) status.textContent=' Please select and copy the address.'; });
+    });
+  });
 })();
 </script>
 </body>
