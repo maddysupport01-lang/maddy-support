@@ -3,11 +3,27 @@ const fs = require('node:fs');
 const test = require('node:test');
 const vm = require('node:vm');
 
-const pages = [
-  'business.html',
-  'community.html',
-  'en/business.html',
-  'en/community.html',
+const inquiryPages = [
+  {
+    page: 'business.html',
+    linkId: 'businessMailLink',
+    subject: 'Anfrage Maddy.support – BUSINESS – Support',
+  },
+  {
+    page: 'community.html',
+    linkId: 'communityMailLink',
+    subject: 'Anfrage Maddy.support – COMMUNITY – Support',
+  },
+  {
+    page: 'en/business.html',
+    linkId: 'businessMailLink',
+    subject: 'Enquire Maddy.support – BUSINESS – Support',
+  },
+  {
+    page: 'en/community.html',
+    linkId: 'communityMailLink',
+    subject: 'Enquire Maddy.support – COMMUNITY – Support',
+  },
 ];
 
 const clashPages = [
@@ -32,85 +48,48 @@ const helionPages = [
   },
 ];
 
-function classList() {
-  const classes = new Set();
-  return {
-    add(name) { classes.add(name); },
-    remove(name) { classes.delete(name); },
-    contains(name) { return classes.has(name); },
-  };
-}
-
-async function submit(page, response) {
+function loadInquiryMailLink(page, linkId) {
   const html = fs.readFileSync(page, 'utf8');
   const script = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)]
     .map((match) => match[1])
-    .find((source) => source.includes('formsubmit.co'));
-
-  let submitHandler;
-  const button = { disabled: false, textContent: 'Original submit label' };
+    .find((source) => source.includes("getElementById('paket-form')"));
+  const formHandlers = {};
+  const linkHandlers = {};
   const form = {
-    style: {},
     addEventListener(type, handler) {
-      if (type === 'submit') submitHandler = handler;
+      formHandlers[type] = handler;
     },
-    querySelector() { return button; },
   };
-  const fieldValues = {
+  const values = {
     name: 'Ada Lovelace',
     email: 'ada@example.com',
     package: 'Support',
     bedarf: 'Please help with this enquiry',
     website: '',
-    firma: 'Analytical Engines',
-    'ziel-name': 'Target Company',
-    'ziel-website': 'https://example.com',
-    'ziel-land': 'CH',
-    'gespraech-datum': '2026-10-10',
-    frage: 'Please verify this statement',
   };
   const elements = Object.fromEntries(
-    Object.entries(fieldValues).map(([id, value]) => [id, { value }]),
+    Object.entries(values).map(([id, value]) => [id, { value }]),
   );
-  const mailLink = { href: 'mailto:kontakt@maddy.support' };
-  const error = {
-    classList: classList(),
-    querySelector(selector) { return selector === 'a' ? mailLink : null; },
-  };
-  const success = { classList: classList() };
   elements.privacy = { checked: true };
-  elements.quellen = { checked: true };
   elements['paket-form'] = form;
-  elements['clash-form'] = form;
-  elements.formError = error;
-  elements.formOk = success;
-  const unsure = { style: {} };
+  elements[linkId] = {
+    href: '',
+    addEventListener(type, handler) { linkHandlers[type] = handler; },
+  };
   const document = {
     getElementById(id) { return elements[id] || null; },
     querySelectorAll() { return []; },
-    querySelector(selector) { return selector === '.unsure-note' ? unsure : null; },
-  };
-  let postedPayload;
-  const fetch = (_url, options) => {
-    postedPayload = JSON.parse(options.body);
-    return response instanceof Error
-      ? Promise.reject(response)
-      : Promise.resolve({ json: () => Promise.resolve(response) });
   };
 
   vm.runInNewContext(script, {
     document,
-    window: { location: { href: '' } },
-    fetch,
+    navigator: { clipboard: { writeText: () => Promise.resolve() } },
     encodeURIComponent,
-    Error,
-    JSON,
   });
-  submitHandler({ preventDefault() {} });
-  await new Promise((resolve) => setImmediate(resolve));
-  await new Promise((resolve) => setImmediate(resolve));
+  let prevented = false;
+  linkHandlers.click({ preventDefault() { prevented = true; } });
 
-  return { button, error, fieldValues, elements, form, mailLink, postedPayload, success };
+  return { html, href: elements[linkId].href, prevented };
 }
 
 function submitClash(page) {
@@ -215,32 +194,24 @@ function loadHelionMailLink(page) {
   return { html, href: mailLink.href, prevented };
 }
 
-for (const page of pages) {
-  test(`${page} shows success only for an accepted submission`, async () => {
-    for (const accepted of [true, 'true']) {
-      const result = await submit(page, { success: accepted });
-      assert.equal(result.form.style.display, 'none');
-      assert.equal(result.success.classList.contains('is-on'), true);
-      assert.equal(result.error.classList.contains('is-on'), false);
-    }
-  });
+for (const { page, linkId, subject } of inquiryPages) {
+  test(`${page} opens a populated email without FormSubmit`, () => {
+    const result = loadInquiryMailLink(page, linkId);
+    const mailto = new URL(result.href);
+    const body = mailto.searchParams.get('body');
 
-  test(`${page} preserves input and offers email after rejection or an error`, async () => {
-    for (const response of [{ success: 'false' }, new Error('network failure')]) {
-      const result = await submit(page, response);
-      assert.notEqual(result.form.style.display, 'none');
-      assert.equal(result.success.classList.contains('is-on'), false);
-      assert.equal(result.error.classList.contains('is-on'), true);
-      assert.equal(result.button.disabled, false);
-      assert.equal(result.button.textContent, 'Original submit label');
-      assert.match(result.mailLink.href, /^mailto:kontakt@maddy\.support\?/);
-      assert.match(result.mailLink.href, /ada%40example\.com/);
-      assert.equal(new URL(result.mailLink.href).searchParams.get('subject'), result.postedPayload._subject);
-      assert.match(result.postedPayload._subject, / – (Support|Target Company)$/);
-      for (const [id, value] of Object.entries(result.fieldValues)) {
-        assert.equal(result.elements[id].value, value);
-      }
-    }
+    assert.doesNotMatch(result.html, /formsubmit\.co/);
+    assert.equal(mailto.protocol, 'mailto:');
+    assert.equal(mailto.pathname, 'kontakt@maddy.support');
+    assert.equal(mailto.searchParams.get('subject'), subject);
+    assert.match(body, /Ada Lovelace/);
+    assert.match(body, /ada@example\.com/);
+    assert.match(body, /Support/);
+    assert.match(body, /Please help with this enquiry/);
+    assert.equal(result.prevented, false);
+    assert.match(result.html, new RegExp(`<a id="${linkId}"[^>]+href="mailto:`));
+    assert.match(result.html, /data-copy-email="kontakt@maddy\.support"/);
+    assert.doesNotMatch(result.html, /window\.location\.href\s*=/);
   });
 }
 
@@ -279,6 +250,24 @@ for (const { page, subject } of helionPages) {
   });
 }
 
+test('privacy notices describe mailto enquiries and limit FormSubmit to Topic Dossier', () => {
+  const notices = [
+    fs.readFileSync('datenschutz.html', 'utf8'),
+    fs.readFileSync('en/privacy.html', 'utf8'),
+  ];
+
+  for (const notice of notices) {
+    assert.match(notice, /Community/);
+    assert.match(notice, /Business/);
+    assert.match(notice, /Clash(?:-Akte| File)/);
+    assert.match(notice, /Helion/);
+    assert.match(notice, /mailto:/);
+    assert.match(notice, /FormSubmit/);
+    assert.match(notice, /(?:Themen-Dossier|Topic Dossier)/);
+    assert.doesNotMatch(notice, /Community, Business (?:und|and) Clash[^<]*FormSubmit/);
+  }
+});
+
 test('Clash payment copy consistently offers confirmed Stripe methods after signed confirmation', () => {
   const german = fs.readFileSync('clash-akte.html', 'utf8');
   const english = fs.readFileSync('en/clash-akte.html', 'utf8');
@@ -288,7 +277,7 @@ test('Clash payment copy consistently offers confirmed Stripe methods after sign
     assert.doesNotMatch(copy, /Banküberweisung|bank transfer|Apple Pay|Google Pay/i);
     assert.match(copy, /Stripe-Zahlungslink|Stripe payment link/);
     assert.match(copy, /TWINT/);
-    assert.match(copy, /Kartenzahlung|Card/);
+    assert.match(copy, /Kartenzahlung|card/i);
     assert.match(copy, /Klarna/);
     assert.match(copy, /Amazon Pay/);
   }

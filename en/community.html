@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="/fonts.css">
   <link rel="stylesheet" href="/site.css">
   <link rel="stylesheet" href="/community.css">
+  <link rel="stylesheet" href="/inquiry-email.css">
 </head>
 <body>
   <nav>
@@ -162,7 +163,7 @@
       <p class="lead form-hint">Name, mail, one line. Reply in one working day. No call needed.</p>
       <div class="form-section">
         <p class="form-legend">Fields and confirmations marked * are required.</p>
-        <form id="paket-form" novalidate>
+        <form id="paket-form" action="mailto:kontakt@maddy.support" method="post" enctype="text/plain" novalidate>
             <input type="text" id="website" name="website" class="visually-hidden" tabindex="-1" autocomplete="off">
           <div class="form-group"><label for="name">Name *</label><input type="text" id="name" name="name" required autocomplete="name"></div>
           <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required autocomplete="email"></div>
@@ -182,10 +183,10 @@
             <label for="privacy">I have read the <a href="/en/privacy.html" target="_blank" rel="noopener">privacy notice</a> and agree to the processing of my details for this enquiry. *</label>
           </div>
           <p class="form-micro">Non-binding. No call. Support is 10 hours for CHF 1’890.</p>
-          <button type="submit" class="btn btn-primary form-submit">Enquire without obligation</button>
-          <div class="form-error" id="formError" role="alert">Your enquiry could not be sent. Please try again or email <a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a>.</div>
+          <a id="communityMailLink" class="btn btn-primary form-submit" href="mailto:kontakt@maddy.support">Open enquiry email</a>
+          <p class="form-micro">Clicking opens your email program with your details. Please send the email there yourself; clicking alone does not submit an enquiry.</p>
+          <p class="email-alternative">Email: <a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a> <button type="button" class="copy-email" data-copy-email="kontakt@maddy.support">Copy address</button><span class="copy-status" aria-live="polite"></span></p>
         </form>
-          <div class="form-ok" id="formOk"><strong>We have received your enquiry.</strong><p>We reply within one working day to the address given. No call.</p></div>
         <div class="unsure-note"><strong>Not sure which package fits?</strong><br>Describe the work. I will recommend the right package in person.</div>
       </div>
     </div>
@@ -216,45 +217,39 @@
       });
       var form = document.getElementById('paket-form');
       if(form){
-        form.addEventListener('submit', function(e){
-          e.preventDefault();
+        var mailLink = document.getElementById('communityMailLink');
+        function updateMailLink(){
           var name = document.getElementById('name').value.trim();
           var email = document.getElementById('email').value.trim();
           var pkg = document.getElementById('package').value;
           var subject = 'Enquire Maddy.support – COMMUNITY' + (pkg ? ' – ' + pkg : '');
           var bedarf = document.getElementById('bedarf').value.trim();
+          var body = ['Name: '+name, 'Email: '+email, 'Package: '+(pkg||'open'), 'Support needed: '+bedarf].join('\n');
+          mailLink.href = 'mailto:kontakt@maddy.support?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        }
+        form.addEventListener('input', updateMailLink);
+        form.addEventListener('change', updateMailLink);
+        mailLink.addEventListener('click', function(e){
+          updateMailLink();
+          var name = document.getElementById('name').value.trim();
+          var email = document.getElementById('email').value.trim();
+          var bedarf = document.getElementById('bedarf').value.trim();
           var honey = document.getElementById('website');
           var privacy = document.getElementById('privacy');
-          if(honey && honey.value) return;
-          if(privacy && !privacy.checked){ alert('Please confirm the privacy notice.'); return; }
-          if(!name || !email || !bedarf){ alert('Name, email and a short note are enough.'); return; }
-          var btn = form.querySelector('[type="submit"]');
-          var btnLabel = btn ? btn.textContent : '';
-          var error = document.getElementById('formError');
-          if(error) error.classList.remove('is-on');
-          if(btn){ btn.disabled = true; btn.textContent = 'Sending…'; }
-          fetch('https://formsubmit.co/ajax/kontakt@maddy.support', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify({
-              name: name, email: email, paket: pkg || 'open', bereich: 'COMMUNITY', bedarf: bedarf,
-              _subject: subject,
-              _template: 'table', _captcha: 'false'
-            })
-          }).then(function(r){ return r.json().catch(function(){ return {}; }); })
-          .then(function(data){
-            if(!data || (data.success !== true && data.success !== 'true')) throw new Error('Submission rejected');
-            form.style.display = 'none';
-            var ok = document.getElementById('formOk'); if(ok) ok.classList.add('is-on');
-            var un = document.querySelector('.unsure-note'); if(un) un.style.display = 'none';
-          })
-          .catch(function(){
-            var body = ['Name: '+name, 'Email: '+email, 'Package: '+(pkg||'open'), '', bedarf].join('\n');
-            if(btn){ btn.disabled = false; btn.textContent = btnLabel; }
-            if(error){ var link = error.querySelector('a'); if(link) link.href = 'mailto:kontakt@maddy.support?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body); error.classList.add('is-on'); }
-          });
+          if(honey && honey.value){ e.preventDefault(); return; }
+          if(privacy && !privacy.checked){ e.preventDefault(); alert('Please confirm the privacy notice.'); return; }
+          if(!name || !email || !bedarf){ e.preventDefault(); alert('Name, email and a short note are enough.'); }
         });
+        updateMailLink();
       }
+      Array.prototype.forEach.call(document.querySelectorAll('[data-copy-email]'),function(button){
+        button.addEventListener('click',function(){
+          var status=button.parentNode.querySelector('.copy-status');
+          navigator.clipboard.writeText(button.getAttribute('data-copy-email')).then(function(){
+            if(status) status.textContent=' Copied.';
+          }).catch(function(){ if(status) status.textContent=' Please select and copy.'; });
+        });
+      });
   })();
 </script>
 </body>

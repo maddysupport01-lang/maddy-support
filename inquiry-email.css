@@ -1,0 +1,28 @@
+.email-alternative {
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.8;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.email-alternative > a {
+  color: var(--gold-bright, var(--ice));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.copy-email {
+  border: 0;
+  background: transparent;
+  color: var(--gold-bright, var(--ice));
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.copy-status {
+  white-space: nowrap;
+}
