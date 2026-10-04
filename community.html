@@ -217,6 +217,7 @@
       var name=document.getElementById('name').value.trim();
       var email=document.getElementById('email').value.trim();
       var pkg=document.getElementById('package').value;
+      var subject='Anfrage Maddy.support – COMMUNITY'+(pkg?' – '+pkg:'');
       var bedarf=document.getElementById('bedarf').value.trim();
       var honey=document.getElementById('website');
       var privacy=document.getElementById('privacy');
@@ -233,7 +234,7 @@
         headers:{'Content-Type':'application/json','Accept':'application/json'},
         body: JSON.stringify({
           name:name, email:email, paket:pkg||'noch offen', bereich:'COMMUNITY', bedarf:bedarf,
-          _subject:'Anfrage Maddy.support – COMMUNITY'+(pkg?' – '+pkg:''), _template:'table', _captcha:'false'
+          _subject:subject, _template:'table', _captcha:'false'
         })
       }).then(function(r){ return r.json().catch(function(){ return {}; }); })
       .then(function(data){
@@ -245,7 +246,7 @@
       .catch(function(){
         var body=['Name: '+name,'E-Mail: '+email,'Paket: '+(pkg||'noch offen'),'',bedarf].join('\n');
         if(btn){ btn.disabled=false; btn.textContent=btnLabel; }
-        if(error){ var link=error.querySelector('a'); if(link) link.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Anfrage Maddy.support')+'&body='+encodeURIComponent(body); error.classList.add('is-on'); }
+        if(error){ var link=error.querySelector('a'); if(link) link.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body); error.classList.add('is-on'); }
       });
     });
   }
