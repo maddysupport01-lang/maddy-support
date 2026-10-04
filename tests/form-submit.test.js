@@ -279,7 +279,7 @@ for (const { page, subject } of helionPages) {
   });
 }
 
-test('Clash payment copy consistently offers card payment after signed confirmation', () => {
+test('Clash payment copy consistently offers confirmed Stripe methods after signed confirmation', () => {
   const german = fs.readFileSync('clash-akte.html', 'utf8');
   const english = fs.readFileSync('en/clash-akte.html', 'utf8');
   const confirmation = fs.readFileSync('clash-auftragsbestaetigung.html', 'utf8');
@@ -287,11 +287,13 @@ test('Clash payment copy consistently offers card payment after signed confirmat
   for (const copy of [german, english, confirmation]) {
     assert.doesNotMatch(copy, /Banküberweisung|TWINT|bank transfer/i);
     assert.match(copy, /Stripe-Zahlungslink|Stripe payment link/);
-    assert.match(copy, /Kartenzahlung|card payment/);
+    assert.match(copy, /Kartenzahlung|Card/);
+    assert.match(copy, /Klarna/);
+    assert.match(copy, /Amazon Pay/);
   }
-  assert.match(german, /Nach Rücksendung der unterzeichneten Auftragsbestätigung erhalten Sie den Stripe-Zahlungslink/);
-  assert.match(english, /after you return the signed order confirmation, you receive the Stripe payment link/);
-  assert.match(confirmation, /Unterschrift und Rücksendung durch den Kunden → kostenpflichtiger Auftrag → Stripe-Zahlungslink → Kartenzahlung/);
+  assert.match(german, /Nach Rücksendung der unterzeichneten Auftragsbestätigung erhalten Sie den Stripe-Zahlungslink\. Dort stehen Kartenzahlung, Klarna und Amazon Pay\./);
+  assert.match(english, /after you return the signed order confirmation, you receive the Stripe payment link\. Card, Klarna, and Amazon Pay are available there\./);
+  assert.match(confirmation, /Unterschrift und Rücksendung durch den Kunden → kostenpflichtiger Auftrag → Stripe-Zahlungslink → Kartenzahlung, Klarna oder Amazon Pay/);
   assert.doesNotMatch(german, /buy\.stripe\.com/);
   assert.doesNotMatch(english, /buy\.stripe\.com/);
 });
