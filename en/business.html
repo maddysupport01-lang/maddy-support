@@ -63,7 +63,8 @@
 <div class="form-group"><label for="bedarf">Where may I take the load? *</label><textarea id="bedarf" name="bedarf" required placeholder="One line is enough — inbox, offers, call-backs."></textarea></div>
 <div class="checkbox-group"><input type="checkbox" id="privacy" name="privacy" required><label for="privacy">I have read the <a href="/en/privacy.html" target="_blank" rel="noopener">privacy notice</a> and agree to the processing of my details for this enquiry. *</label></div>
 <p class="form-micro">Non-binding. No call. Support is 10 hours for CHF 1’890.</p>
-<button type="submit" class="btn primary form-submit">Enquire without obligation</button></form>
+<button type="submit" class="btn primary form-submit">Enquire without obligation</button>
+<div class="form-error" id="formError" role="alert">Your enquiry could not be sent. Please try again or email <a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a>.</div></form>
 <div class="form-ok" id="formOk"><strong>We have received your enquiry.</strong><p>We reply within one working day to the address given. No call.</p></div>
 <div class="unsure-note"><strong>Not sure which package fits?</strong><br>Describe the work. I will recommend the right package in person.</div></div></div></section>
 <footer><div class="wrap foot"><div><div class="brand">Maddy.support</div>Personal business support</div><div>Thun · Switzerland<br><a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a></div><div>Services: <a href="/en/helion.html">Helion</a> · <a href="/en/clash-akte.html">Clash File</a></div><div style="margin-top:8px"><a href="/en/imprint.html">Imprint</a> · <a href="/en/privacy.html">Privacy</a></div><div>© 2026 Maddy.support</div></div></footer>
@@ -92,13 +93,23 @@
       if(privacy && !privacy.checked){ alert('Please confirm the privacy notice.'); return; }
       if(!name || !email || !bedarf){ alert('Name, email and a short note are enough.'); return; }
       var btn=form.querySelector('[type="submit"]');
+      var btnLabel=btn ? btn.textContent : '';
+      var error=document.getElementById('formError');
+      if(error) error.classList.remove('is-on');
       if(btn){ btn.disabled=true; btn.textContent='Sending…'; }
       fetch('https://formsubmit.co/ajax/kontakt@maddy.support', {
         method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
         body: JSON.stringify({name:name,email:email,paket:pkg||'open',bereich:'BUSINESS',bedarf:bedarf,_subject:'Enquire Maddy.support – BUSINESS'+(pkg?' – '+pkg:''),_template:'table',_captcha:'false'})
       }).then(function(r){ return r.json().catch(function(){ return {}; }); })
-      .then(function(){ form.style.display='none'; var ok=document.getElementById('formOk'); if(ok) ok.classList.add('is-on'); var un=document.querySelector('.unsure-note'); if(un) un.style.display='none'; })
-      .catch(function(){ var body=['Name: '+name,'Email: '+email,'Package: '+(pkg||'open'),'',bedarf].join('\n'); window.location.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Enquire Maddy.support')+'&body='+encodeURIComponent(body); });
+      .then(function(data){
+        if(!data || (data.success !== true && data.success !== 'true')) throw new Error('Submission rejected');
+        form.style.display='none'; var ok=document.getElementById('formOk'); if(ok) ok.classList.add('is-on'); var un=document.querySelector('.unsure-note'); if(un) un.style.display='none';
+      })
+      .catch(function(){
+        var body=['Name: '+name,'Email: '+email,'Package: '+(pkg||'open'),'',bedarf].join('\n');
+        if(btn){ btn.disabled=false; btn.textContent=btnLabel; }
+        if(error){ var link=error.querySelector('a'); if(link) link.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Enquire Maddy.support')+'&body='+encodeURIComponent(body); error.classList.add('is-on'); }
+      });
     });
   }
 })();
