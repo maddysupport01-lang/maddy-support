@@ -6,10 +6,19 @@ const vm = require('node:vm');
 const pages = [
   'business.html',
   'community.html',
-  'clash-akte.html',
   'en/business.html',
   'en/community.html',
-  'en/clash-akte.html',
+];
+
+const clashPages = [
+  {
+    page: 'clash-akte.html',
+    subject: 'Anfrage Maddy.support – CLASH-AKTE – Target Company',
+  },
+  {
+    page: 'en/clash-akte.html',
+    subject: 'Enquire Maddy.support – CLASH-AKTE – Target Company',
+  },
 ];
 
 function classList() {
@@ -93,6 +102,46 @@ async function submit(page, response) {
   return { button, error, fieldValues, elements, form, mailLink, postedPayload, success };
 }
 
+function submitClash(page) {
+  const html = fs.readFileSync(page, 'utf8');
+  const script = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)]
+    .map((match) => match[1])
+    .find((source) => source.includes("getElementById('clash-form')"));
+
+  let submitHandler;
+  const form = {
+    addEventListener(type, handler) {
+      if (type === 'submit') submitHandler = handler;
+    },
+  };
+  const values = {
+    name: 'Ada Lovelace',
+    firma: 'Analytical Engines',
+    email: 'ada@example.com',
+    'ziel-name': 'Target Company',
+    'ziel-website': 'https://example.com',
+    'ziel-land': 'CH',
+    'gespraech-datum': '2026-10-10',
+    frage: 'Please verify this statement',
+    website: '',
+  };
+  const elements = Object.fromEntries(
+    Object.entries(values).map(([id, value]) => [id, { value }]),
+  );
+  elements.quellen = { checked: true };
+  elements.privacy = { checked: true };
+  elements['clash-form'] = form;
+  const window = { location: { href: '' } };
+  const document = {
+    getElementById(id) { return elements[id] || null; },
+  };
+
+  vm.runInNewContext(script, { document, window, encodeURIComponent });
+  submitHandler({ preventDefault() {} });
+
+  return { html, href: window.location.href };
+}
+
 for (const page of pages) {
   test(`${page} shows success only for an accepted submission`, async () => {
     for (const accepted of [true, 'true']) {
@@ -119,5 +168,19 @@ for (const page of pages) {
         assert.equal(result.elements[id].value, value);
       }
     }
+  });
+}
+
+for (const { page, subject } of clashPages) {
+  test(`${page} opens a populated email without FormSubmit`, () => {
+    const result = submitClash(page);
+    const mailto = new URL(result.href);
+
+    assert.doesNotMatch(result.html, /formsubmit\.co/);
+    assert.equal(mailto.protocol, 'mailto:');
+    assert.equal(mailto.pathname, 'kontakt@maddy.support');
+    assert.equal(mailto.searchParams.get('subject'), subject);
+    assert.match(mailto.searchParams.get('body'), /Target Company/);
+    assert.match(mailto.searchParams.get('body'), /ada@example\.com/);
   });
 }

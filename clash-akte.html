@@ -137,7 +137,7 @@
     <p class="lead form-hint">Die wichtigsten Eckdaten genügen. Wir antworten persönlich und bestätigen Umfang und Liefertermin vor Beginn.</p>
     <div class="form-section">
       <p class="form-legend">Mit * gekennzeichnete Felder und Bestätigungen sind Pflichtfelder.</p>
-      <form id="clash-form" novalidate>
+      <form id="clash-form" action="mailto:kontakt@maddy.support" method="post" enctype="text/plain" novalidate>
         <input type="text" id="website" name="website" class="visually-hidden" tabindex="-1" autocomplete="off">
         <div class="form-group"><label for="name">Name *</label><input type="text" id="name" name="name" required autocomplete="name"></div>
         <div class="form-group"><label for="firma">Eigenes Unternehmen *</label><input type="text" id="firma" name="firma" required autocomplete="organization"></div>
@@ -151,11 +151,10 @@
         <div class="checkbox-group"><input type="checkbox" id="privacy" name="privacy" required><label for="privacy">Ich habe die <a href="/datenschutz.html" target="_blank" rel="noopener">Datenschutzhinweise</a> zur Kenntnis genommen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu. *</label></div>
         <p class="form-micro">Festpreis CHF 790 · Vorauszahlung.<br>Der kostenpflichtige Auftrag kommt mit Rücksendung der vom Kunden unterzeichneten Auftragsbestätigung zustande.</p>
         <p class="form-micro">Bearbeitungsbeginn und 48-Stunden-Lieferfrist starten erst, wenn:<br>• die unterzeichnete Auftragsbestätigung vorliegt,<br>• der vollständige Zahlungseingang erfolgt ist,<br>• das Zielunternehmen vollständig angegeben wurde.<br>Werden diese Voraussetzungen am Wochenende erfüllt, beginnt die Lieferfrist am folgenden Montag um 08:00 Uhr.<br>Zahlungsweg: Banküberweisung oder TWINT.</p>
-        <button type="submit" class="btn btn-primary form-submit">Clash-Akte unverbindlich anfragen</button>
+        <button type="submit" class="btn btn-primary form-submit">E-Mail mit Anfrage öffnen</button>
+        <p class="form-micro">Nach dem Klick öffnet sich Ihr E-Mail-Programm mit Ihren Angaben. Bitte senden Sie die E-Mail dort selbst ab; der Klick allein übermittelt noch keine Anfrage.</p>
         <p class="form-micro">Keine Uploads und keine vertraulichen Dokumente.</p>
-        <div class="form-error" id="formError" role="alert">Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie an <a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a>.</div>
       </form>
-      <div class="form-ok" id="formOk"><strong>Wir haben Ihre Anfrage erhalten.</strong><p>Wir antworten persönlich und bestätigen Umfang und Liefertermin, bevor Kosten entstehen.</p></div>
     </div>
   </div>
 </section>
@@ -188,24 +187,8 @@
       if(quellen && !quellen.checked){ alert('Bitte bestätigen Sie, dass ausschliesslich öffentlich zugängliche Quellen geprüft werden sollen.'); return; }
       if(privacy && !privacy.checked){ alert('Bitte bestätigen Sie die Datenschutzhinweise.'); return; }
       if(!name || !firma || !email || !zielName || !zielWebsite || !zielLand){ alert('Bitte füllen Sie alle Pflichtfelder aus.'); return; }
-      var btn=form.querySelector('[type="submit"]');
-      var btnLabel=btn ? btn.textContent : '';
-      var error=document.getElementById('formError');
-      if(error) error.classList.remove('is-on');
-      if(btn){ btn.disabled=true; btn.textContent='Wird gesendet…'; }
-      fetch('https://formsubmit.co/ajax/kontakt@maddy.support', {
-        method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body: JSON.stringify({name:name,unternehmen:firma,email:email,zielunternehmen:zielName,ziel_website:zielWebsite,land_handelsregister:zielLand,erstgespraech_datum:datum||'nicht angegeben',frage_unstimmigkeit:frage||'keine',quellen_bestaetigung:'nur öffentliche Quellen',bereich:'CLASH-AKTE',_subject:'Anfrage Maddy.support – CLASH-AKTE – '+zielName,_template:'table',_captcha:'false'})
-      }).then(function(r){ return r.json().catch(function(){ return {}; }); })
-      .then(function(data){
-        if(!data || (data.success !== true && data.success !== 'true')) throw new Error('Submission rejected');
-        form.style.display='none'; var ok=document.getElementById('formOk'); if(ok) ok.classList.add('is-on');
-      })
-      .catch(function(){
-        var body=['Name: '+name,'Unternehmen: '+firma,'E-Mail: '+email,'Zielunternehmen: '+zielName,'Website: '+zielWebsite,'Land/Register: '+zielLand,'Erstgespräch: '+(datum||'nicht angegeben'),'',frage||''].join('\n');
-        if(btn){ btn.disabled=false; btn.textContent=btnLabel; }
-        if(error){ var link=error.querySelector('a'); if(link) link.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Anfrage Maddy.support – CLASH-AKTE – '+zielName)+'&body='+encodeURIComponent(body); error.classList.add('is-on'); }
-      });
+      var body=['Name: '+name,'Unternehmen: '+firma,'E-Mail: '+email,'Zielunternehmen: '+zielName,'Website: '+zielWebsite,'Land/Register: '+zielLand,'Erstgespräch: '+(datum||'nicht angegeben'),'',frage||''].join('\n');
+      window.location.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Anfrage Maddy.support – CLASH-AKTE – '+zielName)+'&body='+encodeURIComponent(body);
     });
   }
 })();
