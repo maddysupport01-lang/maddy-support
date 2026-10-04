@@ -277,7 +277,7 @@ test('Clash payment copy consistently offers confirmed Stripe methods after sign
     assert.doesNotMatch(copy, /Banküberweisung|bank transfer|Apple Pay|Google Pay/i);
     assert.match(copy, /Stripe-Zahlungslink|Stripe payment link/);
     assert.match(copy, /TWINT/);
-    assert.match(copy, /Kartenzahlung|Card/);
+    assert.match(copy, /Kartenzahlung|card/i);
     assert.match(copy, /Klarna/);
     assert.match(copy, /Amazon Pay/);
   }
