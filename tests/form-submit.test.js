@@ -70,9 +70,13 @@ async function submit(page, response) {
     querySelectorAll() { return []; },
     querySelector(selector) { return selector === '.unsure-note' ? unsure : null; },
   };
-  const fetch = response instanceof Error
-    ? () => Promise.reject(response)
-    : () => Promise.resolve({ json: () => Promise.resolve(response) });
+  let postedPayload;
+  const fetch = (_url, options) => {
+    postedPayload = JSON.parse(options.body);
+    return response instanceof Error
+      ? Promise.reject(response)
+      : Promise.resolve({ json: () => Promise.resolve(response) });
+  };
 
   vm.runInNewContext(script, {
     document,
@@ -86,7 +90,7 @@ async function submit(page, response) {
   await new Promise((resolve) => setImmediate(resolve));
   await new Promise((resolve) => setImmediate(resolve));
 
-  return { button, error, fieldValues, elements, form, mailLink, success };
+  return { button, error, fieldValues, elements, form, mailLink, postedPayload, success };
 }
 
 for (const page of pages) {
@@ -109,6 +113,8 @@ for (const page of pages) {
       assert.equal(result.button.textContent, 'Original submit label');
       assert.match(result.mailLink.href, /^mailto:kontakt@maddy\.support\?/);
       assert.match(result.mailLink.href, /ada%40example\.com/);
+      assert.equal(new URL(result.mailLink.href).searchParams.get('subject'), result.postedPayload._subject);
+      assert.match(result.postedPayload._subject, / – (Support|Target Company)$/);
       for (const [id, value] of Object.entries(result.fieldValues)) {
         assert.equal(result.elements[id].value, value);
       }

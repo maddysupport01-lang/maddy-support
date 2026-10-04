@@ -86,6 +86,7 @@
       var name=document.getElementById('name').value.trim();
       var email=document.getElementById('email').value.trim();
       var pkg=document.getElementById('package').value;
+      var subject='Enquire Maddy.support – BUSINESS'+(pkg?' – '+pkg:'');
       var bedarf=document.getElementById('bedarf').value.trim();
       var honey=document.getElementById('website');
       var privacy=document.getElementById('privacy');
@@ -99,7 +100,7 @@
       if(btn){ btn.disabled=true; btn.textContent='Sending…'; }
       fetch('https://formsubmit.co/ajax/kontakt@maddy.support', {
         method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body: JSON.stringify({name:name,email:email,paket:pkg||'open',bereich:'BUSINESS',bedarf:bedarf,_subject:'Enquire Maddy.support – BUSINESS'+(pkg?' – '+pkg:''),_template:'table',_captcha:'false'})
+        body: JSON.stringify({name:name,email:email,paket:pkg||'open',bereich:'BUSINESS',bedarf:bedarf,_subject:subject,_template:'table',_captcha:'false'})
       }).then(function(r){ return r.json().catch(function(){ return {}; }); })
       .then(function(data){
         if(!data || (data.success !== true && data.success !== 'true')) throw new Error('Submission rejected');
@@ -108,7 +109,7 @@
       .catch(function(){
         var body=['Name: '+name,'Email: '+email,'Package: '+(pkg||'open'),'',bedarf].join('\n');
         if(btn){ btn.disabled=false; btn.textContent=btnLabel; }
-        if(error){ var link=error.querySelector('a'); if(link) link.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Enquire Maddy.support')+'&body='+encodeURIComponent(body); error.classList.add('is-on'); }
+        if(error){ var link=error.querySelector('a'); if(link) link.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body); error.classList.add('is-on'); }
       });
     });
   }
