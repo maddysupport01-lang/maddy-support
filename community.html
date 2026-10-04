@@ -178,6 +178,7 @@
         </div>
         <p class="form-micro">Unverbindlich. Kein Call. Support ist 10 Stunden für CHF 1’890.</p>
         <button type="submit" class="btn btn-primary form-submit">Unverbindlich anfragen</button>
+        <div class="form-error" id="formError" role="alert">Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie an <a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a>.</div>
       </form>
       <div class="form-ok" id="formOk"><strong>Wir haben Ihre Anfrage erhalten.</strong><p>Wir antworten in einem Werktag an die angegebene Adresse. Kein Call.</p></div>
       <div class="unsure-note"><strong>Noch unsicher, welches Paket passt?</strong><br>Beschreiben Sie einfach Ihren Bedarf. Ich empfehle Ihnen persönlich die passende Betreuung.</div>
@@ -223,6 +224,9 @@
       if(privacy && !privacy.checked){ alert('Bitte bestätigen Sie die Datenschutzhinweise.'); return; }
       if(!name || !email || !bedarf){ alert('Name, E-Mail und eine kurze Beschreibung reichen.'); return; }
       var btn=form.querySelector('[type="submit"]');
+      var btnLabel=btn ? btn.textContent : '';
+      var error=document.getElementById('formError');
+      if(error) error.classList.remove('is-on');
       if(btn){ btn.disabled=true; btn.textContent='Wird gesendet…'; }
       fetch('https://formsubmit.co/ajax/kontakt@maddy.support', {
         method:'POST',
@@ -232,14 +236,16 @@
           _subject:'Anfrage Maddy.support – COMMUNITY'+(pkg?' – '+pkg:''), _template:'table', _captcha:'false'
         })
       }).then(function(r){ return r.json().catch(function(){ return {}; }); })
-      .then(function(){
+      .then(function(data){
+        if(!data || (data.success !== true && data.success !== 'true')) throw new Error('Submission rejected');
         form.style.display='none';
         var ok=document.getElementById('formOk'); if(ok) ok.classList.add('is-on');
         var un=document.querySelector('.unsure-note'); if(un) un.style.display='none';
       })
       .catch(function(){
         var body=['Name: '+name,'E-Mail: '+email,'Paket: '+(pkg||'noch offen'),'',bedarf].join('\n');
-        window.location.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Anfrage Maddy.support')+'&body='+encodeURIComponent(body);
+        if(btn){ btn.disabled=false; btn.textContent=btnLabel; }
+        if(error){ var link=error.querySelector('a'); if(link) link.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Anfrage Maddy.support')+'&body='+encodeURIComponent(body); error.classList.add('is-on'); }
       });
     });
   }
