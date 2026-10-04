@@ -224,6 +224,8 @@
     }
     .email-alternative{color:var(--muted);font-size:.82rem;line-height:1.6;text-align:center;margin-top:10px}
     .email-alternative a{color:var(--gold-bright);text-decoration:underline;text-underline-offset:3px}
+    .copy-email{border:0;background:transparent;color:var(--gold-bright);font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;margin-left:6px}
+    .copy-status{white-space:nowrap}
     footer{padding:42px 0 55px;border-top:1px solid var(--line);text-align:center;color:var(--muted);line-height:1.75}
     footer .brand{display:block;margin-bottom:6px}
     footer a{color:var(--cream)}
@@ -521,9 +523,9 @@
           </label>
         </div>
 
-        <button class="btn btn-primary" type="submit" style="width:100%">E-Mail mit Anfrage öffnen</button>
+        <a id="helionMailLink" class="btn btn-primary" href="mailto:kontakt@maddy.support?subject=Unverbindliche%20Helion-Anfrage" style="width:100%">E-Mail mit Anfrage öffnen</a>
         <p class="form-micro">Nach dem Klick öffnet sich Ihr E-Mail-Programm mit Ihren Angaben. Bitte senden Sie die E-Mail dort selbst ab; der Klick allein übermittelt noch keine Anfrage.</p>
-        <p class="email-alternative">Kein E-Mail-Programm eingerichtet? Schreiben Sie direkt an <a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a>.</p>
+        <p class="email-alternative">E-Mail: <a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a> <button type="button" class="copy-email" data-copy-email="kontakt@maddy.support">Adresse kopieren</button><span class="copy-status" aria-live="polite"></span></p>
       </form>
     </div>
   </section>
@@ -592,8 +594,8 @@
         syncMissingOptions();
       }
       if(form){
-        form.addEventListener('submit', function(event){
-          event.preventDefault();
+        var mailLink=document.getElementById('helionMailLink');
+        function updateMailLink(){
           var lines=[];
           Array.prototype.slice.call(form.elements).forEach(function(field){
             if(!field.name || field.disabled || field.type==='submit'){ return; }
@@ -602,10 +604,27 @@
             var name=label ? label.textContent.trim() : field.name;
             lines.push(name+': '+field.value);
           });
-          var mailto='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Unverbindliche Helion-Anfrage')+'&body='+encodeURIComponent(lines.join('\n\n'));
-          window.location.href=mailto;
+          mailLink.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Unverbindliche Helion-Anfrage')+'&body='+encodeURIComponent(lines.join('\n\n'));
+        }
+        form.addEventListener('input',updateMailLink);
+        form.addEventListener('change',updateMailLink);
+        mailLink.addEventListener('click',function(event){
+          updateMailLink();
+          if(!form.checkValidity()){
+            event.preventDefault();
+            form.reportValidity();
+          }
         });
+        updateMailLink();
       }
+      Array.prototype.forEach.call(document.querySelectorAll('[data-copy-email]'),function(button){
+        button.addEventListener('click',function(){
+          var status=button.parentNode.querySelector('.copy-status');
+          navigator.clipboard.writeText(button.getAttribute('data-copy-email')).then(function(){
+            if(status) status.textContent=' Kopiert.';
+          }).catch(function(){ if(status) status.textContent=' Bitte markieren und kopieren.'; });
+        });
+      });
     })();
   </script>
 </body>

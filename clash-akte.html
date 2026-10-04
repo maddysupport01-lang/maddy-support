@@ -151,8 +151,9 @@
         <div class="checkbox-group"><input type="checkbox" id="privacy" name="privacy" required><label for="privacy">Ich habe die <a href="/datenschutz.html" target="_blank" rel="noopener">Datenschutzhinweise</a> zur Kenntnis genommen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu. *</label></div>
         <p class="form-micro">Festpreis CHF 790 · Vorauszahlung.<br>Der kostenpflichtige Auftrag kommt mit Rücksendung der vom Kunden unterzeichneten Auftragsbestätigung zustande.</p>
         <p class="form-micro">Bearbeitungsbeginn und 48-Stunden-Lieferfrist starten erst, wenn:<br>• die unterzeichnete Auftragsbestätigung vorliegt,<br>• der vollständige Zahlungseingang erfolgt ist,<br>• das Zielunternehmen vollständig angegeben wurde.<br>Werden diese Voraussetzungen am Wochenende erfüllt, beginnt die Lieferfrist am folgenden Montag um 08:00 Uhr.<br>Zahlungsweg: Banküberweisung oder TWINT.</p>
-        <button type="submit" class="btn btn-primary form-submit">E-Mail mit Anfrage öffnen</button>
+        <a id="clashMailLink" class="btn btn-primary form-submit" href="mailto:kontakt@maddy.support">E-Mail mit Anfrage öffnen</a>
         <p class="form-micro">Nach dem Klick öffnet sich Ihr E-Mail-Programm mit Ihren Angaben. Bitte senden Sie die E-Mail dort selbst ab; der Klick allein übermittelt noch keine Anfrage.</p>
+        <p class="email-alternative">E-Mail: <a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a> <button type="button" class="copy-email" data-copy-email="kontakt@maddy.support">Adresse kopieren</button><span class="copy-status" aria-live="polite"></span></p>
         <p class="form-micro">Keine Uploads und keine vertraulichen Dokumente.</p>
       </form>
     </div>
@@ -176,21 +177,38 @@
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('is-open');t.setAttribute('aria-expanded',o?'true':'false');});}
   var form=document.getElementById('clash-form');
   if(form){
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
+    var mailLink=document.getElementById('clashMailLink');
+    function updateMailLink(){
       function val(id){ var el=document.getElementById(id); return el ? el.value.trim() : ''; }
       var name=val('name'), firma=val('firma'), email=val('email');
       var zielName=val('ziel-name'), zielWebsite=val('ziel-website'), zielLand=val('ziel-land');
       var datum=val('gespraech-datum'), frage=val('frage');
-      var honey=document.getElementById('website'), quellen=document.getElementById('quellen'), privacy=document.getElementById('privacy');
-      if(honey && honey.value) return;
-      if(quellen && !quellen.checked){ alert('Bitte bestätigen Sie, dass ausschliesslich öffentlich zugängliche Quellen geprüft werden sollen.'); return; }
-      if(privacy && !privacy.checked){ alert('Bitte bestätigen Sie die Datenschutzhinweise.'); return; }
-      if(!name || !firma || !email || !zielName || !zielWebsite || !zielLand){ alert('Bitte füllen Sie alle Pflichtfelder aus.'); return; }
       var body=['Name: '+name,'Unternehmen: '+firma,'E-Mail: '+email,'Zielunternehmen: '+zielName,'Website: '+zielWebsite,'Land/Register: '+zielLand,'Erstgespräch: '+(datum||'nicht angegeben'),'',frage||''].join('\n');
-      window.location.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Anfrage Maddy.support – CLASH-AKTE – '+zielName)+'&body='+encodeURIComponent(body);
+      mailLink.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Anfrage Maddy.support – CLASH-AKTE – '+zielName)+'&body='+encodeURIComponent(body);
+    }
+    form.addEventListener('input', updateMailLink);
+    form.addEventListener('change', updateMailLink);
+    mailLink.addEventListener('click', function(e){
+      updateMailLink();
+      function val(id){ var el=document.getElementById(id); return el ? el.value.trim() : ''; }
+      var name=val('name'), firma=val('firma'), email=val('email');
+      var zielName=val('ziel-name'), zielWebsite=val('ziel-website'), zielLand=val('ziel-land');
+      var honey=document.getElementById('website'), quellen=document.getElementById('quellen'), privacy=document.getElementById('privacy');
+      if(honey && honey.value){ e.preventDefault(); return; }
+      if(quellen && !quellen.checked){ e.preventDefault(); alert('Bitte bestätigen Sie, dass ausschliesslich öffentlich zugängliche Quellen geprüft werden sollen.'); return; }
+      if(privacy && !privacy.checked){ e.preventDefault(); alert('Bitte bestätigen Sie die Datenschutzhinweise.'); return; }
+      if(!name || !firma || !email || !zielName || !zielWebsite || !zielLand){ e.preventDefault(); alert('Bitte füllen Sie alle Pflichtfelder aus.'); }
     });
+    updateMailLink();
   }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-copy-email]'),function(button){
+    button.addEventListener('click',function(){
+      var status=button.parentNode.querySelector('.copy-status');
+      navigator.clipboard.writeText(button.getAttribute('data-copy-email')).then(function(){
+        if(status) status.textContent=' Kopiert.';
+      }).catch(function(){ if(status) status.textContent=' Bitte markieren und kopieren.'; });
+    });
+  });
 })();
 </script>
 </body>
