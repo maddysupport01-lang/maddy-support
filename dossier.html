@@ -129,6 +129,10 @@
     <div class="form-section">
       <p class="form-legend">Mit * gekennzeichnete Felder und Bestätigungen sind Pflichtfelder.</p>
       <form id="dossier-form" novalidate>
+        <input type="hidden" name="access_key" value="f5e69167-2bb1-4d60-b2b4-ebf833be6532">
+        <input type="hidden" name="subject" value="MADDY.SUPPORT – Dossier">
+        <input type="hidden" name="from_name" value="maddy.support">
+        <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="text" id="website" name="website" class="visually-hidden" tabindex="-1" autocomplete="off">
         <div class="form-group"><label for="name">Name *</label><input type="text" id="name" name="name" required autocomplete="name"></div>
         <div class="form-group"><label for="email">E-Mail *</label><input type="email" id="email" name="email" required autocomplete="email"></div>
@@ -170,24 +174,42 @@
       function val(id){ var el=document.getElementById(id); return el ? el.value.trim() : ''; }
       var name=val('name'), email=val('email'), frage=val('frage'), frist=val('frist'), mehr=val('mehr');
       var honey=document.getElementById('website'), privacy=document.getElementById('privacy');
+      var bot=form.querySelector('[name="botcheck"]');
       if(honey && honey.value) return;
+      if(bot && bot.checked) return;
       if(privacy && !privacy.checked){ alert('Bitte bestätigen Sie die Datenschutzhinweise.'); return; }
       if(!name || !email || !frage || !frist){ alert('Bitte füllen Sie alle Pflichtfelder aus.'); return; }
       var btn=form.querySelector('[type="submit"]');
       if(btn){ btn.disabled=true; btn.textContent='Wird gesendet…'; }
-      fetch('https://formsubmit.co/ajax/02f4fb242d680fb031054c832e4efc6f', {
+      var mailtoBody=['Name: '+name,'E-Mail: '+email,'Fragestellung: '+frage,'Deadline: '+frist,'',mehr||''].join('\n');
+      var mailtoHref='mailto:kontakt@maddy.support?subject='+encodeURIComponent('MADDY.SUPPORT – Dossier')+'&body='+encodeURIComponent(mailtoBody);
+      function showMailtoFallback(msg){
+        if(btn){ btn.disabled=false; btn.textContent='Dossier anfragen'; }
+        var existing=document.getElementById('dossierMailtoFallback');
+        if(!existing){
+          existing=document.createElement('p');
+          existing.id='dossierMailtoFallback';
+          existing.className='form-micro';
+          existing.style.marginTop='12px';
+          form.appendChild(existing);
+        }
+        existing.innerHTML=(msg?msg+' ':'')+'Fallback: <a id="dossierMailLink" href="'+mailtoHref+'">E-Mail mit Anfrage öffnen</a> · <a href="mailto:kontakt@maddy.support">kontakt@maddy.support</a>';
+        // Keep all entered field values — do not reset the form.
+      }
+      fetch('https://api.web3forms.com/submit', {
         method:'POST',
         headers:{'Content-Type':'application/json','Accept':'application/json'},
         body: JSON.stringify({
+          access_key:'f5e69167-2bb1-4d60-b2b4-ebf833be6532',
+          subject:'MADDY.SUPPORT – Dossier',
+          from_name:'maddy.support',
+          botcheck:'',
           name:name,
           email:email,
           fragestellung:frage,
           deadline:frist,
           weitere_infos:mehr||'keine',
-          bereich:'DOSSIER',
-          _subject:'DOSSIER',
-          _template:'table',
-          _captcha:'false'
+          bereich:'DOSSIER'
         })
       }).then(function(r){
         return r.json().catch(function(){ return {}; }).then(function(data){
@@ -195,23 +217,16 @@
         });
       })
       .then(function(res){
-        if(res.ok){
+        if(res.ok || res.status===200){
           form.style.display='none';
           var ok=document.getElementById('formOk');
           if(ok) ok.classList.add('is-on');
           return;
         }
-        if(btn){ btn.disabled=false; btn.textContent='Dossier anfragen'; }
-        if(res.status===429){
-          alert('Übermittlung vorübergehend blockiert (HTTP 429). Bitte später erneut versuchen.');
-          return;
-        }
-        alert('Übermittlung fehlgeschlagen (HTTP '+res.status+'). Keine Anfrage gesendet.');
+        showMailtoFallback('Übermittlung fehlgeschlagen (HTTP '+res.status+'). Formularinhalt bleibt erhalten.');
       })
       .catch(function(){
-        if(btn){ btn.disabled=false; btn.textContent='Dossier anfragen'; }
-        var body=['Name: '+name,'E-Mail: '+email,'Fragestellung: '+frage,'Deadline: '+frist,'',mehr||''].join('\n');
-        window.location.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('DOSSIER')+'&body='+encodeURIComponent(body);
+        showMailtoFallback('Übermittlung technisch fehlgeschlagen. Formularinhalt bleibt erhalten.');
       });
     });
   }
