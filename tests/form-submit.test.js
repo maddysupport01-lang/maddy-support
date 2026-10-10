@@ -33,7 +33,7 @@ const clashPages = [
   },
   {
     page: 'en/clash-akte.html',
-    subject: 'Enquire Maddy.support – CLASH-AKTE – Target Company',
+    subject: 'Enquiry Maddy.support – CLASH-AKTE – Target Company',
   },
 ];
 
