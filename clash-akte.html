@@ -218,7 +218,7 @@
         <div class="form-group"><label for="email">Geschäftliche E-Mail-Adresse *</label><input type="email" id="email" name="email" required autocomplete="email"></div>
         <div class="form-group"><label for="ziel-name">Name des Kaufinteressenten *</label><input type="text" id="ziel-name" name="ziel-name" required></div>
         <div class="form-group"><label for="ziel-website">Website des Kaufinteressenten (falls vorhanden)</label><input type="text" id="ziel-website" name="ziel-website" inputmode="url" placeholder="z. B. beispiel-ag.ch"></div>
-        <div class="form-group"><label for="ziel-land">Land (bei Firmen: zuständiges Handelsregister) *</label><input type="text" id="ziel-land" name="ziel-land" required placeholder="z. B. Schweiz, Handelsregister Bern"></div>
+        <div class="form-group"><label for="ziel-land">Land (falls eingetragen: zuständiges Handelsregister) *</label><input type="text" id="ziel-land" name="ziel-land" required placeholder="z. B. Schweiz, Handelsregister Bern"></div>
         <div class="form-group"><label for="gespraech-datum">Datum des geplanten Erstgesprächs (optional)</label><input type="date" id="gespraech-datum" name="gespraech-datum"></div>
         <div class="form-group"><label for="frage">Konkrete Frage oder bekannte Unstimmigkeit (optional)</label><textarea id="frage" name="frage" placeholder="Falls Ihnen bereits etwas aufgefallen ist — eine Zeile genügt."></textarea></div>
         <div class="checkbox-group"><input type="checkbox" id="quellen" name="quellen" required><label for="quellen">Ich bestätige, dass ausschliesslich öffentlich zugängliche Quellen geprüft werden sollen. *</label></div>
@@ -257,7 +257,7 @@
       var name=val('name'), firma=val('firma'), email=val('email');
       var zielName=val('ziel-name'), zielWebsite=val('ziel-website'), zielLand=val('ziel-land');
       var datum=val('gespraech-datum'), frage=val('frage');
-      var body=['Name: '+name,'Unternehmen: '+firma,'E-Mail: '+email,'Kaufinteressent: '+zielName,'Website: '+(zielWebsite||'–'),'Land/Register: '+zielLand,'Erstgespräch: '+(datum||'nicht angegeben'),'',frage||''].join('\n');
+      var body=['Name: '+name,'Unternehmen: '+firma,'E-Mail: '+email,'Kaufinteressent: '+zielName,'Website: '+(zielWebsite||'–'),'Land: '+zielLand,'Erstgespräch: '+(datum||'nicht angegeben'),'',frage||''].join('\n');
       mailLink.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Anfrage Maddy.support – CLASH-AKTE – '+zielName)+'&body='+encodeURIComponent(body);
     }
     form.addEventListener('input', updateMailLink);
