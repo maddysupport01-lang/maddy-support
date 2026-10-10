@@ -110,7 +110,7 @@ function submitClash(page) {
     firma: 'Analytical Engines',
     email: 'ada@example.com',
     'ziel-name': 'Target Company',
-    'ziel-website': 'https://example.com',
+    'ziel-website': '',
     'ziel-land': 'CH',
     'gespraech-datum': '2026-10-10',
     frage: 'Please verify this statement',
@@ -226,8 +226,10 @@ for (const { page, subject } of clashPages) {
     assert.equal(mailto.searchParams.get('subject'), subject);
     assert.match(mailto.searchParams.get('body'), /Target Company/);
     assert.match(mailto.searchParams.get('body'), /ada@example\.com/);
+    assert.match(mailto.searchParams.get('body'), /Website: –/);
     assert.equal(result.prevented, false);
     assert.match(result.html, /<a id="clashMailLink"[^>]+href="mailto:/);
+    assert.doesNotMatch(result.html, /id="ziel-website"[^>]*\srequired(?:\s|>)/);
     assert.match(result.html, /data-copy-email="kontakt@maddy\.support"/);
     assert.doesNotMatch(result.html, /window\.location\.href\s*=/);
   });
