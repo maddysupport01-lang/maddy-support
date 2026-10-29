@@ -31,6 +31,12 @@ Helion richtet sich an B2B-Dienstleister in IT, Cyber, SAP/ERP, Industrie-Engine
 - [Clash-Akte (Deutsch)](https://maddy.support/clash-akte.html): Öffentliche Angaben von Kaufinteressenten vor dem ersten Gespräch prüfen: Widersprüche, Unklarheiten, offene Fragen. CHF 790. Nur öffentliche Quellen.
 - [Clash File (English)](https://maddy.support/en/clash-akte.html): Check a prospective buyer's public claims before the first meeting: contradictions, unclear points, open questions. CHF 790. Public sources only.
 
+## Monatspakete Business und Community
+
+- [Pakete & Buchung](https://maddy.support/pakete.html): Starter 6 Std. CHF 1’190, Support 10 Std. CHF 1’890, Premium 16 Std. CHF 2’990 pro Monat. Eine Plattform inklusive. Jede weitere Plattform +140 CHF pro Monat. Onboarding für neue Monatspakete CHF 490.
+- [Business](https://maddy.support/business.html), [Community](https://maddy.support/community.html), [Ablauf](https://maddy.support/ablauf.html), [FAQ](https://maddy.support/faq.html), [Über Maddy](https://maddy.support/ueber-maddy.html), [Kontakt](https://maddy.support/kontakt.html)
+- Eine Anfrage ist keine Auftragsbestätigung.
+
 ## Rechtliches
 
 - [Impressum](https://maddy.support/impressum.html)
