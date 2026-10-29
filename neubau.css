@@ -87,6 +87,7 @@ section{padding:64px 0;border-top:1px solid var(--border)}
 .process .num{font-family:"Playfair Display",Georgia,serif;font-style:italic;color:var(--gold);font-size:26px}
 .process h3{font-family:"DM Sans",Arial,sans-serif;font-size:15px;font-weight:700;margin:8px 0}
 .process p{color:var(--muted);font-size:14px}
+.table-wrap{width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
 table.prices{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);font-size:14px}
 table.prices th,table.prices td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top}
 table.prices th{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
@@ -166,7 +167,8 @@ legend{font-weight:700;color:var(--navy);margin-bottom:10px}
   .grid-2,.grid-3,.grid-4,.process,.footer-grid{grid-template-columns:1fr}
   .hero-note{min-height:240px}
   .questions{padding:26px 22px}
-  table.prices th,table.prices td{padding:10px 10px}
+  table.prices th,table.prices td{padding:10px 8px}
+  table.prices th{letter-spacing:.6px}
   .line-switch{display:flex;width:100%}
   .line-switch button{flex:1;padding:10px 8px}
 }
