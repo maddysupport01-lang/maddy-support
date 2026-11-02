@@ -56,8 +56,6 @@
       setze('sum-monat', chf(r.monat) + ' / Monat');
       setze('sum-onboarding', r.onboarding ? chf(r.onboarding) + ' einmalig' : 'entfällt');
       setze('sum-zwei', chf(r.zweiMonate));
-      var mind = document.getElementById('sum-mindest');
-      if (mind) mind.hidden = linie !== 'Business';
     }
     Array.prototype.forEach.call(document.querySelectorAll('[data-linie]'), function (b) {
       b.addEventListener('click', function () {
