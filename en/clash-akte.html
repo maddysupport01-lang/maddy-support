@@ -222,7 +222,8 @@
         <div class="form-group"><label for="name">Name *</label><input type="text" id="name" name="name" required autocomplete="name"></div>
         <div class="form-group"><label for="firma">Your firm *</label><input type="text" id="firma" name="firma" required autocomplete="organization"></div>
         <div class="form-group"><label for="email">Work email *</label><input type="email" id="email" name="email" required autocomplete="email"></div>
-        <div class="form-group"><label for="ziel-name">Prospective buyer name *</label><input type="text" id="ziel-name" name="ziel-name" required></div>
+        <div class="form-group"><label for="ziel-name">Prospective buyer name</label><input type="text" id="ziel-name" name="ziel-name"></div>
+        <p class="form-micro">For your first enquiry you can leave out the name of the prospective buyer. I only need it before I start the review.</p>
         <div class="form-group"><label for="ziel-website">Prospective buyer website (if any)</label><input type="text" id="ziel-website" name="ziel-website" inputmode="url" placeholder="e.g. example-ag.ch"></div>
         <div class="form-group"><label for="ziel-land">Country (if registered: commercial register) *</label><input type="text" id="ziel-land" name="ziel-land" required placeholder="e.g. Switzerland, register Bern"></div>
         <div class="form-group"><label for="gespraech-datum">Date of the planned first meeting (optional)</label><input type="date" id="gespraech-datum" name="gespraech-datum"></div>
@@ -264,8 +265,9 @@
       var name=val('name'), firma=val('firma'), email=val('email');
       var zielName=val('ziel-name'), zielWebsite=val('ziel-website'), zielLand=val('ziel-land');
       var datum=val('gespraech-datum'), frage=val('frage');
-      var body=['Name: '+name,'Firm: '+firma,'Email: '+email,'Prospective buyer: '+zielName,'Website: '+(zielWebsite||'–'),'Country: '+zielLand,'Meeting: '+(datum||'not given'),'',frage||''].join('\n');
-      mailLink.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent('Enquiry Maddy.support – CLASH-AKTE – '+zielName)+'&body='+encodeURIComponent(body);
+      var body=['Name: '+name,'Firm: '+firma,'Email: '+email,'Prospective buyer: '+(zielName||'not given'),'Website: '+(zielWebsite||'–'),'Country: '+zielLand,'Meeting: '+(datum||'not given'),'',frage||''].join('\n');
+      var subject='Enquiry Maddy.support – CLASH-AKTE'+(zielName ? ' – '+zielName : '');
+      mailLink.href='mailto:kontakt@maddy.support?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
     }
     form.addEventListener('input', updateMailLink);
     form.addEventListener('change', updateMailLink);
@@ -280,7 +282,7 @@
       if(honey && honey.value){ e.preventDefault(); return; }
       if(quellen && !quellen.checked){ e.preventDefault(); alert('Please confirm that only public sources are to be reviewed.'); return; }
       if(privacy && !privacy.checked){ e.preventDefault(); alert('Please confirm the privacy notice.'); return; }
-      if(!name || !firma || !email || !zielName || !zielLand){
+      if(!name || !firma || !email || !zielLand){
         e.preventDefault(); alert('Please fill in all required fields.');
       }
     });

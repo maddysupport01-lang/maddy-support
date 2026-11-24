@@ -92,7 +92,7 @@ function loadInquiryMailLink(page, linkId) {
   return { html, href: elements[linkId].href, prevented };
 }
 
-function submitClash(page) {
+function submitClash(page, overrides = {}) {
   const html = fs.readFileSync(page, 'utf8');
   const script = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)]
     .map((match) => match[1])
@@ -115,12 +115,17 @@ function submitClash(page) {
     'gespraech-datum': '2026-10-10',
     frage: 'Please verify this statement',
     website: '',
+    ...overrides,
   };
+  const quellenChecked = values.quellenChecked !== undefined ? values.quellenChecked : true;
+  const privacyChecked = values.privacyChecked !== undefined ? values.privacyChecked : true;
+  delete values.quellenChecked;
+  delete values.privacyChecked;
   const elements = Object.fromEntries(
     Object.entries(values).map(([id, value]) => [id, { value }]),
   );
-  elements.quellen = { checked: true };
-  elements.privacy = { checked: true };
+  elements.quellen = { checked: quellenChecked };
+  elements.privacy = { checked: privacyChecked };
   elements['clash-form'] = form;
   elements.clashMailLink = {
     href: '',
@@ -131,16 +136,18 @@ function submitClash(page) {
     querySelectorAll() { return []; },
   };
 
+  const alerts = [];
   vm.runInNewContext(script, {
     document,
     window: { matchMedia: () => ({ matches: true }) },
     navigator: { clipboard: { writeText: () => Promise.resolve() } },
     encodeURIComponent,
+    alert(message) { alerts.push(message); },
   });
   let prevented = false;
   linkHandlers.click({ preventDefault() { prevented = true; } });
 
-  return { html, href: elements.clashMailLink.href, prevented };
+  return { html, href: elements.clashMailLink.href, prevented, alerts };
 }
 
 function loadHelionMailLink(page) {
@@ -232,6 +239,60 @@ for (const { page, subject } of clashPages) {
     assert.doesNotMatch(result.html, /id="ziel-website"[^>]*\srequired(?:\s|>)/);
     assert.match(result.html, /data-copy-email="kontakt@maddy\.support"/);
     assert.doesNotMatch(result.html, /window\.location\.href\s*=/);
+  });
+
+  test(`${page} allows an empty buyer name on the first enquiry`, () => {
+    const result = submitClash(page, { 'ziel-name': '' });
+    const mailto = new URL(result.href);
+    const subjectLine = mailto.searchParams.get('subject');
+    const body = mailto.searchParams.get('body');
+    const isEnglish = page.startsWith('en/');
+
+    assert.equal(result.prevented, false);
+    assert.deepEqual(result.alerts, []);
+    assert.equal(mailto.protocol, 'mailto:');
+    assert.equal(mailto.pathname, 'kontakt@maddy.support');
+    assert.doesNotMatch(subjectLine, /–\s*$/);
+    assert.doesNotMatch(subjectLine, /Target Company/);
+    assert.equal(
+      subjectLine,
+      isEnglish ? 'Enquiry Maddy.support – CLASH-AKTE' : 'Anfrage Maddy.support – CLASH-AKTE',
+    );
+    assert.match(body, isEnglish ? /Prospective buyer: not given/ : /Kaufinteressent: nicht angegeben/);
+    assert.doesNotMatch(body, /Kaufinteressent:\s*$/m);
+    assert.doesNotMatch(body, /Prospective buyer:\s*$/m);
+    assert.doesNotMatch(result.html, /id="ziel-name"[^>]*\srequired(?:\s|>)/);
+    assert.match(
+      result.html,
+      isEnglish
+        ? /For your first enquiry you can leave out the name of the prospective buyer\. I only need it before I start the review\./
+        : /Bei Ihrer ersten Anfrage können Sie den Namen des Kaufinteressenten weglassen\. Ich brauche ihn erst, bevor ich mit der Prüfung beginne\./,
+    );
+  });
+
+  test(`${page} still requires the other Clash fields and the privacy notice`, () => {
+    const resultEmptyLand = submitClash(page, { 'ziel-name': '', 'ziel-land': '' });
+    assert.equal(resultEmptyLand.prevented, true);
+    assert.ok(resultEmptyLand.alerts.length >= 1);
+
+    const resultNoPrivacy = submitClash(page, { 'ziel-name': '', privacyChecked: false });
+    assert.equal(resultNoPrivacy.prevented, true);
+    assert.ok(resultNoPrivacy.alerts.length >= 1);
+
+    const html = resultEmptyLand.html;
+    assert.match(html, /id="name"[^>]*\srequired(?:\s|>)/);
+    assert.match(html, /id="firma"[^>]*\srequired(?:\s|>)/);
+    assert.match(html, /id="email"[^>]*\srequired(?:\s|>)/);
+    assert.match(html, /id="ziel-land"[^>]*\srequired(?:\s|>)/);
+    assert.match(html, /id="quellen"[^>]*\srequired(?:\s|>)/);
+    assert.match(html, /id="privacy"[^>]*\srequired(?:\s|>)/);
+    assert.doesNotMatch(html, /id="ziel-name"[^>]*\srequired(?:\s|>)/);
+    if (page.startsWith('en/')) {
+      assert.match(html, /href="\/en\/privacy\.html"/);
+    } else {
+      assert.match(html, /href="\/datenschutz\.html"/);
+    }
+    assert.match(html, /CHF 790/);
   });
 }
 
