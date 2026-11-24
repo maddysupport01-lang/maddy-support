@@ -1,0 +1,17 @@
+{
+  "name": "maddy.support static site",
+  "install": "python3 --version",
+  "terminals": [
+    {
+      "name": "static-server",
+      "command": "python3 -m http.server 8000 --bind 0.0.0.0",
+      "description": "Serves the static site at http://localhost:8000 (open / for the home page)."
+    }
+  ],
+  "ports": [
+    {
+      "name": "site",
+      "port": 8000
+    }
+  ]
+}
